@@ -330,6 +330,7 @@
       </categories>
       <tags>
         <tag>Java</tag>
+        <tag>异常</tag>
       </tags>
   </entry>
   <entry>
@@ -451,6 +452,7 @@
       </categories>
       <tags>
         <tag>Java</tag>
+        <tag>数组</tag>
       </tags>
   </entry>
   <entry>
@@ -792,6 +794,7 @@
       </categories>
       <tags>
         <tag>Java</tag>
+        <tag>注解和反射</tag>
       </tags>
   </entry>
   <entry>
@@ -1167,6 +1170,7 @@
       </categories>
       <tags>
         <tag>Java</tag>
+        <tag>OOP</tag>
       </tags>
   </entry>
   <entry>
@@ -1438,6 +1442,7 @@
       </categories>
       <tags>
         <tag>Java</tag>
+        <tag>多线程</tag>
       </tags>
   </entry>
   <entry>
@@ -1735,6 +1740,7 @@
       </categories>
       <tags>
         <tag>Java</tag>
+        <tag>集合</tag>
       </tags>
   </entry>
 </search>
