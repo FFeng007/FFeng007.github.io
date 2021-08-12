@@ -388,6 +388,80 @@
       </tags>
   </entry>
   <entry>
+    <title>Java异常</title>
+    <url>/2021/07/24/Java%E5%BC%82%E5%B8%B8/</url>
+    <content><![CDATA[<h2 id="一、异常"><a href="#一、异常" class="headerlink" title="一、异常"></a>一、异常</h2><p>异常指程序在运行中出现的不期而至的各种状况，如：文件找不到，网络连接失败，非法参数等。</p>
+<h4 id="1-三种类型的异常"><a href="#1-三种类型的异常" class="headerlink" title="1.三种类型的异常"></a>1.三种类型的异常</h4><ul>
+<li>检查性异常：用户的或错误或问题引起的异常，程序员无法预见的，这些异常编译时不能被简单的忽略。</li>
+<li>运行时异常：运行时可能被程序员避免的异常，运行时异常可以在编译时被忽略。</li>
+<li>错误：错误不是异常，而是脱离程序控制的问题，错误在代码中经常被忽略。</li>
+</ul>
+<h4 id="2-异常体系结构"><a href="#2-异常体系结构" class="headerlink" title="2.异常体系结构"></a>2.异常体系结构</h4><p>异常类（Throwable）分为俩类，</p>
+<ul>
+<li>异常（Exception）用户程序可能捕获的异常情况或者是程序可以处理的异常。<ul>
+<li>运行时异常（RuntimeException）：数组下标越界（ArrayIndexOutOfBoundsException），算数异常（ArithemticException）等异常，这些异常是不检查异常，程序中可以选择捕获处理，也可以不处理，一般由逻辑编辑错误引起。</li>
+<li>非运行时异常（运行时异常之外的异常）：（IOException），（SQLException），（用户自定义的Exception），这些异常是必须处理的异常，不处理程序就不能编译通过。</li>
+</ul>
+</li>
+<li>错误（Error）不希望被程序捕获或者程序无法处理的异常。出现这种异常，JVM一般会终止线程。<ul>
+<li>由Java虚拟机生成并抛出，大多数错误和代码编写者所执行的操作无关：Java虚拟机运行错误（Virtual MachineError），类定义错误（NoClassDefFoundError），链接错误（LinkageError），这些错误是不可查的它们在应用程序的控制和处理能力之外，绝大多数是程序运行时不允许出现的状况。</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-检查异常和不受检查异常"><a href="#3-检查异常和不受检查异常" class="headerlink" title="3.检查异常和不受检查异常"></a>3.检查异常和不受检查异常</h4><ul>
+<li>检查异常：除了运行时异常及其子类以外，其他的异常类及其子类（非运行时异常）编译器要求必须处理的异常（try-catch语句捕获，或者throws抛出）</li>
+<li>不受检查异常：包括运行时异常及其子类和Error，编译器不要求强制处理的异常。</li>
+</ul>
+<h2 id="二、Java异常处理机制"><a href="#二、Java异常处理机制" class="headerlink" title="二、Java异常处理机制"></a>二、Java异常处理机制</h2><h4 id="1-抛出异常"><a href="#1-抛出异常" class="headerlink" title="1.抛出异常"></a>1.抛出异常</h4><p>遇到异常，当前方法或者作用域无法继续执行下去，进行抛出处理。</p>
+<h4 id="2-捕获异常"><a href="#2-捕获异常" class="headerlink" title="2.捕获异常"></a>2.捕获异常</h4><p>方法抛出异常后，运行系统转为寻找合适的异常处理器，进行捕获处理。</p>
+<h4 id="3-异常处理五个关键字"><a href="#3-异常处理五个关键字" class="headerlink" title="3.异常处理五个关键字"></a>3.异常处理五个关键字</h4><ul>
+<li><p>try——监听，将要监听的代码放在try语句块中，发生异常，异常就会被抛出。</p>
+</li>
+<li><p>catch——捕获异常，捕获try语句块中发生的异常.</p>
+</li>
+<li><p>finally——处理善后工作，总会被执行，主要用于收回try语句块中打开的资源。</p>
+</li>
+<li><p>throw——抛出异常</p>
+</li>
+<li><p>throws——用在方法签名中，声明该方法可能抛出的异常</p>
+</li>
+</ul>
+<h2 id="三、异常处理"><a href="#三、异常处理" class="headerlink" title="三、异常处理"></a>三、异常处理</h2><h4 id="1-try-catch"><a href="#1-try-catch" class="headerlink" title="1.try-catch"></a>1.try-catch</h4><p>快捷键 Ctrl+Alt+T</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//假设要捕获多个异常，异常类型从小到大</span></span><br><span class="line"><span class="keyword">try</span> &#123;<span class="comment">//try 监控区域</span></span><br><span class="line">    <span class="keyword">if</span>(b==<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> ArithmeticException();<span class="comment">//主动抛出异常 throw throws</span></span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(a/b);</span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;<span class="comment">//catch（想要捕获的异常类型）  捕获异常</span></span><br><span class="line">    System.out.println(<span class="string">&quot;Exception&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">catch</span> (Error f)&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;Error&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">catch</span> (Throwable g)&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;Throwable&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;<span class="comment">//finally 处理善后工作   可以不要finally   一般用来 资源关闭</span></span><br><span class="line">    System.out.println(<span class="string">&quot;finally&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-throw"><a href="#2-throw" class="headerlink" title="2.throw"></a>2.throw</h4><p>该程序两次处理相同的错误，首先， main() 方法设立了一个异常关系然后调用proc()。proc()方法设 立了另一个异常处理关系并且立即抛出一个 NullPointerException 实例， NullPointerException 在 main() 中被再次捕获。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestThrow</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">proc</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">&quot;demo&quot;</span>);</span><br><span class="line">        &#125;<span class="keyword">catch</span>(NullPointerException e)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Caught inside proc&quot;</span>);</span><br><span class="line">            <span class="keyword">throw</span> e;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String [] args)</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            proc();</span><br><span class="line">        &#125;<span class="keyword">catch</span>(NullPointerException e)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Recaught: &quot;</span>+e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-throws"><a href="#3-throws" class="headerlink" title="3.throws"></a>3.throws</h4><p>如果一个方法可以导致一个异常但不处理它，它必须指定这种行为以使方法的调用者可以保护它们自己 而不发生异常。要做到这点，我们可以在方法声明中包含一个 throws 子句。</p>
+<h4 id="4-finally"><a href="#4-finally" class="headerlink" title="4.finally"></a>4.finally</h4><p>处理善后工作，主要用于收回try语句块中打开的资源，无论有没有异常被抛出都会被执行。</p>
+<h4 id="5-执行顺序"><a href="#5-执行顺序" class="headerlink" title="5.执行顺序"></a>5.执行顺序</h4><ol>
+<li>执行try,catch,给返回值赋值</li>
+<li>执行finally</li>
+<li>return</li>
+</ol>
+<h2 id="四、自定义异常"><a href="#四、自定义异常" class="headerlink" title="四、自定义异常"></a>四、自定义异常</h2><ul>
+<li>用户自己定义的异常类，需要继承Exception类。</li>
+<li>步骤<ol>
+<li>创建自定义异常类。</li>
+<li>在方法中通过throw关键字抛出异常对象。</li>
+<li>如果在当前抛出异常的方法中处理异常，可以使用 try-catch 语句捕获并处理；否则在方法的 声明处通过 throws 关键字指明要抛出给方法调用者的异常，继续进行下一步操作。</li>
+<li>在出现异常方法的调用者中捕获并处理异常。</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//1.创建自定义异常类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyException</span> <span class="keyword">extends</span> <span class="title">Exception</span> </span>&#123;</span><br><span class="line">    <span class="comment">//传递数字&gt;10</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> detail;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyException</span><span class="params">(<span class="keyword">int</span> a)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.detail = a;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span>  <span class="comment">//打印异常信息</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;MyException&#123;&quot;</span> + detail + <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="comment">//可能存异常的方法。</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> a)</span> <span class="keyword">throws</span> MyException </span>&#123;<span class="comment">//3.throws指明要抛出给方法调用者的异常</span></span><br><span class="line">        System.out.println(<span class="string">&quot;传递的参数为&quot;</span> + a);</span><br><span class="line">        <span class="keyword">if</span> (a&gt;<span class="number">10</span>)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> MyException(a);<span class="comment">//2.throw抛出异常对象</span></span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;ok&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//4.通过try-catch捕获处理异常。</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            test(<span class="number">11</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (MyException e) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Myexception--&gt;&quot;</span> + e );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">传递的参数为<span class="number">11</span></span><br><span class="line">Myexception--&gt;MyException&#123;<span class="number">11</span>&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>笔记</category>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>异常</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java数组</title>
     <url>/2021/07/17/Java%E6%95%B0%E7%BB%84/</url>
     <content><![CDATA[<h2 id="一、数组概述"><a href="#一、数组概述" class="headerlink" title="一、数组概述"></a>一、数组概述</h2><h4 id="1-数组的定义"><a href="#1-数组的定义" class="headerlink" title="1.数组的定义"></a>1.数组的定义</h4><ul>
@@ -588,80 +662,6 @@
       </categories>
       <tags>
         <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java异常</title>
-    <url>/2021/07/24/Java%E5%BC%82%E5%B8%B8/</url>
-    <content><![CDATA[<h2 id="一、异常"><a href="#一、异常" class="headerlink" title="一、异常"></a>一、异常</h2><p>异常指程序在运行中出现的不期而至的各种状况，如：文件找不到，网络连接失败，非法参数等。</p>
-<h4 id="1-三种类型的异常"><a href="#1-三种类型的异常" class="headerlink" title="1.三种类型的异常"></a>1.三种类型的异常</h4><ul>
-<li>检查性异常：用户的或错误或问题引起的异常，程序员无法预见的，这些异常编译时不能被简单的忽略。</li>
-<li>运行时异常：运行时可能被程序员避免的异常，运行时异常可以在编译时被忽略。</li>
-<li>错误：错误不是异常，而是脱离程序控制的问题，错误在代码中经常被忽略。</li>
-</ul>
-<h4 id="2-异常体系结构"><a href="#2-异常体系结构" class="headerlink" title="2.异常体系结构"></a>2.异常体系结构</h4><p>异常类（Throwable）分为俩类，</p>
-<ul>
-<li>异常（Exception）用户程序可能捕获的异常情况或者是程序可以处理的异常。<ul>
-<li>运行时异常（RuntimeException）：数组下标越界（ArrayIndexOutOfBoundsException），算数异常（ArithemticException）等异常，这些异常是不检查异常，程序中可以选择捕获处理，也可以不处理，一般由逻辑编辑错误引起。</li>
-<li>非运行时异常（运行时异常之外的异常）：（IOException），（SQLException），（用户自定义的Exception），这些异常是必须处理的异常，不处理程序就不能编译通过。</li>
-</ul>
-</li>
-<li>错误（Error）不希望被程序捕获或者程序无法处理的异常。出现这种异常，JVM一般会终止线程。<ul>
-<li>由Java虚拟机生成并抛出，大多数错误和代码编写者所执行的操作无关：Java虚拟机运行错误（Virtual MachineError），类定义错误（NoClassDefFoundError），链接错误（LinkageError），这些错误是不可查的它们在应用程序的控制和处理能力之外，绝大多数是程序运行时不允许出现的状况。</li>
-</ul>
-</li>
-</ul>
-<h4 id="3-检查异常和不受检查异常"><a href="#3-检查异常和不受检查异常" class="headerlink" title="3.检查异常和不受检查异常"></a>3.检查异常和不受检查异常</h4><ul>
-<li>检查异常：除了运行时异常及其子类以外，其他的异常类及其子类（非运行时异常）编译器要求必须处理的异常（try-catch语句捕获，或者throws抛出）</li>
-<li>不受检查异常：包括运行时异常及其子类和Error，编译器不要求强制处理的异常。</li>
-</ul>
-<h2 id="二、Java异常处理机制"><a href="#二、Java异常处理机制" class="headerlink" title="二、Java异常处理机制"></a>二、Java异常处理机制</h2><h4 id="1-抛出异常"><a href="#1-抛出异常" class="headerlink" title="1.抛出异常"></a>1.抛出异常</h4><p>遇到异常，当前方法或者作用域无法继续执行下去，进行抛出处理。</p>
-<h4 id="2-捕获异常"><a href="#2-捕获异常" class="headerlink" title="2.捕获异常"></a>2.捕获异常</h4><p>方法抛出异常后，运行系统转为寻找合适的异常处理器，进行捕获处理。</p>
-<h4 id="3-异常处理五个关键字"><a href="#3-异常处理五个关键字" class="headerlink" title="3.异常处理五个关键字"></a>3.异常处理五个关键字</h4><ul>
-<li><p>try——监听，将要监听的代码放在try语句块中，发生异常，异常就会被抛出。</p>
-</li>
-<li><p>catch——捕获异常，捕获try语句块中发生的异常.</p>
-</li>
-<li><p>finally——处理善后工作，总会被执行，主要用于收回try语句块中打开的资源。</p>
-</li>
-<li><p>throw——抛出异常</p>
-</li>
-<li><p>throws——用在方法签名中，声明该方法可能抛出的异常</p>
-</li>
-</ul>
-<h2 id="三、异常处理"><a href="#三、异常处理" class="headerlink" title="三、异常处理"></a>三、异常处理</h2><h4 id="1-try-catch"><a href="#1-try-catch" class="headerlink" title="1.try-catch"></a>1.try-catch</h4><p>快捷键 Ctrl+Alt+T</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//假设要捕获多个异常，异常类型从小到大</span></span><br><span class="line"><span class="keyword">try</span> &#123;<span class="comment">//try 监控区域</span></span><br><span class="line">    <span class="keyword">if</span>(b==<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> ArithmeticException();<span class="comment">//主动抛出异常 throw throws</span></span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(a/b);</span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;<span class="comment">//catch（想要捕获的异常类型）  捕获异常</span></span><br><span class="line">    System.out.println(<span class="string">&quot;Exception&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">catch</span> (Error f)&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;Error&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">catch</span> (Throwable g)&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;Throwable&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;<span class="comment">//finally 处理善后工作   可以不要finally   一般用来 资源关闭</span></span><br><span class="line">    System.out.println(<span class="string">&quot;finally&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-throw"><a href="#2-throw" class="headerlink" title="2.throw"></a>2.throw</h4><p>该程序两次处理相同的错误，首先， main() 方法设立了一个异常关系然后调用proc()。proc()方法设 立了另一个异常处理关系并且立即抛出一个 NullPointerException 实例， NullPointerException 在 main() 中被再次捕获。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestThrow</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">proc</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">&quot;demo&quot;</span>);</span><br><span class="line">        &#125;<span class="keyword">catch</span>(NullPointerException e)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Caught inside proc&quot;</span>);</span><br><span class="line">            <span class="keyword">throw</span> e;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String [] args)</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            proc();</span><br><span class="line">        &#125;<span class="keyword">catch</span>(NullPointerException e)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Recaught: &quot;</span>+e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-throws"><a href="#3-throws" class="headerlink" title="3.throws"></a>3.throws</h4><p>如果一个方法可以导致一个异常但不处理它，它必须指定这种行为以使方法的调用者可以保护它们自己 而不发生异常。要做到这点，我们可以在方法声明中包含一个 throws 子句。</p>
-<h4 id="4-finally"><a href="#4-finally" class="headerlink" title="4.finally"></a>4.finally</h4><p>处理善后工作，主要用于收回try语句块中打开的资源，无论有没有异常被抛出都会被执行。</p>
-<h4 id="5-执行顺序"><a href="#5-执行顺序" class="headerlink" title="5.执行顺序"></a>5.执行顺序</h4><ol>
-<li>执行try,catch,给返回值赋值</li>
-<li>执行finally</li>
-<li>return</li>
-</ol>
-<h2 id="四、自定义异常"><a href="#四、自定义异常" class="headerlink" title="四、自定义异常"></a>四、自定义异常</h2><ul>
-<li>用户自己定义的异常类，需要继承Exception类。</li>
-<li>步骤<ol>
-<li>创建自定义异常类。</li>
-<li>在方法中通过throw关键字抛出异常对象。</li>
-<li>如果在当前抛出异常的方法中处理异常，可以使用 try-catch 语句捕获并处理；否则在方法的 声明处通过 throws 关键字指明要抛出给方法调用者的异常，继续进行下一步操作。</li>
-<li>在出现异常方法的调用者中捕获并处理异常。</li>
-</ol>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//1.创建自定义异常类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyException</span> <span class="keyword">extends</span> <span class="title">Exception</span> </span>&#123;</span><br><span class="line">    <span class="comment">//传递数字&gt;10</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> detail;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyException</span><span class="params">(<span class="keyword">int</span> a)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.detail = a;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span>  <span class="comment">//打印异常信息</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;MyException&#123;&quot;</span> + detail + <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="comment">//可能存异常的方法。</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> a)</span> <span class="keyword">throws</span> MyException </span>&#123;<span class="comment">//3.throws指明要抛出给方法调用者的异常</span></span><br><span class="line">        System.out.println(<span class="string">&quot;传递的参数为&quot;</span> + a);</span><br><span class="line">        <span class="keyword">if</span> (a&gt;<span class="number">10</span>)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> MyException(a);<span class="comment">//2.throw抛出异常对象</span></span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;ok&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//4.通过try-catch捕获处理异常。</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            test(<span class="number">11</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (MyException e) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Myexception--&gt;&quot;</span> + e );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">传递的参数为<span class="number">11</span></span><br><span class="line">Myexception--&gt;MyException&#123;<span class="number">11</span>&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>笔记</category>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>异常</tag>
       </tags>
   </entry>
   <entry>
