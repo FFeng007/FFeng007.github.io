@@ -1,180 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Java基础语法</title>
-    <url>/2021/07/10/Java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</url>
-    <content><![CDATA[<h2 id="一、注释"><a href="#一、注释" class="headerlink" title="一、注释"></a>一、注释</h2><h3 id="1-单行注释"><a href="#1-单行注释" class="headerlink" title="1.单行注释"></a>1.单行注释</h3><p>//Hello World！    </p>
-<h3 id="2-多行注释"><a href="#2-多行注释" class="headerlink" title="2.多行注释"></a>2.多行注释</h3><p>/*</p>
-<p>Hello World！</p>
-<p>Hello World！</p>
-<p>*/</p>
-<h3 id="3-文本注释"><a href="#3-文本注释" class="headerlink" title="3.文本注释"></a>3.文本注释</h3><p>/**</p>
-<p>*Hello World！    </p>
-<p>*Hello World！    </p>
-<p>**/</p>
-<h2 id="二、标识符、关键词"><a href="#二、标识符、关键词" class="headerlink" title="二、标识符、关键词"></a>二、标识符、关键词</h2><h3 id="1-标识符命名规则"><a href="#1-标识符命名规则" class="headerlink" title="1.标识符命名规则"></a>1.标识符命名规则</h3><ul>
-<li>所有的标识符都应该以字母、美元符号、下划线开始</li>
-<li>首字符之后可以是字母、美元符号、下划线、数字的任意组合</li>
-<li>不能用关键词命名</li>
-<li>大小写敏感</li>
-</ul>
-<h3 id="2-关键词"><a href="#2-关键词" class="headerlink" title="2.关键词"></a>2.关键词</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">abstract</span> 	 assent  	<span class="keyword">boolean</span> 	 <span class="keyword">break</span> 	 <span class="keyword">byte</span> 	 ase 	 <span class="keyword">catch</span></span><br><span class="line"><span class="keyword">char</span> 	 <span class="class"><span class="keyword">class</span> 	 <span class="title">const</span>		<span class="title">continue</span>	  <span class="title">default</span>	<span class="title">do</span>	<span class="title">double</span></span></span><br><span class="line"><span class="class"><span class="title">else</span> 	 <span class="title">enum</span>  	<span class="keyword">extends</span> 	 <span class="title">finally</span>	  <span class="title">float</span>	  <span class="title">for</span>	  <span class="title">goto</span>  <span class="title">if</span>	 </span></span><br><span class="line"><span class="class"><span class="keyword">implements</span>		<span class="title">import</span> 	 <span class="title">istanceof</span> 	 <span class="title">int</span>  	<span class="title">interface</span> 	 <span class="title">long</span>	</span></span><br><span class="line"><span class="class"><span class="title">native</span> 	  <span class="title">new</span> 	 <span class="title">package</span> 	 <span class="title">private</span> 	 <span class="title">protected</span>	  <span class="title">public</span>  <span class="title">return</span></span></span><br><span class="line"><span class="class"><span class="title">strictfp</span>  	<span class="title">short</span> 	 <span class="title">static</span> 	 <span class="title">super</span>  	<span class="title">switch</span>  	<span class="title">synchronized</span>  </span></span><br><span class="line"><span class="class"><span class="title">this</span>  <span class="title">throw</span>  <span class="title">throws</span>  	<span class="title">transient</span> 	 <span class="title">try</span>  	<span class="title">void</span>  	<span class="title">volatile</span>  <span class="title">while</span></span></span><br></pre></td></tr></table></figure>
-
-<h2 id="三、数据类型"><a href="#三、数据类型" class="headerlink" title="三、数据类型"></a>三、数据类型</h2><h3 id="1-八大基本数据类型"><a href="#1-八大基本数据类型" class="headerlink" title="1.八大基本数据类型"></a>1.八大基本数据类型</h3><ul>
-<li><p>字节型byte    取值范围：0 - 255    占1个字节</p>
-</li>
-<li><p>短整型short    取值范围：-32,768 ~ 3276    占2个字节</p>
-</li>
-<li><p>整形int    取值范围：-2,147,483,648 ~ 2,147,483,647    占4个字节</p>
-</li>
-<li><p>长整型long    取值范围：<br>-9223372036854775808~9223372036854775807    占8个字节</p>
-</li>
-<li><p>单精度浮点型float占4个字节    </p>
-<p>负数范围:-3.402823E38 ~ -1.401298E-45<br>正数范围:1.401298E-45 ~ 3.402823E38</p>
-</li>
-<li><p>双精度浮点型double    占8个字节    </p>
-<p>负数范围:-1.797,693,134,862,32E308 ~-4.940,656,458,412,47E-324<br>正数范围:4.940,656,458,412,47E-324 ~1.797,693,134,862,32E308</p>
-</li>
-<li><p>字符型char    用单引号括起来    占2个字节</p>
-</li>
-<li><p>布尔型boolean    （ true  false）    占1个字节</p>
-</li>
-</ul>
-<h3 id="2-引用数据类型"><a href="#2-引用数据类型" class="headerlink" title="2.引用数据类型"></a>2.引用数据类型</h3><p>类（String类）、接口、数组</p>
-<p>引用数据类型的大小统一设置为4个字节，记录的是其引用对象的地址。</p>
-<h3 id="3-数据类型扩展"><a href="#3-数据类型扩展" class="headerlink" title="3.数据类型扩展"></a>3.数据类型扩展</h3><ul>
-<li><p>整型扩展：进制表示：二进制 0b 开头；八进制 0 开头；十进制；十六进制 0x 开头；</p>
-</li>
-<li><p>浮点型扩展：由于字长有限，浮点数能够表示的数是有限的、离散的，一般存在舍入误差，很多数字无法完全精确表示，结果只能接近但不等于。所以避免在比较中使用浮点。（浮点类型不适合在不容许误差的金融计算领域，若要进行精确数字计算要使用BigDecimal类）</p>
-</li>
-<li><p>字符型扩展：”A”是字符串，’A’是字符，</p>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">转义字符：</span><br><span class="line"><span class="comment">//  \t 制表符</span></span><br><span class="line"><span class="comment">//  \n 换行</span></span><br><span class="line"><span class="comment">//  \r 回车</span></span><br><span class="line"><span class="comment">//  \b 退格</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>布尔型扩展</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">boolean</span> flag = <span class="keyword">true</span>;</span><br><span class="line"><span class="keyword">if</span> (flag==<span class="keyword">true</span>) &#123;&#125; <span class="comment">//新手</span></span><br><span class="line"><span class="keyword">if</span> (flag) &#123;&#125; <span class="comment">//老手</span></span><br><span class="line"><span class="comment">//Less is Morel！  代码要精简易读</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="四、类型转换"><a href="#四、类型转换" class="headerlink" title="四、类型转换"></a>四、类型转换</h2><p>由于Java语言是强类型语言，所以在进行有些运算的时候要进行类型转换。</p>
-<h3 id="1-自动类型转换"><a href="#1-自动类型转换" class="headerlink" title="1.自动类型转换"></a>1.自动类型转换</h3><p>容量小的可以自动转换为容量大的数据类型。</p>
-<p>从小到大：byte,short,char &lt; int &lt; long &lt; float &lt; double</p>
-<h3 id="2-强制类型转换"><a href="#2-强制类型转换" class="headerlink" title="2.强制类型转换"></a>2.强制类型转换</h3><p>容量大的数据类型需要 强制转换 成容量小的的数据类型。 （type）var</p>
-<h3 id="3-常见问题"><a href="#3-常见问题" class="headerlink" title="3.常见问题"></a>3.常见问题</h3><ul>
-<li>溢出问题</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//操作比较大的数的时候，注意溢出问题</span></span><br><span class="line"><span class="comment">// JDK7新特性，数字之间可以用下划线分割</span></span><br><span class="line"><span class="keyword">int</span> money = <span class="number">10_0000_0000</span>;</span><br><span class="line"><span class="keyword">int</span> years = <span class="number">20</span>;</span><br><span class="line"><span class="keyword">int</span> total = money * years;<span class="comment">//-1474836480,计算的时候溢出了</span></span><br><span class="line"><span class="keyword">long</span> total2 = money * years;<span class="comment">//-1474836480，默认是int，转换之前已经存在问题了</span></span><br><span class="line"><span class="keyword">long</span> total3 = money * (<span class="keyword">long</span>) years;<span class="comment">//200亿，先把一个数转换为Lang</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>L和l问题</p>
-<p>由于小写L和数字1很相似，为了更方便的识别代码，不要命名名字为小写l的变量，long类型使用大写L不使用小写l</p>
-</li>
-</ul>
-<h2 id="五、变量和常量"><a href="#五、变量和常量" class="headerlink" title="五、变量和常量"></a>五、变量和常量</h2><h3 id="1-变量"><a href="#1-变量" class="headerlink" title="1.变量"></a>1.变量</h3><ul>
-<li><p>变量：可以变化的量</p>
-</li>
-<li><p>变量作用域（变量分为三种）</p>
-<ul>
-<li>类变量（静态变量）</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line">    <span class="comment">//类变量,，从属于类，用static修饰，如果不初始化会自动初始为默认值</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">double</span> salary = <span class="number">2500</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> a;<span class="comment">//数值型初始为0或者0.0</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">char</span> b;<span class="comment">//字符型初始为16位的0</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">boolean</span> c;<span class="comment">//布尔值初始位false</span></span><br><span class="line">    <span class="comment">//类变量在该类的方法中可以直接进行使用System.out.println(salary);</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>实例变量（成员变量）</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line">	<span class="comment">//实例变量（成员变量）;从属于对象,如果不进行初始化，这个类型的默认值 0 0.0</span></span><br><span class="line">	<span class="comment">//布尔值:默认是false</span></span><br><span class="line">	<span class="comment">//除了基本类型,其余默认的值都是null;</span></span><br><span class="line">	String name;</span><br><span class="line">	<span class="keyword">int</span> age;</span><br><span class="line">    <span class="comment">//成员变量要创建对象在该类的方法中进行使用</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>局部变量</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"><span class="comment">//局部变量;方法或语句块中定义的变量，没有初始值，必须进行声明和初始化（赋初值）;</span></span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">10</span>;</span><br><span class="line">    System.out.println(i);</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-常量"><a href="#2-常量" class="headerlink" title="2.常量"></a>2.常量</h3><ul>
-<li>常量：值被设定后，在程序运行过程中不能被改变。<br>final  常量名 = 值;</li>
-</ul>
-<h3 id="3-命名规则"><a href="#3-命名规则" class="headerlink" title="3.命名规则"></a>3.命名规则</h3><ul>
-<li>类名：首字母大写和驼峰原则 Demo DemoScore</li>
-<li>类成员变量、局部变量和方法名：首字母小写和驼峰原则 demo demoScore</li>
-<li>常量：大写字母和下划线 DEMO_SOCRE</li>
-</ul>
-<h2 id="六、运算符"><a href="#六、运算符" class="headerlink" title="六、运算符"></a>六、运算符</h2><h3 id="1-基本运算符（二元运算符）"><a href="#1-基本运算符（二元运算符）" class="headerlink" title="1.基本运算符（二元运算符）"></a>1.基本运算符（二元运算符）</h3><ul>
-<li>加减乘除（+  -  *  /）    取模（%）</li>
-<li>整数运算：俩个操作数，一个为Long，结果为Long；没有Long时，结果为int；即使操作数全为byte或者short，结果也是int。</li>
-<li>浮点运算：俩个操作数，一个为double，结果为double；都为float才为float。</li>
-<li>取模运算：负数%负数＝负数； 负数%正数＝负数； 正数%负数＝正数；</li>
-<li>关系运算符   (==    !=    &gt;    &lt;    &lt;=    &gt;=)    返回布尔值</li>
-</ul>
-<h3 id="2-一元运算符"><a href="#2-一元运算符" class="headerlink" title="2.一元运算符"></a>2.一元运算符</h3><ul>
-<li>自增++    自减–</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//++ 自增   -- 自减    一元运算符</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">int</span> b = a++; <span class="comment">//执行这段代码后，先给b赋值，再a自加</span></span><br><span class="line"><span class="comment">// a = a + 1;</span></span><br><span class="line"><span class="keyword">int</span> c = ++a;<span class="comment">//执行这段代码前，先a自加,再给c赋值</span></span><br><span class="line"><span class="comment">//a = a + 1;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> d = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">int</span> e = d--; <span class="comment">//执行这段代码后，先给e赋值，再d自减</span></span><br><span class="line"><span class="comment">// d = d - 1</span></span><br><span class="line"><span class="keyword">int</span> f = --d;<span class="comment">//执行这段代码前，先d自减,再给f赋值</span></span><br><span class="line"><span class="comment">// d = d - 1</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Math类</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//幂运算 2^3   2*2*2 = 8  很多运算我们会使用一些工具类来操作.Math类</span></span><br><span class="line"><span class="keyword">double</span> pow = Math.pow(a,d);</span><br><span class="line">System.out.println(pow);</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-条件运算符（三元运算符）"><a href="#3-条件运算符（三元运算符）" class="headerlink" title="3.条件运算符（三元运算符）"></a>3.条件运算符（三元运算符）</h3><p> a ? b : c        如果a是true就是b，否则就是c</p>
- <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> score = <span class="number">71</span>;</span><br><span class="line">String type = score &gt;= <span class="number">60</span> ? <span class="string">&quot;及格&quot;</span> : <span class="string">&quot;不及格&quot;</span>;</span><br><span class="line">System.out.println(type);<span class="comment">//及格</span></span><br><span class="line"><span class="comment">//运算符优先级	（）最优先可以在表达式里边用小括号组织</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="4-逻辑运算符"><a href="#4-逻辑运算符" class="headerlink" title="4.逻辑运算符"></a>4.逻辑运算符</h3><ul>
-<li><p>与&amp;&amp; （and）        或||（or）           非（取反）</p>
-</li>
-<li><p>短路运算：逻辑与只要有一个为false, 则直接返回false. 逻辑或只要有一个为true, 则直接返回true;</p>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//短路运算</span></span><br><span class="line"><span class="keyword">int</span> c = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">boolean</span> d = (c &lt; <span class="number">4</span>) &amp;&amp; (c++ &lt; <span class="number">4</span>);</span><br><span class="line">System.out.println(d);<span class="comment">//false</span></span><br><span class="line">System.out.println(c);<span class="comment">//5  由于第一个为falsh，则直接返回false，c不自加，短路运算</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="5-位运算符"><a href="#5-位运算符" class="headerlink" title="5.位运算符"></a>5.位运算符</h3><ul>
-<li>位运算符应用于整数类型(int)，长整型(long)，短整型(short)，字符型(char)，和字节型 (byte)等类型</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo06</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        A = 0011 1100</span></span><br><span class="line"><span class="comment">        B = 0000 1101</span></span><br><span class="line"><span class="comment">        ----------------------------</span></span><br><span class="line"><span class="comment">        A&amp;B = 0000 1100     两个都为1才为1，否则就是0</span></span><br><span class="line"><span class="comment">        A|B = 0011 1101     两个都为0才为0，否则都为1</span></span><br><span class="line"><span class="comment">        A^B = 0011 0001     相同为0，不同为1</span></span><br><span class="line"><span class="comment">        ~B = 1111 0010      1和0反过来</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">        2 * 8 = 16   2*2*2*2</span></span><br><span class="line"><span class="comment">        如何效率极高的计算?</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">        &lt;&lt;  *2</span></span><br><span class="line"><span class="comment">        &gt;&gt;  /2</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">        0000 0000       0</span></span><br><span class="line"><span class="comment">        0000 0001       1</span></span><br><span class="line"><span class="comment">        0000 0010       2</span></span><br><span class="line"><span class="comment">        0000 0011       3</span></span><br><span class="line"><span class="comment">        0000 0100       4</span></span><br><span class="line"><span class="comment">        0000 1000       8</span></span><br><span class="line"><span class="comment">        0001 0000       16</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="number">2</span>&lt;&lt;<span class="number">3</span>);<span class="comment">//2*2*2*2=16</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="6-扩展赋值运算符"><a href="#6-扩展赋值运算符" class="headerlink" title="6.扩展赋值运算符"></a>6.扩展赋值运算符</h3><ul>
-<li>a += b;//a = a + b<br>a -= b;//a = a - b<br>a /= b;//a = a / b<br>a *= b;//a = a * b</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//字符串连接符 +         String</span></span><br><span class="line"><span class="keyword">int</span> a = <span class="number">20</span>;</span><br><span class="line"><span class="keyword">int</span> b = <span class="number">10</span>;</span><br><span class="line">System.out.println(<span class="string">&quot;&quot;</span> + a + b);<span class="comment">// &quot;&quot;放前边会把加号旁边的操作数转换为字符串</span></span><br><span class="line">System.out.println(a + b + <span class="string">&quot;&quot;</span>);<span class="comment">// &quot;&quot;放后边不起上述作用</span></span><br><span class="line">System.out.println(a + b +<span class="string">&quot;\t&quot;</span>+<span class="string">&quot;&quot;</span>+ a + b);<span class="comment">//30 2010</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="七、包"><a href="#七、包" class="headerlink" title="七、包"></a>七、包</h2><ul>
-<li><p>包的作用：把功能相似或相关的类或接口组织在同一个包中，方便类的查找和使用；同一个包中的类名字是不同的，不同的包中的类 的名字是可以相同的。</p>
-</li>
-<li><p>包的创建：一般用公司域名倒置，  <a href="http://www.baidu.com/">www.baidu.com</a>   包名  com.baidu.www</p>
-</li>
-<li><p>包的导入：为了可以使用某一包中的成员，需要用import导入包。通配符*可以导入包下的所有类</p>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*</span><br></pre></td></tr></table></figure>
-
-<h2 id="八、JavaDoc"><a href="#八、JavaDoc" class="headerlink" title="八、JavaDoc"></a>八、JavaDoc</h2><ol>
-<li><p>JavaDoc是可以将注释生成HTML文档的的技术。</p>
-<p>@author 作者名 </p>
-<p>@version 版本号 </p>
-<p>@since 指明需要最早使用的jdk版本 </p>
-<p>@param 参数名 </p>
-<p>@return 返回值情况 </p>
-<p>@throws 异常抛出情况</p>
-</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> name</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">test</span><span class="params">(String name)</span> <span class="keyword">throws</span>  Exception</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//命令行生成JavaDoc文档  javadoc 参数 Java文件</span></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>用命令行生成JavaDoc文档：javadoc    -encoding UTF-8 -charset UTF-8    java文件</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// -encoding UTF-8 -charset UTF-8</span></span><br><span class="line"><span class="comment">//解决GBK乱码问题，在中间添加编码设置</span></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>笔记</category>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>HTML5</title>
     <url>/2021/08/12/HTML5/</url>
     <content><![CDATA[<h2 id="一、HTML基础"><a href="#一、HTML基础" class="headerlink" title="一、HTML基础"></a>一、HTML基础</h2><h3 id="1-HTML"><a href="#1-HTML" class="headerlink" title="1.HTML"></a>1.HTML</h3><ul>
@@ -462,6 +288,262 @@
       </tags>
   </entry>
   <entry>
+    <title>Java基础语法</title>
+    <url>/2021/07/10/Java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</url>
+    <content><![CDATA[<h2 id="一、注释"><a href="#一、注释" class="headerlink" title="一、注释"></a>一、注释</h2><h3 id="1-单行注释"><a href="#1-单行注释" class="headerlink" title="1.单行注释"></a>1.单行注释</h3><p>//Hello World！    </p>
+<h3 id="2-多行注释"><a href="#2-多行注释" class="headerlink" title="2.多行注释"></a>2.多行注释</h3><p>/*</p>
+<p>Hello World！</p>
+<p>Hello World！</p>
+<p>*/</p>
+<h3 id="3-文本注释"><a href="#3-文本注释" class="headerlink" title="3.文本注释"></a>3.文本注释</h3><p>/**</p>
+<p>*Hello World！    </p>
+<p>*Hello World！    </p>
+<p>**/</p>
+<h2 id="二、标识符、关键词"><a href="#二、标识符、关键词" class="headerlink" title="二、标识符、关键词"></a>二、标识符、关键词</h2><h3 id="1-标识符命名规则"><a href="#1-标识符命名规则" class="headerlink" title="1.标识符命名规则"></a>1.标识符命名规则</h3><ul>
+<li>所有的标识符都应该以字母、美元符号、下划线开始</li>
+<li>首字符之后可以是字母、美元符号、下划线、数字的任意组合</li>
+<li>不能用关键词命名</li>
+<li>大小写敏感</li>
+</ul>
+<h3 id="2-关键词"><a href="#2-关键词" class="headerlink" title="2.关键词"></a>2.关键词</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">abstract</span> 	 assent  	<span class="keyword">boolean</span> 	 <span class="keyword">break</span> 	 <span class="keyword">byte</span> 	 ase 	 <span class="keyword">catch</span></span><br><span class="line"><span class="keyword">char</span> 	 <span class="class"><span class="keyword">class</span> 	 <span class="title">const</span>		<span class="title">continue</span>	  <span class="title">default</span>	<span class="title">do</span>	<span class="title">double</span></span></span><br><span class="line"><span class="class"><span class="title">else</span> 	 <span class="title">enum</span>  	<span class="keyword">extends</span> 	 <span class="title">finally</span>	  <span class="title">float</span>	  <span class="title">for</span>	  <span class="title">goto</span>  <span class="title">if</span>	 </span></span><br><span class="line"><span class="class"><span class="keyword">implements</span>		<span class="title">import</span> 	 <span class="title">istanceof</span> 	 <span class="title">int</span>  	<span class="title">interface</span> 	 <span class="title">long</span>	</span></span><br><span class="line"><span class="class"><span class="title">native</span> 	  <span class="title">new</span> 	 <span class="title">package</span> 	 <span class="title">private</span> 	 <span class="title">protected</span>	  <span class="title">public</span>  <span class="title">return</span></span></span><br><span class="line"><span class="class"><span class="title">strictfp</span>  	<span class="title">short</span> 	 <span class="title">static</span> 	 <span class="title">super</span>  	<span class="title">switch</span>  	<span class="title">synchronized</span>  </span></span><br><span class="line"><span class="class"><span class="title">this</span>  <span class="title">throw</span>  <span class="title">throws</span>  	<span class="title">transient</span> 	 <span class="title">try</span>  	<span class="title">void</span>  	<span class="title">volatile</span>  <span class="title">while</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="三、数据类型"><a href="#三、数据类型" class="headerlink" title="三、数据类型"></a>三、数据类型</h2><h3 id="1-八大基本数据类型"><a href="#1-八大基本数据类型" class="headerlink" title="1.八大基本数据类型"></a>1.八大基本数据类型</h3><ul>
+<li><p>字节型byte    取值范围：0 - 255    占1个字节</p>
+</li>
+<li><p>短整型short    取值范围：-32,768 ~ 3276    占2个字节</p>
+</li>
+<li><p>整形int    取值范围：-2,147,483,648 ~ 2,147,483,647    占4个字节</p>
+</li>
+<li><p>长整型long    取值范围：<br>-9223372036854775808~9223372036854775807    占8个字节</p>
+</li>
+<li><p>单精度浮点型float占4个字节    </p>
+<p>负数范围:-3.402823E38 ~ -1.401298E-45<br>正数范围:1.401298E-45 ~ 3.402823E38</p>
+</li>
+<li><p>双精度浮点型double    占8个字节    </p>
+<p>负数范围:-1.797,693,134,862,32E308 ~-4.940,656,458,412,47E-324<br>正数范围:4.940,656,458,412,47E-324 ~1.797,693,134,862,32E308</p>
+</li>
+<li><p>字符型char    用单引号括起来    占2个字节</p>
+</li>
+<li><p>布尔型boolean    （ true  false）    占1个字节</p>
+</li>
+</ul>
+<h3 id="2-引用数据类型"><a href="#2-引用数据类型" class="headerlink" title="2.引用数据类型"></a>2.引用数据类型</h3><p>类（String类）、接口、数组</p>
+<p>引用数据类型的大小统一设置为4个字节，记录的是其引用对象的地址。</p>
+<h3 id="3-数据类型扩展"><a href="#3-数据类型扩展" class="headerlink" title="3.数据类型扩展"></a>3.数据类型扩展</h3><ul>
+<li><p>整型扩展：进制表示：二进制 0b 开头；八进制 0 开头；十进制；十六进制 0x 开头；</p>
+</li>
+<li><p>浮点型扩展：由于字长有限，浮点数能够表示的数是有限的、离散的，一般存在舍入误差，很多数字无法完全精确表示，结果只能接近但不等于。所以避免在比较中使用浮点。（浮点类型不适合在不容许误差的金融计算领域，若要进行精确数字计算要使用BigDecimal类）</p>
+</li>
+<li><p>字符型扩展：”A”是字符串，’A’是字符，</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">转义字符：</span><br><span class="line"><span class="comment">//  \t 制表符</span></span><br><span class="line"><span class="comment">//  \n 换行</span></span><br><span class="line"><span class="comment">//  \r 回车</span></span><br><span class="line"><span class="comment">//  \b 退格</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>布尔型扩展</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">boolean</span> flag = <span class="keyword">true</span>;</span><br><span class="line"><span class="keyword">if</span> (flag==<span class="keyword">true</span>) &#123;&#125; <span class="comment">//新手</span></span><br><span class="line"><span class="keyword">if</span> (flag) &#123;&#125; <span class="comment">//老手</span></span><br><span class="line"><span class="comment">//Less is Morel！  代码要精简易读</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="四、类型转换"><a href="#四、类型转换" class="headerlink" title="四、类型转换"></a>四、类型转换</h2><p>由于Java语言是强类型语言，所以在进行有些运算的时候要进行类型转换。</p>
+<h3 id="1-自动类型转换"><a href="#1-自动类型转换" class="headerlink" title="1.自动类型转换"></a>1.自动类型转换</h3><p>容量小的可以自动转换为容量大的数据类型。</p>
+<p>从小到大：byte,short,char &lt; int &lt; long &lt; float &lt; double</p>
+<h3 id="2-强制类型转换"><a href="#2-强制类型转换" class="headerlink" title="2.强制类型转换"></a>2.强制类型转换</h3><p>容量大的数据类型需要 强制转换 成容量小的的数据类型。 （type）var</p>
+<h3 id="3-常见问题"><a href="#3-常见问题" class="headerlink" title="3.常见问题"></a>3.常见问题</h3><ul>
+<li>溢出问题</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//操作比较大的数的时候，注意溢出问题</span></span><br><span class="line"><span class="comment">// JDK7新特性，数字之间可以用下划线分割</span></span><br><span class="line"><span class="keyword">int</span> money = <span class="number">10_0000_0000</span>;</span><br><span class="line"><span class="keyword">int</span> years = <span class="number">20</span>;</span><br><span class="line"><span class="keyword">int</span> total = money * years;<span class="comment">//-1474836480,计算的时候溢出了</span></span><br><span class="line"><span class="keyword">long</span> total2 = money * years;<span class="comment">//-1474836480，默认是int，转换之前已经存在问题了</span></span><br><span class="line"><span class="keyword">long</span> total3 = money * (<span class="keyword">long</span>) years;<span class="comment">//200亿，先把一个数转换为Lang</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>L和l问题</p>
+<p>由于小写L和数字1很相似，为了更方便的识别代码，不要命名名字为小写l的变量，long类型使用大写L不使用小写l</p>
+</li>
+</ul>
+<h2 id="五、变量和常量"><a href="#五、变量和常量" class="headerlink" title="五、变量和常量"></a>五、变量和常量</h2><h3 id="1-变量"><a href="#1-变量" class="headerlink" title="1.变量"></a>1.变量</h3><ul>
+<li><p>变量：可以变化的量</p>
+</li>
+<li><p>变量作用域（变量分为三种）</p>
+<ul>
+<li>类变量（静态变量）</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line">    <span class="comment">//类变量,，从属于类，用static修饰，如果不初始化会自动初始为默认值</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">double</span> salary = <span class="number">2500</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> a;<span class="comment">//数值型初始为0或者0.0</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">char</span> b;<span class="comment">//字符型初始为16位的0</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">boolean</span> c;<span class="comment">//布尔值初始位false</span></span><br><span class="line">    <span class="comment">//类变量在该类的方法中可以直接进行使用System.out.println(salary);</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>实例变量（成员变量）</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line">	<span class="comment">//实例变量（成员变量）;从属于对象,如果不进行初始化，这个类型的默认值 0 0.0</span></span><br><span class="line">	<span class="comment">//布尔值:默认是false</span></span><br><span class="line">	<span class="comment">//除了基本类型,其余默认的值都是null;</span></span><br><span class="line">	String name;</span><br><span class="line">	<span class="keyword">int</span> age;</span><br><span class="line">    <span class="comment">//成员变量要创建对象在该类的方法中进行使用</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>局部变量</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"><span class="comment">//局部变量;方法或语句块中定义的变量，没有初始值，必须进行声明和初始化（赋初值）;</span></span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">10</span>;</span><br><span class="line">    System.out.println(i);</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-常量"><a href="#2-常量" class="headerlink" title="2.常量"></a>2.常量</h3><ul>
+<li>常量：值被设定后，在程序运行过程中不能被改变。<br>final  常量名 = 值;</li>
+</ul>
+<h3 id="3-命名规则"><a href="#3-命名规则" class="headerlink" title="3.命名规则"></a>3.命名规则</h3><ul>
+<li>类名：首字母大写和驼峰原则 Demo DemoScore</li>
+<li>类成员变量、局部变量和方法名：首字母小写和驼峰原则 demo demoScore</li>
+<li>常量：大写字母和下划线 DEMO_SOCRE</li>
+</ul>
+<h2 id="六、运算符"><a href="#六、运算符" class="headerlink" title="六、运算符"></a>六、运算符</h2><h3 id="1-基本运算符（二元运算符）"><a href="#1-基本运算符（二元运算符）" class="headerlink" title="1.基本运算符（二元运算符）"></a>1.基本运算符（二元运算符）</h3><ul>
+<li>加减乘除（+  -  *  /）    取模（%）</li>
+<li>整数运算：俩个操作数，一个为Long，结果为Long；没有Long时，结果为int；即使操作数全为byte或者short，结果也是int。</li>
+<li>浮点运算：俩个操作数，一个为double，结果为double；都为float才为float。</li>
+<li>取模运算：负数%负数＝负数； 负数%正数＝负数； 正数%负数＝正数；</li>
+<li>关系运算符   (==    !=    &gt;    &lt;    &lt;=    &gt;=)    返回布尔值</li>
+</ul>
+<h3 id="2-一元运算符"><a href="#2-一元运算符" class="headerlink" title="2.一元运算符"></a>2.一元运算符</h3><ul>
+<li>自增++    自减–</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//++ 自增   -- 自减    一元运算符</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">int</span> b = a++; <span class="comment">//执行这段代码后，先给b赋值，再a自加</span></span><br><span class="line"><span class="comment">// a = a + 1;</span></span><br><span class="line"><span class="keyword">int</span> c = ++a;<span class="comment">//执行这段代码前，先a自加,再给c赋值</span></span><br><span class="line"><span class="comment">//a = a + 1;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> d = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">int</span> e = d--; <span class="comment">//执行这段代码后，先给e赋值，再d自减</span></span><br><span class="line"><span class="comment">// d = d - 1</span></span><br><span class="line"><span class="keyword">int</span> f = --d;<span class="comment">//执行这段代码前，先d自减,再给f赋值</span></span><br><span class="line"><span class="comment">// d = d - 1</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Math类</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//幂运算 2^3   2*2*2 = 8  很多运算我们会使用一些工具类来操作.Math类</span></span><br><span class="line"><span class="keyword">double</span> pow = Math.pow(a,d);</span><br><span class="line">System.out.println(pow);</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-条件运算符（三元运算符）"><a href="#3-条件运算符（三元运算符）" class="headerlink" title="3.条件运算符（三元运算符）"></a>3.条件运算符（三元运算符）</h3><p> a ? b : c        如果a是true就是b，否则就是c</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> score = <span class="number">71</span>;</span><br><span class="line">String type = score &gt;= <span class="number">60</span> ? <span class="string">&quot;及格&quot;</span> : <span class="string">&quot;不及格&quot;</span>;</span><br><span class="line">System.out.println(type);<span class="comment">//及格</span></span><br><span class="line"><span class="comment">//运算符优先级	（）最优先可以在表达式里边用小括号组织</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-逻辑运算符"><a href="#4-逻辑运算符" class="headerlink" title="4.逻辑运算符"></a>4.逻辑运算符</h3><ul>
+<li><p>与&amp;&amp; （and）        或||（or）           非（取反）</p>
+</li>
+<li><p>短路运算：逻辑与只要有一个为false, 则直接返回false. 逻辑或只要有一个为true, 则直接返回true;</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//短路运算</span></span><br><span class="line"><span class="keyword">int</span> c = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">boolean</span> d = (c &lt; <span class="number">4</span>) &amp;&amp; (c++ &lt; <span class="number">4</span>);</span><br><span class="line">System.out.println(d);<span class="comment">//false</span></span><br><span class="line">System.out.println(c);<span class="comment">//5  由于第一个为falsh，则直接返回false，c不自加，短路运算</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-位运算符"><a href="#5-位运算符" class="headerlink" title="5.位运算符"></a>5.位运算符</h3><ul>
+<li>位运算符应用于整数类型(int)，长整型(long)，短整型(short)，字符型(char)，和字节型 (byte)等类型</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo06</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        A = 0011 1100</span></span><br><span class="line"><span class="comment">        B = 0000 1101</span></span><br><span class="line"><span class="comment">        ----------------------------</span></span><br><span class="line"><span class="comment">        A&amp;B = 0000 1100     两个都为1才为1，否则就是0</span></span><br><span class="line"><span class="comment">        A|B = 0011 1101     两个都为0才为0，否则都为1</span></span><br><span class="line"><span class="comment">        A^B = 0011 0001     相同为0，不同为1</span></span><br><span class="line"><span class="comment">        ~B = 1111 0010      1和0反过来</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">        2 * 8 = 16   2*2*2*2</span></span><br><span class="line"><span class="comment">        如何效率极高的计算?</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">        &lt;&lt;  *2</span></span><br><span class="line"><span class="comment">        &gt;&gt;  /2</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">        0000 0000       0</span></span><br><span class="line"><span class="comment">        0000 0001       1</span></span><br><span class="line"><span class="comment">        0000 0010       2</span></span><br><span class="line"><span class="comment">        0000 0011       3</span></span><br><span class="line"><span class="comment">        0000 0100       4</span></span><br><span class="line"><span class="comment">        0000 1000       8</span></span><br><span class="line"><span class="comment">        0001 0000       16</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="number">2</span>&lt;&lt;<span class="number">3</span>);<span class="comment">//2*2*2*2=16</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-扩展赋值运算符"><a href="#6-扩展赋值运算符" class="headerlink" title="6.扩展赋值运算符"></a>6.扩展赋值运算符</h3><ul>
+<li>a += b;//a = a + b<br>a -= b;//a = a - b<br>a /= b;//a = a / b<br>a *= b;//a = a * b</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//字符串连接符 +         String</span></span><br><span class="line"><span class="keyword">int</span> a = <span class="number">20</span>;</span><br><span class="line"><span class="keyword">int</span> b = <span class="number">10</span>;</span><br><span class="line">System.out.println(<span class="string">&quot;&quot;</span> + a + b);<span class="comment">// &quot;&quot;放前边会把加号旁边的操作数转换为字符串</span></span><br><span class="line">System.out.println(a + b + <span class="string">&quot;&quot;</span>);<span class="comment">// &quot;&quot;放后边不起上述作用</span></span><br><span class="line">System.out.println(a + b +<span class="string">&quot;\t&quot;</span>+<span class="string">&quot;&quot;</span>+ a + b);<span class="comment">//30 2010</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="七、包"><a href="#七、包" class="headerlink" title="七、包"></a>七、包</h2><ul>
+<li><p>包的作用：把功能相似或相关的类或接口组织在同一个包中，方便类的查找和使用；同一个包中的类名字是不同的，不同的包中的类 的名字是可以相同的。</p>
+</li>
+<li><p>包的创建：一般用公司域名倒置，  <a href="http://www.baidu.com/">www.baidu.com</a>   包名  com.baidu.www</p>
+</li>
+<li><p>包的导入：为了可以使用某一包中的成员，需要用import导入包。通配符*可以导入包下的所有类</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*</span><br></pre></td></tr></table></figure>
+
+<h2 id="八、JavaDoc"><a href="#八、JavaDoc" class="headerlink" title="八、JavaDoc"></a>八、JavaDoc</h2><ol>
+<li><p>JavaDoc是可以将注释生成HTML文档的的技术。</p>
+<p>@author 作者名 </p>
+<p>@version 版本号 </p>
+<p>@since 指明需要最早使用的jdk版本 </p>
+<p>@param 参数名 </p>
+<p>@return 返回值情况 </p>
+<p>@throws 异常抛出情况</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> name</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">test</span><span class="params">(String name)</span> <span class="keyword">throws</span>  Exception</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//命令行生成JavaDoc文档  javadoc 参数 Java文件</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>用命令行生成JavaDoc文档：javadoc    -encoding UTF-8 -charset UTF-8    java文件</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// -encoding UTF-8 -charset UTF-8</span></span><br><span class="line"><span class="comment">//解决GBK乱码问题，在中间添加编码设置</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>笔记</category>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java方法</title>
+    <url>/2021/07/15/Java%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<h2 id="一、方法"><a href="#一、方法" class="headerlink" title="一、方法"></a>一、方法</h2><h4 id="1-什么是方法"><a href="#1-什么是方法" class="headerlink" title="1.什么是方法"></a>1.什么是方法</h4><p>System.out.println()</p>
+<p>System是系统类，out是标准输出对象，println()是一个方法</p>
+<p>这句话是调用系统类System中的标准输出对象out中的方法printlin()</p>
+<ul>
+<li>方法是解决一类问题的步骤的有序组合。</li>
+<li>方法包含于类或者对象中。</li>
+<li>方法在程序中被创建，在其他地方被引用。</li>
+</ul>
+<h4 id="2-方法的优点"><a href="#2-方法的优点" class="headerlink" title="2.方法的优点"></a>2.方法的优点</h4><ul>
+<li><p>使程序变得简短和清晰。</p>
+</li>
+<li><p>有利于维护程序。</p>
+</li>
+<li><p>提高程序的开发效率。</p>
+</li>
+<li><p>提高了代码的重要性。</p>
+</li>
+</ul>
+<h2 id="二、方法的定义"><a href="#二、方法的定义" class="headerlink" title="二、方法的定义"></a>二、方法的定义</h2><p>修饰符    返回值类型    方法名(参数类型 参数名){</p>
+<p>​    方法体</p>
+<p>​    return 返回值;<br>}</p>
+<ul>
+<li><strong>修饰符</strong>：是可选的，告诉编译器如何调用该方法，定义了该方法的访问类型。</li>
+<li><strong>返回值类型</strong>：方法返回值的数据类型，有的方法执行操作后没有返回值，用void关键字。</li>
+<li><strong>方法名</strong>：方法的名称。</li>
+<li><strong>参数</strong>：含参数类型和参数名字，参数是可选的，方法可以不包含任何参数，调用改方法时，传递值给该参数。<ul>
+<li><strong>形式参数</strong>：在方法被调用时用于接收外界输入的数据。</li>
+<li><strong>实际参数</strong>：调用方法时实际传给方法的数据。</li>
+</ul>
+</li>
+<li><strong>方法体</strong>：法中的执行语句，定义该方法的功能。</li>
+</ul>
+<h2 id="三、方法的调用"><a href="#三、方法的调用" class="headerlink" title="三、方法的调用"></a>三、方法的调用</h2><ul>
+<li><p>当方法返回一个值的时候，方法调用通常被当作一个值。例如：</p>
+<p><code>int max = max(5,10)</code></p>
+</li>
+<li><p>当方法返回值是void，方法调用的一定是一条语句。例如：</p>
+<p><code>System.out.println(&quot;Hello，World！&quot;)</code></p>
+</li>
+<li><p>Java中只有<strong>值传递</strong>。</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> max = max(<span class="number">50</span>, <span class="number">20</span>);</span><br><span class="line">    System.out.println(max);</span><br><span class="line">    <span class="comment">//调用max方法，输出大的值。返回值。</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//比大小  max方法</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> num1,<span class="keyword">int</span> num2)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (num1==num2)&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;num1==num2&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;<span class="comment">//终止方法</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (num1&gt;num2)&#123;</span><br><span class="line">        result = num1;</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        result = num2;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>非静态方法，没有使用static修饰符修饰的方法，调用这种方法的时候，一定要使用对象。</li>
+<li>静态方法，使用static修饰符修饰的方法，调用这种方法的时候，可以用对象，也可以使用类来调用。推荐后者。</li>
+<li>类中方法中的调用，两个方法都是静态或者非静态都可以互相调用，当一个方法是静态，一个方 法是非静态的时候，非静态方法可以调用静态方法，反之不能。</li>
+</ol>
+<h2 id="四、方法的重载"><a href="#四、方法的重载" class="headerlink" title="四、方法的重载"></a>四、方法的重载</h2><p><strong>方法重载</strong>：一个类中可以有俩个方法具有相同的名字，但是这俩个方法有不同的参数列表，即参数个数不同，或者参数个数相同，但所对应的参数类型不同。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    sum = a + b;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//方法重载，方法名字必须相同，参数类型或参数个数或者参数排列顺序不同。</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b,<span class="keyword">int</span> c)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    sum = a + b;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="五、命令行传参（了解）"><a href="#五、命令行传参（了解）" class="headerlink" title="五、命令行传参（了解）"></a>五、命令行传参（了解）</h2><p>有时候希望在运行一个程序时在传递给塔信息，这要靠传递命令行参数给main()函数实现。</p>
+<p><img src="https://img-blog.csdnimg.cn/20210627174529345.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3EyMzg5NDE5NzYy,size_16,color_FFFFFF,t_70#pic_center" alt="img"></p>
+<p>错误：找不到或无法找到加载主类。</p>
+<p>解决方法：在项目输出的项目目录下执行java命令，写完整路径即可。</p>
+<h2 id="六、可变参数"><a href="#六、可变参数" class="headerlink" title="六、可变参数"></a>六、可变参数</h2><p>在方法声明中，在指定参数类型后加一个省略号(…)实现可变参数的声明。可变参数在一个方法中只能有一个，而且必须是该方法的最后一个参数。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//double... numbers  可变参数</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printMax</span><span class="params">(<span class="keyword">double</span>... numbers)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (numbers.length == <span class="number">0</span>)&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;No argument passed&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">double</span> result = numbers[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">//排序！</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; numbers.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (numbers[i] &gt; result)&#123;</span><br><span class="line">            result = numbers[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(<span class="string">&quot;The max value is&quot;</span>+result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="七、递归"><a href="#七、递归" class="headerlink" title="七、递归"></a>七、递归</h2><p><strong>递归</strong>：A方法调用A方法，即自己调用自己，设计递归算法时，要明白什么时候自己不调用自己，否则就是一个死循环。递归包括俩个部分：</p>
+<ul>
+<li>递归头：什么时候不调用自身，没有递归头就会陷入死循环。</li>
+<li>递归体：什么时候自己调用自己。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Demo07 demo07 = <span class="keyword">new</span> Demo07();</span><br><span class="line">    System.out.println(demo07.f(<span class="number">3</span>));</span><br><span class="line">    System.out.println(f(<span class="number">2</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//阶乘 3! 3*2*1</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> a)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (a == <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a*f(a -<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//边界条件：阶乘，乘到最后一个数，即1的时候，返回1，程序执行到底。</span></span><br><span class="line"><span class="comment">//递归前进段：当前的参数不等于1的时候，继续调用自身。</span></span><br><span class="line"><span class="comment">//递归返回段：从最大数开始乘，比如5的阶乘，就是5*（5-1），即n*（n-1）.</span></span><br></pre></td></tr></table></figure>
+
+<p>递归和迭代的区别：</p>
+<p>递归易于理解，容易编程，采取栈机制，对于嵌套层数深（深度大）的一些算法，就会占用大量的内存空间，时间开销也会增加，空间上内存会崩溃。</p>
+<p>迭代不容易理解，编写复杂问题时困难，效率高，运行时间因循环次增加而增加，没有额外开销，空间上也没什么增加。</p>
+<h2 id="八、小练习"><a href="#八、小练习" class="headerlink" title="八、小练习"></a>八、小练习</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.feng.method;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="comment">//简易加减乘除计算器</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JiSuanQi</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner scanner = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">double</span> a = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">double</span> b = <span class="number">0</span>;</span><br><span class="line">        String fh = <span class="string">&quot;0&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (scanner.hasNextDouble())&#123;</span><br><span class="line">            a = scanner.nextDouble();</span><br><span class="line">            fh = scanner.next();</span><br><span class="line">            b = scanner.nextDouble();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">switch</span> (fh) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;+&quot;</span>:</span><br><span class="line">                System.out.println(a+<span class="string">&quot;+&quot;</span>+b+<span class="string">&quot;=&quot;</span>+(a+b));</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;-&quot;</span>:</span><br><span class="line">                System.out.println(a+<span class="string">&quot;-&quot;</span>+b+<span class="string">&quot;=&quot;</span>+(a-b));</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;*&quot;</span>:</span><br><span class="line">                System.out.println(a+<span class="string">&quot;*&quot;</span>+b+<span class="string">&quot;=&quot;</span>+(a*b));</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;/&quot;</span>:</span><br><span class="line">                System.out.println(a+<span class="string">&quot;/&quot;</span>+b+<span class="string">&quot;=&quot;</span>+(a/b));</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                System.out.println(<span class="string">&quot;请输如正确内容&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        scanner.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>笔记</category>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java数组</title>
     <url>/2021/07/17/Java%E6%95%B0%E7%BB%84/</url>
     <content><![CDATA[<h2 id="一、数组概述"><a href="#一、数组概述" class="headerlink" title="一、数组概述"></a>一、数组概述</h2><h4 id="1-数组的定义"><a href="#1-数组的定义" class="headerlink" title="1.数组的定义"></a>1.数组的定义</h4><ul>
@@ -580,88 +662,6 @@
       <tags>
         <tag>Java</tag>
         <tag>数组</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java方法</title>
-    <url>/2021/07/15/Java%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<h2 id="一、方法"><a href="#一、方法" class="headerlink" title="一、方法"></a>一、方法</h2><h4 id="1-什么是方法"><a href="#1-什么是方法" class="headerlink" title="1.什么是方法"></a>1.什么是方法</h4><p>System.out.println()</p>
-<p>System是系统类，out是标准输出对象，println()是一个方法</p>
-<p>这句话是调用系统类System中的标准输出对象out中的方法printlin()</p>
-<ul>
-<li>方法是解决一类问题的步骤的有序组合。</li>
-<li>方法包含于类或者对象中。</li>
-<li>方法在程序中被创建，在其他地方被引用。</li>
-</ul>
-<h4 id="2-方法的优点"><a href="#2-方法的优点" class="headerlink" title="2.方法的优点"></a>2.方法的优点</h4><ul>
-<li><p>使程序变得简短和清晰。</p>
-</li>
-<li><p>有利于维护程序。</p>
-</li>
-<li><p>提高程序的开发效率。</p>
-</li>
-<li><p>提高了代码的重要性。</p>
-</li>
-</ul>
-<h2 id="二、方法的定义"><a href="#二、方法的定义" class="headerlink" title="二、方法的定义"></a>二、方法的定义</h2><p>修饰符    返回值类型    方法名(参数类型 参数名){</p>
-<p>​    方法体</p>
-<p>​    return 返回值;<br>}</p>
-<ul>
-<li><strong>修饰符</strong>：是可选的，告诉编译器如何调用该方法，定义了该方法的访问类型。</li>
-<li><strong>返回值类型</strong>：方法返回值的数据类型，有的方法执行操作后没有返回值，用void关键字。</li>
-<li><strong>方法名</strong>：方法的名称。</li>
-<li><strong>参数</strong>：含参数类型和参数名字，参数是可选的，方法可以不包含任何参数，调用改方法时，传递值给该参数。<ul>
-<li><strong>形式参数</strong>：在方法被调用时用于接收外界输入的数据。</li>
-<li><strong>实际参数</strong>：调用方法时实际传给方法的数据。</li>
-</ul>
-</li>
-<li><strong>方法体</strong>：法中的执行语句，定义该方法的功能。</li>
-</ul>
-<h2 id="三、方法的调用"><a href="#三、方法的调用" class="headerlink" title="三、方法的调用"></a>三、方法的调用</h2><ul>
-<li><p>当方法返回一个值的时候，方法调用通常被当作一个值。例如：</p>
-<p><code>int max = max(5,10)</code></p>
-</li>
-<li><p>当方法返回值是void，方法调用的一定是一条语句。例如：</p>
-<p><code>System.out.println(&quot;Hello，World！&quot;)</code></p>
-</li>
-<li><p>Java中只有<strong>值传递</strong>。</p>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> max = max(<span class="number">50</span>, <span class="number">20</span>);</span><br><span class="line">    System.out.println(max);</span><br><span class="line">    <span class="comment">//调用max方法，输出大的值。返回值。</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//比大小  max方法</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> num1,<span class="keyword">int</span> num2)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (num1==num2)&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;num1==num2&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;<span class="comment">//终止方法</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (num1&gt;num2)&#123;</span><br><span class="line">        result = num1;</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        result = num2;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>非静态方法，没有使用static修饰符修饰的方法，调用这种方法的时候，一定要使用对象。</li>
-<li>静态方法，使用static修饰符修饰的方法，调用这种方法的时候，可以用对象，也可以使用类来调用。推荐后者。</li>
-<li>类中方法中的调用，两个方法都是静态或者非静态都可以互相调用，当一个方法是静态，一个方 法是非静态的时候，非静态方法可以调用静态方法，反之不能。</li>
-</ol>
-<h2 id="四、方法的重载"><a href="#四、方法的重载" class="headerlink" title="四、方法的重载"></a>四、方法的重载</h2><p><strong>方法重载</strong>：一个类中可以有俩个方法具有相同的名字，但是这俩个方法有不同的参数列表，即参数个数不同，或者参数个数相同，但所对应的参数类型不同。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    sum = a + b;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//方法重载，方法名字必须相同，参数类型或参数个数或者参数排列顺序不同。</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b,<span class="keyword">int</span> c)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    sum = a + b;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="五、命令行传参（了解）"><a href="#五、命令行传参（了解）" class="headerlink" title="五、命令行传参（了解）"></a>五、命令行传参（了解）</h2><p>有时候希望在运行一个程序时在传递给塔信息，这要靠传递命令行参数给main()函数实现。</p>
-<p><img src="https://img-blog.csdnimg.cn/20210627174529345.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3EyMzg5NDE5NzYy,size_16,color_FFFFFF,t_70#pic_center" alt="img"></p>
-<p>错误：找不到或无法找到加载主类。</p>
-<p>解决方法：在项目输出的项目目录下执行java命令，写完整路径即可。</p>
-<h2 id="六、可变参数"><a href="#六、可变参数" class="headerlink" title="六、可变参数"></a>六、可变参数</h2><p>在方法声明中，在指定参数类型后加一个省略号(…)实现可变参数的声明。可变参数在一个方法中只能有一个，而且必须是该方法的最后一个参数。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//double... numbers  可变参数</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printMax</span><span class="params">(<span class="keyword">double</span>... numbers)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (numbers.length == <span class="number">0</span>)&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;No argument passed&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">double</span> result = numbers[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">//排序！</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; numbers.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (numbers[i] &gt; result)&#123;</span><br><span class="line">            result = numbers[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(<span class="string">&quot;The max value is&quot;</span>+result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="七、递归"><a href="#七、递归" class="headerlink" title="七、递归"></a>七、递归</h2><p><strong>递归</strong>：A方法调用A方法，即自己调用自己，设计递归算法时，要明白什么时候自己不调用自己，否则就是一个死循环。递归包括俩个部分：</p>
-<ul>
-<li>递归头：什么时候不调用自身，没有递归头就会陷入死循环。</li>
-<li>递归体：什么时候自己调用自己。</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Demo07 demo07 = <span class="keyword">new</span> Demo07();</span><br><span class="line">    System.out.println(demo07.f(<span class="number">3</span>));</span><br><span class="line">    System.out.println(f(<span class="number">2</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//阶乘 3! 3*2*1</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> a)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (a == <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a*f(a -<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//边界条件：阶乘，乘到最后一个数，即1的时候，返回1，程序执行到底。</span></span><br><span class="line"><span class="comment">//递归前进段：当前的参数不等于1的时候，继续调用自身。</span></span><br><span class="line"><span class="comment">//递归返回段：从最大数开始乘，比如5的阶乘，就是5*（5-1），即n*（n-1）.</span></span><br></pre></td></tr></table></figure>
-
-<p>递归和迭代的区别：</p>
-<p>递归易于理解，容易编程，采取栈机制，对于嵌套层数深（深度大）的一些算法，就会占用大量的内存空间，时间开销也会增加，空间上内存会崩溃。</p>
-<p>迭代不容易理解，编写复杂问题时困难，效率高，运行时间因循环次增加而增加，没有额外开销，空间上也没什么增加。</p>
-<h2 id="八、小练习"><a href="#八、小练习" class="headerlink" title="八、小练习"></a>八、小练习</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.feng.method;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="comment">//简易加减乘除计算器</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JiSuanQi</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner scanner = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">double</span> a = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">double</span> b = <span class="number">0</span>;</span><br><span class="line">        String fh = <span class="string">&quot;0&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (scanner.hasNextDouble())&#123;</span><br><span class="line">            a = scanner.nextDouble();</span><br><span class="line">            fh = scanner.next();</span><br><span class="line">            b = scanner.nextDouble();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">switch</span> (fh) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;+&quot;</span>:</span><br><span class="line">                System.out.println(a+<span class="string">&quot;+&quot;</span>+b+<span class="string">&quot;=&quot;</span>+(a+b));</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;-&quot;</span>:</span><br><span class="line">                System.out.println(a+<span class="string">&quot;-&quot;</span>+b+<span class="string">&quot;=&quot;</span>+(a-b));</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;*&quot;</span>:</span><br><span class="line">                System.out.println(a+<span class="string">&quot;*&quot;</span>+b+<span class="string">&quot;=&quot;</span>+(a*b));</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;/&quot;</span>:</span><br><span class="line">                System.out.println(a+<span class="string">&quot;/&quot;</span>+b+<span class="string">&quot;=&quot;</span>+(a/b));</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                System.out.println(<span class="string">&quot;请输如正确内容&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        scanner.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>笔记</category>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
