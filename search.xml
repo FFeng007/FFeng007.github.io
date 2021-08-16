@@ -1,180 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Java基础语法</title>
-    <url>/2021/07/10/Java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</url>
-    <content><![CDATA[<h2 id="一、注释"><a href="#一、注释" class="headerlink" title="一、注释"></a>一、注释</h2><h3 id="1-单行注释"><a href="#1-单行注释" class="headerlink" title="1.单行注释"></a>1.单行注释</h3><p>//Hello World！    </p>
-<h3 id="2-多行注释"><a href="#2-多行注释" class="headerlink" title="2.多行注释"></a>2.多行注释</h3><p>/*</p>
-<p>Hello World！</p>
-<p>Hello World！</p>
-<p>*/</p>
-<h3 id="3-文本注释"><a href="#3-文本注释" class="headerlink" title="3.文本注释"></a>3.文本注释</h3><p>/**</p>
-<p>*Hello World！    </p>
-<p>*Hello World！    </p>
-<p>**/</p>
-<h2 id="二、标识符、关键词"><a href="#二、标识符、关键词" class="headerlink" title="二、标识符、关键词"></a>二、标识符、关键词</h2><h3 id="1-标识符命名规则"><a href="#1-标识符命名规则" class="headerlink" title="1.标识符命名规则"></a>1.标识符命名规则</h3><ul>
-<li>所有的标识符都应该以字母、美元符号、下划线开始</li>
-<li>首字符之后可以是字母、美元符号、下划线、数字的任意组合</li>
-<li>不能用关键词命名</li>
-<li>大小写敏感</li>
-</ul>
-<h3 id="2-关键词"><a href="#2-关键词" class="headerlink" title="2.关键词"></a>2.关键词</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">abstract</span> 	 assent  	<span class="keyword">boolean</span> 	 <span class="keyword">break</span> 	 <span class="keyword">byte</span> 	 ase 	 <span class="keyword">catch</span></span><br><span class="line"><span class="keyword">char</span> 	 <span class="class"><span class="keyword">class</span> 	 <span class="title">const</span>		<span class="title">continue</span>	  <span class="title">default</span>	<span class="title">do</span>	<span class="title">double</span></span></span><br><span class="line"><span class="class"><span class="title">else</span> 	 <span class="title">enum</span>  	<span class="keyword">extends</span> 	 <span class="title">finally</span>	  <span class="title">float</span>	  <span class="title">for</span>	  <span class="title">goto</span>  <span class="title">if</span>	 </span></span><br><span class="line"><span class="class"><span class="keyword">implements</span>		<span class="title">import</span> 	 <span class="title">istanceof</span> 	 <span class="title">int</span>  	<span class="title">interface</span> 	 <span class="title">long</span>	</span></span><br><span class="line"><span class="class"><span class="title">native</span> 	  <span class="title">new</span> 	 <span class="title">package</span> 	 <span class="title">private</span> 	 <span class="title">protected</span>	  <span class="title">public</span>  <span class="title">return</span></span></span><br><span class="line"><span class="class"><span class="title">strictfp</span>  	<span class="title">short</span> 	 <span class="title">static</span> 	 <span class="title">super</span>  	<span class="title">switch</span>  	<span class="title">synchronized</span>  </span></span><br><span class="line"><span class="class"><span class="title">this</span>  <span class="title">throw</span>  <span class="title">throws</span>  	<span class="title">transient</span> 	 <span class="title">try</span>  	<span class="title">void</span>  	<span class="title">volatile</span>  <span class="title">while</span></span></span><br></pre></td></tr></table></figure>
-
-<h2 id="三、数据类型"><a href="#三、数据类型" class="headerlink" title="三、数据类型"></a>三、数据类型</h2><h3 id="1-八大基本数据类型"><a href="#1-八大基本数据类型" class="headerlink" title="1.八大基本数据类型"></a>1.八大基本数据类型</h3><ul>
-<li><p>字节型byte    取值范围：0 - 255    占1个字节</p>
-</li>
-<li><p>短整型short    取值范围：-32,768 ~ 3276    占2个字节</p>
-</li>
-<li><p>整形int    取值范围：-2,147,483,648 ~ 2,147,483,647    占4个字节</p>
-</li>
-<li><p>长整型long    取值范围：<br>-9223372036854775808~9223372036854775807    占8个字节</p>
-</li>
-<li><p>单精度浮点型float占4个字节    </p>
-<p>负数范围:-3.402823E38 ~ -1.401298E-45<br>正数范围:1.401298E-45 ~ 3.402823E38</p>
-</li>
-<li><p>双精度浮点型double    占8个字节    </p>
-<p>负数范围:-1.797,693,134,862,32E308 ~-4.940,656,458,412,47E-324<br>正数范围:4.940,656,458,412,47E-324 ~1.797,693,134,862,32E308</p>
-</li>
-<li><p>字符型char    用单引号括起来    占2个字节</p>
-</li>
-<li><p>布尔型boolean    （ true  false）    占1个字节</p>
-</li>
-</ul>
-<h3 id="2-引用数据类型"><a href="#2-引用数据类型" class="headerlink" title="2.引用数据类型"></a>2.引用数据类型</h3><p>类（String类）、接口、数组</p>
-<p>引用数据类型的大小统一设置为4个字节，记录的是其引用对象的地址。</p>
-<h3 id="3-数据类型扩展"><a href="#3-数据类型扩展" class="headerlink" title="3.数据类型扩展"></a>3.数据类型扩展</h3><ul>
-<li><p>整型扩展：进制表示：二进制 0b 开头；八进制 0 开头；十进制；十六进制 0x 开头；</p>
-</li>
-<li><p>浮点型扩展：由于字长有限，浮点数能够表示的数是有限的、离散的，一般存在舍入误差，很多数字无法完全精确表示，结果只能接近但不等于。所以避免在比较中使用浮点。（浮点类型不适合在不容许误差的金融计算领域，若要进行精确数字计算要使用BigDecimal类）</p>
-</li>
-<li><p>字符型扩展：”A”是字符串，’A’是字符，</p>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">转义字符：</span><br><span class="line"><span class="comment">//  \t 制表符</span></span><br><span class="line"><span class="comment">//  \n 换行</span></span><br><span class="line"><span class="comment">//  \r 回车</span></span><br><span class="line"><span class="comment">//  \b 退格</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>布尔型扩展</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">boolean</span> flag = <span class="keyword">true</span>;</span><br><span class="line"><span class="keyword">if</span> (flag==<span class="keyword">true</span>) &#123;&#125; <span class="comment">//新手</span></span><br><span class="line"><span class="keyword">if</span> (flag) &#123;&#125; <span class="comment">//老手</span></span><br><span class="line"><span class="comment">//Less is Morel！  代码要精简易读</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="四、类型转换"><a href="#四、类型转换" class="headerlink" title="四、类型转换"></a>四、类型转换</h2><p>由于Java语言是强类型语言，所以在进行有些运算的时候要进行类型转换。</p>
-<h3 id="1-自动类型转换"><a href="#1-自动类型转换" class="headerlink" title="1.自动类型转换"></a>1.自动类型转换</h3><p>容量小的可以自动转换为容量大的数据类型。</p>
-<p>从小到大：byte,short,char &lt; int &lt; long &lt; float &lt; double</p>
-<h3 id="2-强制类型转换"><a href="#2-强制类型转换" class="headerlink" title="2.强制类型转换"></a>2.强制类型转换</h3><p>容量大的数据类型需要 强制转换 成容量小的的数据类型。 （type）var</p>
-<h3 id="3-常见问题"><a href="#3-常见问题" class="headerlink" title="3.常见问题"></a>3.常见问题</h3><ul>
-<li>溢出问题</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//操作比较大的数的时候，注意溢出问题</span></span><br><span class="line"><span class="comment">// JDK7新特性，数字之间可以用下划线分割</span></span><br><span class="line"><span class="keyword">int</span> money = <span class="number">10_0000_0000</span>;</span><br><span class="line"><span class="keyword">int</span> years = <span class="number">20</span>;</span><br><span class="line"><span class="keyword">int</span> total = money * years;<span class="comment">//-1474836480,计算的时候溢出了</span></span><br><span class="line"><span class="keyword">long</span> total2 = money * years;<span class="comment">//-1474836480，默认是int，转换之前已经存在问题了</span></span><br><span class="line"><span class="keyword">long</span> total3 = money * (<span class="keyword">long</span>) years;<span class="comment">//200亿，先把一个数转换为Lang</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>L和l问题</p>
-<p>由于小写L和数字1很相似，为了更方便的识别代码，不要命名名字为小写l的变量，long类型使用大写L不使用小写l</p>
-</li>
-</ul>
-<h2 id="五、变量和常量"><a href="#五、变量和常量" class="headerlink" title="五、变量和常量"></a>五、变量和常量</h2><h3 id="1-变量"><a href="#1-变量" class="headerlink" title="1.变量"></a>1.变量</h3><ul>
-<li><p>变量：可以变化的量</p>
-</li>
-<li><p>变量作用域（变量分为三种）</p>
-<ul>
-<li>类变量（静态变量）</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line">    <span class="comment">//类变量,，从属于类，用static修饰，如果不初始化会自动初始为默认值</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">double</span> salary = <span class="number">2500</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> a;<span class="comment">//数值型初始为0或者0.0</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">char</span> b;<span class="comment">//字符型初始为16位的0</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">boolean</span> c;<span class="comment">//布尔值初始位false</span></span><br><span class="line">    <span class="comment">//类变量在该类的方法中可以直接进行使用System.out.println(salary);</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>实例变量（成员变量）</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line">	<span class="comment">//实例变量（成员变量）;从属于对象,如果不进行初始化，这个类型的默认值 0 0.0</span></span><br><span class="line">	<span class="comment">//布尔值:默认是false</span></span><br><span class="line">	<span class="comment">//除了基本类型,其余默认的值都是null;</span></span><br><span class="line">	String name;</span><br><span class="line">	<span class="keyword">int</span> age;</span><br><span class="line">    <span class="comment">//成员变量要创建对象在该类的方法中进行使用</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>局部变量</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"><span class="comment">//局部变量;方法或语句块中定义的变量，没有初始值，必须进行声明和初始化（赋初值）;</span></span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">10</span>;</span><br><span class="line">    System.out.println(i);</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-常量"><a href="#2-常量" class="headerlink" title="2.常量"></a>2.常量</h3><ul>
-<li>常量：值被设定后，在程序运行过程中不能被改变。<br>final  常量名 = 值;</li>
-</ul>
-<h3 id="3-命名规则"><a href="#3-命名规则" class="headerlink" title="3.命名规则"></a>3.命名规则</h3><ul>
-<li>类名：首字母大写和驼峰原则 Demo DemoScore</li>
-<li>类成员变量、局部变量和方法名：首字母小写和驼峰原则 demo demoScore</li>
-<li>常量：大写字母和下划线 DEMO_SOCRE</li>
-</ul>
-<h2 id="六、运算符"><a href="#六、运算符" class="headerlink" title="六、运算符"></a>六、运算符</h2><h3 id="1-基本运算符（二元运算符）"><a href="#1-基本运算符（二元运算符）" class="headerlink" title="1.基本运算符（二元运算符）"></a>1.基本运算符（二元运算符）</h3><ul>
-<li>加减乘除（+  -  *  /）    取模（%）</li>
-<li>整数运算：俩个操作数，一个为Long，结果为Long；没有Long时，结果为int；即使操作数全为byte或者short，结果也是int。</li>
-<li>浮点运算：俩个操作数，一个为double，结果为double；都为float才为float。</li>
-<li>取模运算：负数%负数＝负数； 负数%正数＝负数； 正数%负数＝正数；</li>
-<li>关系运算符   (==    !=    &gt;    &lt;    &lt;=    &gt;=)    返回布尔值</li>
-</ul>
-<h3 id="2-一元运算符"><a href="#2-一元运算符" class="headerlink" title="2.一元运算符"></a>2.一元运算符</h3><ul>
-<li>自增++    自减–</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//++ 自增   -- 自减    一元运算符</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">int</span> b = a++; <span class="comment">//执行这段代码后，先给b赋值，再a自加</span></span><br><span class="line"><span class="comment">// a = a + 1;</span></span><br><span class="line"><span class="keyword">int</span> c = ++a;<span class="comment">//执行这段代码前，先a自加,再给c赋值</span></span><br><span class="line"><span class="comment">//a = a + 1;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> d = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">int</span> e = d--; <span class="comment">//执行这段代码后，先给e赋值，再d自减</span></span><br><span class="line"><span class="comment">// d = d - 1</span></span><br><span class="line"><span class="keyword">int</span> f = --d;<span class="comment">//执行这段代码前，先d自减,再给f赋值</span></span><br><span class="line"><span class="comment">// d = d - 1</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Math类</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//幂运算 2^3   2*2*2 = 8  很多运算我们会使用一些工具类来操作.Math类</span></span><br><span class="line"><span class="keyword">double</span> pow = Math.pow(a,d);</span><br><span class="line">System.out.println(pow);</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-条件运算符（三元运算符）"><a href="#3-条件运算符（三元运算符）" class="headerlink" title="3.条件运算符（三元运算符）"></a>3.条件运算符（三元运算符）</h3><p> a ? b : c        如果a是true就是b，否则就是c</p>
- <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> score = <span class="number">71</span>;</span><br><span class="line">String type = score &gt;= <span class="number">60</span> ? <span class="string">&quot;及格&quot;</span> : <span class="string">&quot;不及格&quot;</span>;</span><br><span class="line">System.out.println(type);<span class="comment">//及格</span></span><br><span class="line"><span class="comment">//运算符优先级	（）最优先可以在表达式里边用小括号组织</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="4-逻辑运算符"><a href="#4-逻辑运算符" class="headerlink" title="4.逻辑运算符"></a>4.逻辑运算符</h3><ul>
-<li><p>与&amp;&amp; （and）        或||（or）           非（取反）</p>
-</li>
-<li><p>短路运算：逻辑与只要有一个为false, 则直接返回false. 逻辑或只要有一个为true, 则直接返回true;</p>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//短路运算</span></span><br><span class="line"><span class="keyword">int</span> c = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">boolean</span> d = (c &lt; <span class="number">4</span>) &amp;&amp; (c++ &lt; <span class="number">4</span>);</span><br><span class="line">System.out.println(d);<span class="comment">//false</span></span><br><span class="line">System.out.println(c);<span class="comment">//5  由于第一个为falsh，则直接返回false，c不自加，短路运算</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="5-位运算符"><a href="#5-位运算符" class="headerlink" title="5.位运算符"></a>5.位运算符</h3><ul>
-<li>位运算符应用于整数类型(int)，长整型(long)，短整型(short)，字符型(char)，和字节型 (byte)等类型</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo06</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        A = 0011 1100</span></span><br><span class="line"><span class="comment">        B = 0000 1101</span></span><br><span class="line"><span class="comment">        ----------------------------</span></span><br><span class="line"><span class="comment">        A&amp;B = 0000 1100     两个都为1才为1，否则就是0</span></span><br><span class="line"><span class="comment">        A|B = 0011 1101     两个都为0才为0，否则都为1</span></span><br><span class="line"><span class="comment">        A^B = 0011 0001     相同为0，不同为1</span></span><br><span class="line"><span class="comment">        ~B = 1111 0010      1和0反过来</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">        2 * 8 = 16   2*2*2*2</span></span><br><span class="line"><span class="comment">        如何效率极高的计算?</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">        &lt;&lt;  *2</span></span><br><span class="line"><span class="comment">        &gt;&gt;  /2</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">        0000 0000       0</span></span><br><span class="line"><span class="comment">        0000 0001       1</span></span><br><span class="line"><span class="comment">        0000 0010       2</span></span><br><span class="line"><span class="comment">        0000 0011       3</span></span><br><span class="line"><span class="comment">        0000 0100       4</span></span><br><span class="line"><span class="comment">        0000 1000       8</span></span><br><span class="line"><span class="comment">        0001 0000       16</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="number">2</span>&lt;&lt;<span class="number">3</span>);<span class="comment">//2*2*2*2=16</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="6-扩展赋值运算符"><a href="#6-扩展赋值运算符" class="headerlink" title="6.扩展赋值运算符"></a>6.扩展赋值运算符</h3><ul>
-<li>a += b;//a = a + b<br>a -= b;//a = a - b<br>a /= b;//a = a / b<br>a *= b;//a = a * b</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//字符串连接符 +         String</span></span><br><span class="line"><span class="keyword">int</span> a = <span class="number">20</span>;</span><br><span class="line"><span class="keyword">int</span> b = <span class="number">10</span>;</span><br><span class="line">System.out.println(<span class="string">&quot;&quot;</span> + a + b);<span class="comment">// &quot;&quot;放前边会把加号旁边的操作数转换为字符串</span></span><br><span class="line">System.out.println(a + b + <span class="string">&quot;&quot;</span>);<span class="comment">// &quot;&quot;放后边不起上述作用</span></span><br><span class="line">System.out.println(a + b +<span class="string">&quot;\t&quot;</span>+<span class="string">&quot;&quot;</span>+ a + b);<span class="comment">//30 2010</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="七、包"><a href="#七、包" class="headerlink" title="七、包"></a>七、包</h2><ul>
-<li><p>包的作用：把功能相似或相关的类或接口组织在同一个包中，方便类的查找和使用；同一个包中的类名字是不同的，不同的包中的类 的名字是可以相同的。</p>
-</li>
-<li><p>包的创建：一般用公司域名倒置，  <a href="http://www.baidu.com/">www.baidu.com</a>   包名  com.baidu.www</p>
-</li>
-<li><p>包的导入：为了可以使用某一包中的成员，需要用import导入包。通配符*可以导入包下的所有类</p>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*</span><br></pre></td></tr></table></figure>
-
-<h2 id="八、JavaDoc"><a href="#八、JavaDoc" class="headerlink" title="八、JavaDoc"></a>八、JavaDoc</h2><ol>
-<li><p>JavaDoc是可以将注释生成HTML文档的的技术。</p>
-<p>@author 作者名 </p>
-<p>@version 版本号 </p>
-<p>@since 指明需要最早使用的jdk版本 </p>
-<p>@param 参数名 </p>
-<p>@return 返回值情况 </p>
-<p>@throws 异常抛出情况</p>
-</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> name</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">test</span><span class="params">(String name)</span> <span class="keyword">throws</span>  Exception</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//命令行生成JavaDoc文档  javadoc 参数 Java文件</span></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>用命令行生成JavaDoc文档：javadoc    -encoding UTF-8 -charset UTF-8    java文件</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// -encoding UTF-8 -charset UTF-8</span></span><br><span class="line"><span class="comment">//解决GBK乱码问题，在中间添加编码设置</span></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>笔记</category>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>HTML5</title>
     <url>/2021/08/12/HTML5/</url>
     <content><![CDATA[<h2 id="一、HTML基础"><a href="#一、HTML基础" class="headerlink" title="一、HTML基础"></a>一、HTML基础</h2><h3 id="1-HTML"><a href="#1-HTML" class="headerlink" title="1.HTML"></a>1.HTML</h3><ul>
@@ -385,6 +211,180 @@
       <tags>
         <tag>前端</tag>
         <tag>HTML5</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java基础语法</title>
+    <url>/2021/07/10/Java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</url>
+    <content><![CDATA[<h2 id="一、注释"><a href="#一、注释" class="headerlink" title="一、注释"></a>一、注释</h2><h3 id="1-单行注释"><a href="#1-单行注释" class="headerlink" title="1.单行注释"></a>1.单行注释</h3><p>//Hello World！    </p>
+<h3 id="2-多行注释"><a href="#2-多行注释" class="headerlink" title="2.多行注释"></a>2.多行注释</h3><p>/*</p>
+<p>Hello World！</p>
+<p>Hello World！</p>
+<p>*/</p>
+<h3 id="3-文本注释"><a href="#3-文本注释" class="headerlink" title="3.文本注释"></a>3.文本注释</h3><p>/**</p>
+<p>*Hello World！    </p>
+<p>*Hello World！    </p>
+<p>**/</p>
+<h2 id="二、标识符、关键词"><a href="#二、标识符、关键词" class="headerlink" title="二、标识符、关键词"></a>二、标识符、关键词</h2><h3 id="1-标识符命名规则"><a href="#1-标识符命名规则" class="headerlink" title="1.标识符命名规则"></a>1.标识符命名规则</h3><ul>
+<li>所有的标识符都应该以字母、美元符号、下划线开始</li>
+<li>首字符之后可以是字母、美元符号、下划线、数字的任意组合</li>
+<li>不能用关键词命名</li>
+<li>大小写敏感</li>
+</ul>
+<h3 id="2-关键词"><a href="#2-关键词" class="headerlink" title="2.关键词"></a>2.关键词</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">abstract</span> 	 assent  	<span class="keyword">boolean</span> 	 <span class="keyword">break</span> 	 <span class="keyword">byte</span> 	 ase 	 <span class="keyword">catch</span></span><br><span class="line"><span class="keyword">char</span> 	 <span class="class"><span class="keyword">class</span> 	 <span class="title">const</span>		<span class="title">continue</span>	  <span class="title">default</span>	<span class="title">do</span>	<span class="title">double</span></span></span><br><span class="line"><span class="class"><span class="title">else</span> 	 <span class="title">enum</span>  	<span class="keyword">extends</span> 	 <span class="title">finally</span>	  <span class="title">float</span>	  <span class="title">for</span>	  <span class="title">goto</span>  <span class="title">if</span>	 </span></span><br><span class="line"><span class="class"><span class="keyword">implements</span>		<span class="title">import</span> 	 <span class="title">istanceof</span> 	 <span class="title">int</span>  	<span class="title">interface</span> 	 <span class="title">long</span>	</span></span><br><span class="line"><span class="class"><span class="title">native</span> 	  <span class="title">new</span> 	 <span class="title">package</span> 	 <span class="title">private</span> 	 <span class="title">protected</span>	  <span class="title">public</span>  <span class="title">return</span></span></span><br><span class="line"><span class="class"><span class="title">strictfp</span>  	<span class="title">short</span> 	 <span class="title">static</span> 	 <span class="title">super</span>  	<span class="title">switch</span>  	<span class="title">synchronized</span>  </span></span><br><span class="line"><span class="class"><span class="title">this</span>  <span class="title">throw</span>  <span class="title">throws</span>  	<span class="title">transient</span> 	 <span class="title">try</span>  	<span class="title">void</span>  	<span class="title">volatile</span>  <span class="title">while</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="三、数据类型"><a href="#三、数据类型" class="headerlink" title="三、数据类型"></a>三、数据类型</h2><h3 id="1-八大基本数据类型"><a href="#1-八大基本数据类型" class="headerlink" title="1.八大基本数据类型"></a>1.八大基本数据类型</h3><ul>
+<li><p>字节型byte    取值范围：0 - 255    占1个字节</p>
+</li>
+<li><p>短整型short    取值范围：-32,768 ~ 3276    占2个字节</p>
+</li>
+<li><p>整形int    取值范围：-2,147,483,648 ~ 2,147,483,647    占4个字节</p>
+</li>
+<li><p>长整型long    取值范围：<br>-9223372036854775808~9223372036854775807    占8个字节</p>
+</li>
+<li><p>单精度浮点型float占4个字节    </p>
+<p>负数范围:-3.402823E38 ~ -1.401298E-45<br>正数范围:1.401298E-45 ~ 3.402823E38</p>
+</li>
+<li><p>双精度浮点型double    占8个字节    </p>
+<p>负数范围:-1.797,693,134,862,32E308 ~-4.940,656,458,412,47E-324<br>正数范围:4.940,656,458,412,47E-324 ~1.797,693,134,862,32E308</p>
+</li>
+<li><p>字符型char    用单引号括起来    占2个字节</p>
+</li>
+<li><p>布尔型boolean    （ true  false）    占1个字节</p>
+</li>
+</ul>
+<h3 id="2-引用数据类型"><a href="#2-引用数据类型" class="headerlink" title="2.引用数据类型"></a>2.引用数据类型</h3><p>类（String类）、接口、数组</p>
+<p>引用数据类型的大小统一设置为4个字节，记录的是其引用对象的地址。</p>
+<h3 id="3-数据类型扩展"><a href="#3-数据类型扩展" class="headerlink" title="3.数据类型扩展"></a>3.数据类型扩展</h3><ul>
+<li><p>整型扩展：进制表示：二进制 0b 开头；八进制 0 开头；十进制；十六进制 0x 开头；</p>
+</li>
+<li><p>浮点型扩展：由于字长有限，浮点数能够表示的数是有限的、离散的，一般存在舍入误差，很多数字无法完全精确表示，结果只能接近但不等于。所以避免在比较中使用浮点。（浮点类型不适合在不容许误差的金融计算领域，若要进行精确数字计算要使用BigDecimal类）</p>
+</li>
+<li><p>字符型扩展：”A”是字符串，’A’是字符，</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">转义字符：</span><br><span class="line"><span class="comment">//  \t 制表符</span></span><br><span class="line"><span class="comment">//  \n 换行</span></span><br><span class="line"><span class="comment">//  \r 回车</span></span><br><span class="line"><span class="comment">//  \b 退格</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>布尔型扩展</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">boolean</span> flag = <span class="keyword">true</span>;</span><br><span class="line"><span class="keyword">if</span> (flag==<span class="keyword">true</span>) &#123;&#125; <span class="comment">//新手</span></span><br><span class="line"><span class="keyword">if</span> (flag) &#123;&#125; <span class="comment">//老手</span></span><br><span class="line"><span class="comment">//Less is Morel！  代码要精简易读</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="四、类型转换"><a href="#四、类型转换" class="headerlink" title="四、类型转换"></a>四、类型转换</h2><p>由于Java语言是强类型语言，所以在进行有些运算的时候要进行类型转换。</p>
+<h3 id="1-自动类型转换"><a href="#1-自动类型转换" class="headerlink" title="1.自动类型转换"></a>1.自动类型转换</h3><p>容量小的可以自动转换为容量大的数据类型。</p>
+<p>从小到大：byte,short,char &lt; int &lt; long &lt; float &lt; double</p>
+<h3 id="2-强制类型转换"><a href="#2-强制类型转换" class="headerlink" title="2.强制类型转换"></a>2.强制类型转换</h3><p>容量大的数据类型需要 强制转换 成容量小的的数据类型。 （type）var</p>
+<h3 id="3-常见问题"><a href="#3-常见问题" class="headerlink" title="3.常见问题"></a>3.常见问题</h3><ul>
+<li>溢出问题</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//操作比较大的数的时候，注意溢出问题</span></span><br><span class="line"><span class="comment">// JDK7新特性，数字之间可以用下划线分割</span></span><br><span class="line"><span class="keyword">int</span> money = <span class="number">10_0000_0000</span>;</span><br><span class="line"><span class="keyword">int</span> years = <span class="number">20</span>;</span><br><span class="line"><span class="keyword">int</span> total = money * years;<span class="comment">//-1474836480,计算的时候溢出了</span></span><br><span class="line"><span class="keyword">long</span> total2 = money * years;<span class="comment">//-1474836480，默认是int，转换之前已经存在问题了</span></span><br><span class="line"><span class="keyword">long</span> total3 = money * (<span class="keyword">long</span>) years;<span class="comment">//200亿，先把一个数转换为Lang</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>L和l问题</p>
+<p>由于小写L和数字1很相似，为了更方便的识别代码，不要命名名字为小写l的变量，long类型使用大写L不使用小写l</p>
+</li>
+</ul>
+<h2 id="五、变量和常量"><a href="#五、变量和常量" class="headerlink" title="五、变量和常量"></a>五、变量和常量</h2><h3 id="1-变量"><a href="#1-变量" class="headerlink" title="1.变量"></a>1.变量</h3><ul>
+<li><p>变量：可以变化的量</p>
+</li>
+<li><p>变量作用域（变量分为三种）</p>
+<ul>
+<li>类变量（静态变量）</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line">    <span class="comment">//类变量,，从属于类，用static修饰，如果不初始化会自动初始为默认值</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">double</span> salary = <span class="number">2500</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> a;<span class="comment">//数值型初始为0或者0.0</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">char</span> b;<span class="comment">//字符型初始为16位的0</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">boolean</span> c;<span class="comment">//布尔值初始位false</span></span><br><span class="line">    <span class="comment">//类变量在该类的方法中可以直接进行使用System.out.println(salary);</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>实例变量（成员变量）</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line">	<span class="comment">//实例变量（成员变量）;从属于对象,如果不进行初始化，这个类型的默认值 0 0.0</span></span><br><span class="line">	<span class="comment">//布尔值:默认是false</span></span><br><span class="line">	<span class="comment">//除了基本类型,其余默认的值都是null;</span></span><br><span class="line">	String name;</span><br><span class="line">	<span class="keyword">int</span> age;</span><br><span class="line">    <span class="comment">//成员变量要创建对象在该类的方法中进行使用</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>局部变量</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"><span class="comment">//局部变量;方法或语句块中定义的变量，没有初始值，必须进行声明和初始化（赋初值）;</span></span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">10</span>;</span><br><span class="line">    System.out.println(i);</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-常量"><a href="#2-常量" class="headerlink" title="2.常量"></a>2.常量</h3><ul>
+<li>常量：值被设定后，在程序运行过程中不能被改变。<br>final  常量名 = 值;</li>
+</ul>
+<h3 id="3-命名规则"><a href="#3-命名规则" class="headerlink" title="3.命名规则"></a>3.命名规则</h3><ul>
+<li>类名：首字母大写和驼峰原则 Demo DemoScore</li>
+<li>类成员变量、局部变量和方法名：首字母小写和驼峰原则 demo demoScore</li>
+<li>常量：大写字母和下划线 DEMO_SOCRE</li>
+</ul>
+<h2 id="六、运算符"><a href="#六、运算符" class="headerlink" title="六、运算符"></a>六、运算符</h2><h3 id="1-基本运算符（二元运算符）"><a href="#1-基本运算符（二元运算符）" class="headerlink" title="1.基本运算符（二元运算符）"></a>1.基本运算符（二元运算符）</h3><ul>
+<li>加减乘除（+  -  *  /）    取模（%）</li>
+<li>整数运算：俩个操作数，一个为Long，结果为Long；没有Long时，结果为int；即使操作数全为byte或者short，结果也是int。</li>
+<li>浮点运算：俩个操作数，一个为double，结果为double；都为float才为float。</li>
+<li>取模运算：负数%负数＝负数； 负数%正数＝负数； 正数%负数＝正数；</li>
+<li>关系运算符   (==    !=    &gt;    &lt;    &lt;=    &gt;=)    返回布尔值</li>
+</ul>
+<h3 id="2-一元运算符"><a href="#2-一元运算符" class="headerlink" title="2.一元运算符"></a>2.一元运算符</h3><ul>
+<li>自增++    自减–</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//++ 自增   -- 自减    一元运算符</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">int</span> b = a++; <span class="comment">//执行这段代码后，先给b赋值，再a自加</span></span><br><span class="line"><span class="comment">// a = a + 1;</span></span><br><span class="line"><span class="keyword">int</span> c = ++a;<span class="comment">//执行这段代码前，先a自加,再给c赋值</span></span><br><span class="line"><span class="comment">//a = a + 1;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> d = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">int</span> e = d--; <span class="comment">//执行这段代码后，先给e赋值，再d自减</span></span><br><span class="line"><span class="comment">// d = d - 1</span></span><br><span class="line"><span class="keyword">int</span> f = --d;<span class="comment">//执行这段代码前，先d自减,再给f赋值</span></span><br><span class="line"><span class="comment">// d = d - 1</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Math类</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//幂运算 2^3   2*2*2 = 8  很多运算我们会使用一些工具类来操作.Math类</span></span><br><span class="line"><span class="keyword">double</span> pow = Math.pow(a,d);</span><br><span class="line">System.out.println(pow);</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-条件运算符（三元运算符）"><a href="#3-条件运算符（三元运算符）" class="headerlink" title="3.条件运算符（三元运算符）"></a>3.条件运算符（三元运算符）</h3><p> a ? b : c        如果a是true就是b，否则就是c</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> score = <span class="number">71</span>;</span><br><span class="line">String type = score &gt;= <span class="number">60</span> ? <span class="string">&quot;及格&quot;</span> : <span class="string">&quot;不及格&quot;</span>;</span><br><span class="line">System.out.println(type);<span class="comment">//及格</span></span><br><span class="line"><span class="comment">//运算符优先级	（）最优先可以在表达式里边用小括号组织</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-逻辑运算符"><a href="#4-逻辑运算符" class="headerlink" title="4.逻辑运算符"></a>4.逻辑运算符</h3><ul>
+<li><p>与&amp;&amp; （and）        或||（or）           非（取反）</p>
+</li>
+<li><p>短路运算：逻辑与只要有一个为false, 则直接返回false. 逻辑或只要有一个为true, 则直接返回true;</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//短路运算</span></span><br><span class="line"><span class="keyword">int</span> c = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">boolean</span> d = (c &lt; <span class="number">4</span>) &amp;&amp; (c++ &lt; <span class="number">4</span>);</span><br><span class="line">System.out.println(d);<span class="comment">//false</span></span><br><span class="line">System.out.println(c);<span class="comment">//5  由于第一个为falsh，则直接返回false，c不自加，短路运算</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-位运算符"><a href="#5-位运算符" class="headerlink" title="5.位运算符"></a>5.位运算符</h3><ul>
+<li>位运算符应用于整数类型(int)，长整型(long)，短整型(short)，字符型(char)，和字节型 (byte)等类型</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo06</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        A = 0011 1100</span></span><br><span class="line"><span class="comment">        B = 0000 1101</span></span><br><span class="line"><span class="comment">        ----------------------------</span></span><br><span class="line"><span class="comment">        A&amp;B = 0000 1100     两个都为1才为1，否则就是0</span></span><br><span class="line"><span class="comment">        A|B = 0011 1101     两个都为0才为0，否则都为1</span></span><br><span class="line"><span class="comment">        A^B = 0011 0001     相同为0，不同为1</span></span><br><span class="line"><span class="comment">        ~B = 1111 0010      1和0反过来</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">        2 * 8 = 16   2*2*2*2</span></span><br><span class="line"><span class="comment">        如何效率极高的计算?</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">        &lt;&lt;  *2</span></span><br><span class="line"><span class="comment">        &gt;&gt;  /2</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">        0000 0000       0</span></span><br><span class="line"><span class="comment">        0000 0001       1</span></span><br><span class="line"><span class="comment">        0000 0010       2</span></span><br><span class="line"><span class="comment">        0000 0011       3</span></span><br><span class="line"><span class="comment">        0000 0100       4</span></span><br><span class="line"><span class="comment">        0000 1000       8</span></span><br><span class="line"><span class="comment">        0001 0000       16</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="number">2</span>&lt;&lt;<span class="number">3</span>);<span class="comment">//2*2*2*2=16</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-扩展赋值运算符"><a href="#6-扩展赋值运算符" class="headerlink" title="6.扩展赋值运算符"></a>6.扩展赋值运算符</h3><ul>
+<li>a += b;//a = a + b<br>a -= b;//a = a - b<br>a /= b;//a = a / b<br>a *= b;//a = a * b</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//字符串连接符 +         String</span></span><br><span class="line"><span class="keyword">int</span> a = <span class="number">20</span>;</span><br><span class="line"><span class="keyword">int</span> b = <span class="number">10</span>;</span><br><span class="line">System.out.println(<span class="string">&quot;&quot;</span> + a + b);<span class="comment">// &quot;&quot;放前边会把加号旁边的操作数转换为字符串</span></span><br><span class="line">System.out.println(a + b + <span class="string">&quot;&quot;</span>);<span class="comment">// &quot;&quot;放后边不起上述作用</span></span><br><span class="line">System.out.println(a + b +<span class="string">&quot;\t&quot;</span>+<span class="string">&quot;&quot;</span>+ a + b);<span class="comment">//30 2010</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="七、包"><a href="#七、包" class="headerlink" title="七、包"></a>七、包</h2><ul>
+<li><p>包的作用：把功能相似或相关的类或接口组织在同一个包中，方便类的查找和使用；同一个包中的类名字是不同的，不同的包中的类 的名字是可以相同的。</p>
+</li>
+<li><p>包的创建：一般用公司域名倒置，  <a href="http://www.baidu.com/">www.baidu.com</a>   包名  com.baidu.www</p>
+</li>
+<li><p>包的导入：为了可以使用某一包中的成员，需要用import导入包。通配符*可以导入包下的所有类</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*</span><br></pre></td></tr></table></figure>
+
+<h2 id="八、JavaDoc"><a href="#八、JavaDoc" class="headerlink" title="八、JavaDoc"></a>八、JavaDoc</h2><ol>
+<li><p>JavaDoc是可以将注释生成HTML文档的的技术。</p>
+<p>@author 作者名 </p>
+<p>@version 版本号 </p>
+<p>@since 指明需要最早使用的jdk版本 </p>
+<p>@param 参数名 </p>
+<p>@return 返回值情况 </p>
+<p>@throws 异常抛出情况</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> name</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">test</span><span class="params">(String name)</span> <span class="keyword">throws</span>  Exception</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//命令行生成JavaDoc文档  javadoc 参数 Java文件</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>用命令行生成JavaDoc文档：javadoc    -encoding UTF-8 -charset UTF-8    java文件</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// -encoding UTF-8 -charset UTF-8</span></span><br><span class="line"><span class="comment">//解决GBK乱码问题，在中间添加编码设置</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>笔记</category>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -809,355 +809,6 @@
       </categories>
       <tags>
         <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CSS3</title>
-    <url>/2021/08/16/CSS3/</url>
-    <content><![CDATA[<h2 id="一、初始CSS"><a href="#一、初始CSS" class="headerlink" title="一、初始CSS"></a>一、初始CSS</h2><h3 id="1-CSS"><a href="#1-CSS" class="headerlink" title="1.CSS"></a>1.CSS</h3><ul>
-<li>Cascading Style Sheet 层叠样式表。</li>
-<li><strong>表现</strong>HTML或XHTML文件样式的计算机语言。</li>
-<li>优势：<ul>
-<li>内容与表现分离，网页的表现统一，容易修改。</li>
-<li>丰富的样式，使得页面布局更加灵活。</li>
-<li>运用独立于页面的CSS，有利于网页被搜索引擎收录。</li>
-<li>减少网页的代码量，增加网页的浏览速度，节省网络带宽。</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h3 id="2-CSS基本语法"><a href="#2-CSS基本语法" class="headerlink" title="2.CSS基本语法"></a>2.CSS基本语法</h3><ul>
-<li>语法：</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">选择器&#123;</span><br><span class="line">    声明<span class="number">1</span>；</span><br><span class="line">    声明<span class="number">2</span>；</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>style标签：CSS样式在HTML中应用的标签。</li>
-</ul>
-<hr>
-<h3 id="3-引入CSS方式"><a href="#3-引入CSS方式" class="headerlink" title="3.引入CSS方式"></a>3.引入CSS方式</h3><ul>
-<li><strong>行内样式</strong>：在标签元素中，编写一个style属性，编写样式即可，由于这种方式不能起到内容与表现相分离，因此不推荐使用。</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">&lt;<span class="selector-tag">h1</span> style=&quot;<span class="attribute">color</span>: blue<span class="string">&quot;&gt;我是标题&lt;/h1&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>内部样式</strong>：方便在同页面中修改样式，不利于在多页面间共享复用代码及维护。</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    <span class="selector-tag">h1</span>&#123;<span class="attribute">color</span>: red;&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p><strong>外部样式</strong>：CSS代码保存在扩展名为.css的样式表中，HTML文件引用扩展名为.css的样式表，有<strong>俩种</strong>方式。</p>
-<ul>
-<li><p><strong>链接式</strong>：使用 link 标签链接外部样式表，link 标签必须放在 head 标签中。</p>
-</li>
-<li><p>客户端浏览网页时先将外部CSS文件加载到网页当中，然后再进行编译显示，所以这种情况下显示出来的网页与用户预期的效果一样。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">&lt;link rel=&quot;stylesheet&quot; href=&quot;css/style<span class="selector-class">.css</span>&quot;&gt;</span><br></pre></td></tr></table></figure></li>
-<li><p><strong>导入式</strong>：使用@import导入外部样式表。</p>
-</li>
-<li><p>客户端在浏览网页时先将HTML结构呈现出来，再把外部CSS文件加载到网页当中，当网速较慢时会先显示没有CSS统一布局的HTML网页。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">&lt;style&gt;<span class="keyword">@import</span> url(<span class="string">&quot;css/style.css&quot;</span>);&lt;/style&gt;</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p><strong>优先级</strong>：就近原则，越接近标签的样式优先级越高。</p>
-</li>
-</ul>
-<hr>
-<h3 id="4-CSS基本选择器"><a href="#4-CSS基本选择器" class="headerlink" title="4.CSS基本选择器"></a>4.CSS基本选择器</h3><ul>
-<li><strong>标签选择器</strong>：HTML标签作为选择器的名称。</li>
-<li><strong>类选择器</strong>：.class的名称{}，好处：可以多个标签归类，是同一个class，可以复用。</li>
-<li><strong>ID选择器</strong>：#id名称{} ： id必须保证全局唯一!</li>
-<li><strong>优先级</strong>：id 选择器&gt;class 选择器&gt;标签选择器</li>
-</ul>
-<hr>
-<h3 id="5-CSS高级选择器"><a href="#5-CSS高级选择器" class="headerlink" title="5.CSS高级选择器"></a>5.CSS高级选择器</h3><h4 id="1-层次选择器"><a href="#1-层次选择器" class="headerlink" title="1.层次选择器"></a>1.层次选择器</h4><ul>
-<li>后代选择器：某个元素的后面。</li>
-<li>子选择器：一代，儿子。</li>
-<li>相邻兄弟选择器：只有一个，相邻（向下）。</li>
-<li>统通用兄弟选择器：当前选中元素向下的所有兄弟元素。</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*1.后代选择器：某个元素的后面*/</span></span><br><span class="line"><span class="selector-tag">body</span> <span class="selector-tag">p</span>&#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#158616</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*2.子选择器：一代，儿子*/</span></span><br><span class="line"><span class="selector-tag">body</span>&gt;<span class="selector-tag">p</span>&#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#158616</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*3.相邻兄弟选择器：只有一个，相邻（向下）*/</span></span><br><span class="line"><span class="selector-class">.active</span> + <span class="selector-tag">p</span>&#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#158616</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*4.通用兄弟选择器：当前选中元素向下的所有兄弟元素*/</span></span><br><span class="line"><span class="selector-class">.active</span>~<span class="selector-tag">p</span>&#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#158616</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-结构伪类选择器"><a href="#2-结构伪类选择器" class="headerlink" title="2.结构伪类选择器"></a>2.结构伪类选择器</h4><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*ul的第一个子元素*/</span></span><br><span class="line"><span class="selector-tag">ul</span> <span class="selector-tag">li</span><span class="selector-pseudo">:first</span>-child&#123;</span><br><span class="line">    <span class="attribute">background</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*ul的最后一个子元素*/</span></span><br><span class="line"><span class="selector-tag">ul</span> <span class="selector-tag">li</span><span class="selector-pseudo">:last-child</span>&#123;</span><br><span class="line">    <span class="attribute">background</span>: green;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*选中p1：定位到父元素，选择当前的第二个元素</span></span><br><span class="line"><span class="comment">选择当前p元素的父级元素，选择父级元素的第二个元素，并且是当前元素才生效，按顺序</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="selector-tag">p</span><span class="selector-pseudo">:nth-child</span>(<span class="number">2</span>)&#123;</span><br><span class="line">    <span class="attribute">background</span>: blue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*选中父级元素，下的p元素的第二个，按类型*/</span></span><br><span class="line"><span class="selector-tag">p</span><span class="selector-pseudo">:nth-of-type</span>(<span class="number">2</span>)&#123;</span><br><span class="line">    <span class="attribute">background</span>: pink;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-属性选择器"><a href="#3-属性选择器" class="headerlink" title="3.属性选择器"></a>3.属性选择器</h4><p>  =  绝对等于<br>  *= 包含<br>  ^= 以什么开头<br>  $= 以什么结尾</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*属性名，属性名 = 属性值（正值）</span></span><br><span class="line"><span class="comment">= 绝对等于</span></span><br><span class="line"><span class="comment">*= 包含</span></span><br><span class="line"><span class="comment">^= 以什么开头</span></span><br><span class="line"><span class="comment">$= 以什么结尾</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*存在id属性元素      a[]&#123;&#125;*/</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-attr">[id]</span>&#123;</span><br><span class="line">    <span class="attribute">background</span>: yellow;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*id=first的元素*/</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-attr">[id=first]</span>&#123;</span><br><span class="line">    <span class="attribute">background</span>: yellow;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*class 中有links的元素*/</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-attr">[class*=<span class="string">&quot;links&quot;</span>]</span>&#123;</span><br><span class="line">    <span class="attribute">background</span>: yellow;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*选中herf中以http开头的*/</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-attr">[href^=http]</span>&#123;</span><br><span class="line">    <span class="attribute">background</span>: yellow;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*选中herf中以jpg结尾的*/</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-attr">[href$=com]</span>&#123;</span><br><span class="line">    <span class="attribute">background</span>: green;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="二、美化网页元素"><a href="#二、美化网页元素" class="headerlink" title="二、美化网页元素"></a>二、美化网页元素</h2><h3 id="1-为什么使用CSS"><a href="#1-为什么使用CSS" class="headerlink" title="1.为什么使用CSS"></a>1.为什么使用CSS</h3><ul>
-<li>有效的传递页面信息 。</li>
-<li>使用CSS美化过的页面文本，使页面漂亮、美观，吸引用户 。</li>
-<li>可以很好的突出页面的主题内容，使用户第一眼可以看到页面主要内容。</li>
-<li>具有良好的用户体验。</li>
-<li>&lt; span&gt;标签：能让某几个文字或者某个词语凸显出来，从而添加对应的样式！</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">&lt;!--重点突出的字，用<span class="selector-tag">span</span>套起来--&gt;</span><br><span class="line">做一名 &lt;<span class="selector-tag">span</span> id=&quot;title1&quot;&gt;JAVA&lt;/<span class="selector-tag">span</span>&gt;工程师</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="2-字体样式"><a href="#2-字体样式" class="headerlink" title="2.字体样式"></a>2.字体样式</h3><ul>
-<li>font-family：字体类型<br>font-size：字体大小，单位：px、em。<br>font-weight：字体粗细，lighter、normal（400）、bold（700）、bolder。<br>color：字体颜色<br>font-style： 字体风格，normal、italic和oblique（斜体）。</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    <span class="selector-tag">body</span>&#123;</span><br><span class="line">        <span class="attribute">font-family</span>: <span class="string">&quot;Arial&quot;</span>,楷体;</span><br><span class="line">        <span class="attribute">color</span>: <span class="number">#865722</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-tag">h1</span>&#123;</span><br><span class="line">        <span class="attribute">font-size</span>:<span class="number">50px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-class">.p1</span>&#123;</span><br><span class="line">        <span class="attribute">font-weight</span>: bolder;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>字体属性 font：字体属性的顺序：字体风格→字体粗细→字体大小→字体类型</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    <span class="selector-class">.p1</span>&#123;</span><br><span class="line">        <span class="attribute">font</span>: oblique <span class="number">100</span> <span class="number">16px</span> <span class="string">&quot;楷体&quot;</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="3-文本样式"><a href="#3-文本样式" class="headerlink" title="3.文本样式"></a>3.文本样式</h3><ul>
-<li>text-align: center;    排版：居中。<br>text-indent: 2em;   段落首行缩进二字符。<br>text-decoration: none;    去掉下划线，上中下划线，删除线。</li>
-<li>height: 300px;<br>line-height: 300px;<br>行高 和 块 的高度一致，就可以上下居中。</li>
-<li>vertical-align: middle; 文本图片水平对齐，参照物: a，b。</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">&lt;!--</span><br><span class="line">颜色：</span><br><span class="line">    单词</span><br><span class="line">    RGB <span class="number">0</span>~F</span><br><span class="line">    RGBA <span class="selector-tag">A</span> <span class="number">0</span>~<span class="number">1</span> 透明度</span><br><span class="line">--&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    <span class="selector-tag">h1</span>&#123;</span><br><span class="line">        <span class="attribute">color</span>: <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">255</span>,<span class="number">255</span>,<span class="number">0.5</span>);</span><br><span class="line">        <span class="attribute">text-align</span>: center;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-class">.p1</span>&#123;</span><br><span class="line">        <span class="attribute">text-indent</span>: <span class="number">2em</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-class">.p3</span>&#123;</span><br><span class="line">        <span class="attribute">background</span>: blue;</span><br><span class="line">        <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">        <span class="attribute">line-height</span>: <span class="number">300px</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*下划线*/</span></span><br><span class="line">    <span class="selector-class">.l1</span>&#123;</span><br><span class="line">        <span class="attribute">text-decoration</span>: underline;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*中划线*/</span></span><br><span class="line">    <span class="selector-class">.l2</span>&#123;</span><br><span class="line">        <span class="attribute">text-decoration</span>: line-through;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*上划线*/</span></span><br><span class="line">    <span class="selector-class">.l3</span>&#123;</span><br><span class="line">        <span class="attribute">text-decoration</span>: overline;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*超链接去掉下划线*/</span></span><br><span class="line">    <span class="selector-tag">a</span>&#123;</span><br><span class="line">        <span class="attribute">text-decoration</span>: none;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*文本图片水平对齐，参照物， a，b*/</span></span><br><span class="line">     <span class="selector-tag">img</span>,<span class="selector-tag">span</span>&#123;</span><br><span class="line">         <span class="attribute">vertical-align</span>: middle;</span><br><span class="line">     &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="4-文本阴影"><a href="#4-文本阴影" class="headerlink" title="4.文本阴影"></a>4.文本阴影</h3><ul>
-<li>text-shadow： 文本阴影（水平偏移，垂直偏移，阴影模糊半径，阴影颜色）</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-id">#price</span>&#123;<span class="attribute">text-shadow</span>: <span class="number">5px</span> <span class="number">2px</span> <span class="number">2px</span> <span class="number">#0af8ff</span>;&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="5-超链接伪类"><a href="#5-超链接伪类" class="headerlink" title="5.超链接伪类"></a>5.超链接伪类</h3><ul>
-<li>a:hover{}    鼠标悬浮的状态</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*默认颜色*/</span></span><br><span class="line"><span class="selector-tag">a</span>&#123;</span><br><span class="line">    <span class="attribute">text-decoration</span>: none;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#000000</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*鼠标悬浮的状态（只需要记住：hover）*/</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>: orange;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*鼠标按住未释放的状态*/</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:active</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#e01500</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="6-列表样式"><a href="#6-列表样式" class="headerlink" title="6.列表样式"></a>6.列表样式</h3><ul>
-<li>list-style:<pre><code>none：去掉圆点
-disc：实心圆，默认类型
-circlr：空心圆
-decimal：数字
-square：正方形
-</code></pre>
-</li>
-</ul>
-<hr>
-<h3 id="7-背景样式"><a href="#7-背景样式" class="headerlink" title="7.背景样式"></a>7.背景样式</h3><ul>
-<li>background-image：背景图像<br>  background-color：背景颜色<br>   background-repeat：背景重复方式（沿x轴平铺，沿y轴平铺，不重复）</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">div</span>&#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">700px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">1000px</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid red;</span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">&quot;images/cs11dn.png&quot;</span>);</span><br><span class="line">    <span class="comment">/*默认是全部平铺的 repeat*/</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*沿x轴平铺*/</span></span><br><span class="line"><span class="selector-class">.div1</span>&#123;</span><br><span class="line">    <span class="attribute">background-repeat</span>: repeat-x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*沿y轴平铺*/</span></span><br><span class="line"><span class="selector-class">.div2</span>&#123;</span><br><span class="line">    <span class="attribute">background-repeat</span>: repeat-y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*不重复 就一个*/</span></span><br><span class="line"><span class="selector-class">.div3</span>&#123;</span><br><span class="line">    <span class="attribute">background-repeat</span>: no-repeat;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>背景简写</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*颜色 图片 图片定位 背景不重复*/</span></span><br><span class="line"><span class="attribute">background</span>: red <span class="built_in">url</span>(<span class="string">&quot;../images/d.png&quot;</span>) <span class="number">270px</span> <span class="number">10px</span> no-repeat;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="8-渐变样式"><a href="#8-渐变样式" class="headerlink" title="8.渐变样式"></a>8.渐变样式</h3><ul>
-<li>网站推荐：<a href="http://color.oulu.me/">http://color.oulu.me/</a></li>
-</ul>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*background-color: #00bcbf;*/</span></span><br><span class="line"><span class="attribute">background-image</span>: <span class="built_in">linear-gradient</span>(<span class="number">117deg</span>, <span class="number">#00bcbf</span> <span class="number">0%</span>, <span class="number">#FC00FF</span> <span class="number">100%</span>);</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="三、盒子模型"><a href="#三、盒子模型" class="headerlink" title="三、盒子模型"></a>三、盒子模型</h2><h3 id="1-盒子模型"><a href="#1-盒子模型" class="headerlink" title="1.盒子模型"></a>1.盒子模型</h3><ul>
-<li><strong>Margin(外边距)</strong> - 清除边框外的区域，外边距是透明的。</li>
-<li><strong>Border(边框)</strong> - 围绕在内边距和内容外的边框。</li>
-<li><strong>Padding(内边距)</strong> - 清除内容周围的区域，内边距是透明的。</li>
-<li><strong>Content(内容)</strong> - 盒子的内容，显示文本和图像。</li>
-</ul>
-<p><img src="https://www.runoob.com/images/box-model.gif"></p>
-<hr>
-<h3 id="2-边框border"><a href="#2-边框border" class="headerlink" title="2.边框border"></a>2.边框border</h3><ul>
-<li>同时设置4个边框颜色时，顺序为上右下左（顺时针）。</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*body总有一个默认的外边距 要进行默认设置margin：0（常见操作）</span></span><br><span class="line"><span class="comment">body&#123;</span></span><br><span class="line"><span class="comment">    margin: 0;</span></span><br><span class="line"><span class="comment">    padding: 0;</span></span><br><span class="line"><span class="comment">    text-decoration: none;</span></span><br><span class="line"><span class="comment">&#125;*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*border：粗细，样式，颜色</span></span><br><span class="line"><span class="comment">    solid 实线</span></span><br><span class="line"><span class="comment">    dashed 虚线</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="selector-id">#box</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">240px</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="3-内外边距-padding-margin"><a href="#3-内外边距-padding-margin" class="headerlink" title="3.内外边距 padding margin"></a>3.内外边距 padding margin</h3><ul>
-<li>同时设置2个值时，顺序为上下、右左。</li>
-<li>同时设置4个值时，顺序为上右下左（顺时针）。</li>
-<li>内外边距同理。</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">顺时针旋转</span></span><br><span class="line"><span class="comment">margin: 0</span></span><br><span class="line"><span class="comment">margin: 0 1px</span></span><br><span class="line"><span class="comment">margin: 0 1px 2px 3px</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="selector-tag">h2</span>&#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#0af8ff</span>;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">18px</span>;</span><br><span class="line">    <span class="attribute">color</span>: white;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">30px</span>;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span> <span class="number">1px</span> <span class="number">2px</span> <span class="number">3px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>外边距的妙用，居中元素：<strong>margin: 0 auto;</strong></li>
-<li>网页居中对齐的必要条件：块元素，固定宽度。</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-id">#box</span>&#123;</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">240px</span>;</span><br><span class="line">        <span class="attribute">border</span>: <span class="number">1px</span> solid red;</span><br><span class="line">        <span class="attribute">margin</span>: <span class="number">0</span> auto;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="4-盒子模型尺寸"><a href="#4-盒子模型尺寸" class="headerlink" title="4.盒子模型尺寸"></a>4.盒子模型尺寸</h3><ul>
-<li>盒子模型总尺寸= border + padding + margin + 内容高度</li>
-</ul>
-<hr>
-<h3 id="5-圆角边框"><a href="#5-圆角边框" class="headerlink" title="5.圆角边框"></a>5.圆角边框</h3><ul>
-<li>border-radius：边框半径，左上，右上，右下，左下，顺时针方向。</li>
-<li>圆圈：圆角=半径（border-radius: 50%;）</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">div</span>&#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">2px</span> solid red;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">20px</span> <span class="number">10px</span> <span class="number">30px</span> <span class="number">40px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="6-盒子阴影"><a href="#6-盒子阴影" class="headerlink" title="6.盒子阴影"></a>6.盒子阴影</h3><ul>
-<li>box-shadow：内阴影（阴影类型）、x轴位移、y轴位移、阴影模糊半径、阴影颜色。</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">box-shadow</span>:inset <span class="number">10px</span> <span class="number">10px</span> <span class="number">20px</span> yellow;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="四、浮动"><a href="#四、浮动" class="headerlink" title="四、浮动"></a>四、浮动</h2><h3 id="1-标准文档流"><a href="#1-标准文档流" class="headerlink" title="1.标准文档流"></a>1.标准文档流</h3><ul>
-<li><strong>标准文档流</strong>：指元素根据块元素或行内元素的特性按从上到下，从左到右的方式自然排列。这也是元素默认的排列方式。</li>
-<li><strong>块级元素</strong>（block）：&lt; h1&gt;…&lt; h6&gt;、&lt; p&gt;、&lt; div&gt;、列表</li>
-<li><strong>内联元素</strong>（inline）：&lt; span&gt;、&lt; a&gt;、&lt; img&gt;</li>
-<li>内联标签可以包含于块级标签中，成为它的子元素，而反过来则不成立。</li>
-</ul>
-<hr>
-<h3 id="2-display"><a href="#2-display" class="headerlink" title="2.display"></a>2.display</h3><ul>
-<li><strong>bolck</strong>：元素显示为块级元素。</li>
-<li><strong>inline</strong>：元素显示为内联元素。</li>
-<li><strong>inline-block</strong>: 行内块元素，是块元素，还可以内联，在一行！（可以使块元素排在一行）</li>
-<li><strong>none</strong>：设置元素不会被显示。</li>
-</ul>
-<hr>
-<h3 id="3-浮动-float"><a href="#3-浮动-float" class="headerlink" title="3.浮动 float"></a>3.浮动 float</h3><ul>
-<li><p><strong>left</strong>：左浮动，<strong>right</strong>：右浮动。（可以使块元素排在一行，会产生边框塌陷）</p>
-</li>
-<li><p><strong>clear</strong>：清除浮动。</p>
-</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123; <span class="attribute">clear</span>:both; 清除两侧浮动 &#125; <span class="selector-tag">div</span>&#123; <span class="attribute">clear</span><span class="selector-pseudo">:left</span>; 清除左侧浮动 &#125; <span class="selector-tag">div</span> &#123; <span class="attribute">clear</span><span class="selector-pseudo">:right</span>; 清除右侧浮动 &#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="4-边框塌陷及解决方法"><a href="#4-边框塌陷及解决方法" class="headerlink" title="4.边框塌陷及解决方法"></a>4.边框塌陷及解决方法</h3><ul>
-<li><strong>设置父元素的高度</strong><ul>
-<li>简单，元素假定有了固定高度，就会被限制，降低扩展性。</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-id">#father</span>&#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">250px</span>;</span><br><span class="line">    <span class="comment">/*简单，元素假定有了固定高度，就会被限制*/</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.div1</span>&#123;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.div2</span>&#123;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.div3</span>&#123;</span><br><span class="line">    <span class="attribute">float</span>: right;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.div4</span>&#123;</span><br><span class="line">    <span class="attribute">float</span>: right;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">&lt;<span class="selector-tag">div</span> id=&quot;father&quot; style=&quot;<span class="attribute">border</span>: <span class="number">1px</span> black solid<span class="string">&quot;&gt;</span></span><br><span class="line"><span class="string">    &lt;div class=&quot;</span>div1<span class="string">&quot; style=&quot;</span>width: <span class="number">100px</span>;<span class="attribute">height</span>: <span class="number">100px</span>;<span class="attribute">border</span>: <span class="number">1px</span> dashed red<span class="string">&quot;&gt;我是div1&lt;/div&gt;</span></span><br><span class="line"><span class="string">    &lt;div class=&quot;</span>div2<span class="string">&quot; style=&quot;</span>width: <span class="number">100px</span>;<span class="attribute">height</span>: <span class="number">100px</span>;<span class="attribute">border</span>: <span class="number">1px</span> dashed red<span class="string">&quot;&gt;我是div2&lt;/div&gt;</span></span><br><span class="line"><span class="string">    &lt;div class=&quot;</span>div3<span class="string">&quot; style=&quot;</span>width: <span class="number">100px</span>;<span class="attribute">height</span>: <span class="number">100px</span>;<span class="attribute">border</span>: <span class="number">1px</span> dashed red<span class="string">&quot;&gt;我是div3&lt;/div&gt;</span></span><br><span class="line"><span class="string">    &lt;div class=&quot;</span>div4<span class="string">&quot; style=&quot;</span>width: <span class="number">100px</span>;<span class="attribute">height</span>: <span class="number">100px</span>;<span class="attribute">border</span>: <span class="number">1px</span> dashed red<span class="string">&quot;&gt;我是div4&lt;/div&gt;</span></span><br><span class="line"><span class="string">&lt;/div&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>父级添加overflow属性（溢出处理）</strong><ul>
-<li>简单，下拉列表框的场景不能使用。</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*简单，下拉列表框的场景不能使用*/</span></span><br><span class="line"><span class="selector-id">#father</span>&#123;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.div1</span>&#123;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.div2</span>&#123;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.div3</span>&#123;</span><br><span class="line">    <span class="attribute">float</span>: right;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.div4</span>&#123;</span><br><span class="line">    <span class="attribute">float</span>: right;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">&lt;<span class="selector-tag">div</span> id=&quot;father&quot; style=&quot;<span class="attribute">border</span>: <span class="number">1px</span> black solid<span class="string">&quot;&gt;</span></span><br><span class="line"><span class="string">    &lt;div class=&quot;</span>div1<span class="string">&quot; style=&quot;</span>width: <span class="number">100px</span>;<span class="attribute">height</span>: <span class="number">100px</span>;<span class="attribute">border</span>: <span class="number">1px</span> dashed red<span class="string">&quot;&gt;我是div1&lt;/div&gt;</span></span><br><span class="line"><span class="string">    &lt;div class=&quot;</span>div2<span class="string">&quot; style=&quot;</span>width: <span class="number">100px</span>;<span class="attribute">height</span>: <span class="number">100px</span>;<span class="attribute">border</span>: <span class="number">1px</span> dashed red<span class="string">&quot;&gt;我是div2&lt;/div&gt;</span></span><br><span class="line"><span class="string">    &lt;div class=&quot;</span>div3<span class="string">&quot; style=&quot;</span>width: <span class="number">100px</span>;<span class="attribute">height</span>: <span class="number">100px</span>;<span class="attribute">border</span>: <span class="number">1px</span> dashed red<span class="string">&quot;&gt;我是div3&lt;/div&gt;</span></span><br><span class="line"><span class="string">    &lt;div class=&quot;</span>div4<span class="string">&quot; style=&quot;</span>width: <span class="number">100px</span>;<span class="attribute">height</span>: <span class="number">100px</span>;<span class="attribute">border</span>: <span class="number">1px</span> dashed red<span class="string">&quot;&gt;我是div4&lt;/div&gt;</span></span><br><span class="line"><span class="string">&lt;/div&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>浮动元素后面加空div</strong><ul>
-<li>简单，但是空div会造成HTML代码冗余，代码中尽量避免加空div。</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-id">#father</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.div1</span>&#123;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.div2</span>&#123;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.div3</span>&#123;</span><br><span class="line">    <span class="attribute">float</span>: right;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.div4</span>&#123;</span><br><span class="line">    <span class="attribute">float</span>: right;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*简单，代码中尽量避免加空div*/</span></span><br><span class="line"><span class="selector-id">#clear</span>&#123;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">clear</span>: both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">&lt;<span class="selector-tag">div</span> id=&quot;father&quot; style=&quot;<span class="attribute">border</span>: <span class="number">1px</span> black solid<span class="string">&quot;&gt;</span></span><br><span class="line"><span class="string">    &lt;div class=&quot;</span>div1<span class="string">&quot; style=&quot;</span>width: <span class="number">100px</span>;<span class="attribute">height</span>: <span class="number">100px</span>;<span class="attribute">border</span>: <span class="number">1px</span> dashed red<span class="string">&quot;&gt;我是div1&lt;/div&gt;</span></span><br><span class="line"><span class="string">    &lt;div class=&quot;</span>div2<span class="string">&quot; style=&quot;</span>width: <span class="number">100px</span>;<span class="attribute">height</span>: <span class="number">100px</span>;<span class="attribute">border</span>: <span class="number">1px</span> dashed red<span class="string">&quot;&gt;我是div2&lt;/div&gt;</span></span><br><span class="line"><span class="string">    &lt;div class=&quot;</span>div3<span class="string">&quot; style=&quot;</span>width: <span class="number">100px</span>;<span class="attribute">height</span>: <span class="number">100px</span>;<span class="attribute">border</span>: <span class="number">1px</span> dashed red<span class="string">&quot;&gt;我是div3&lt;/div&gt;</span></span><br><span class="line"><span class="string">    &lt;div class=&quot;</span>div4<span class="string">&quot; style=&quot;</span>width: <span class="number">100px</span>;<span class="attribute">height</span>: <span class="number">100px</span>;<span class="attribute">border</span>: <span class="number">1px</span> dashed red<span class="string">&quot;&gt;我是div4&lt;/div&gt;</span></span><br><span class="line"><span class="string">    &lt;div id=&quot;</span>clear<span class="string">&quot;&gt;&lt;/div&gt;</span></span><br><span class="line"><span class="string">&lt;/div&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>父级添加伪类after（推荐）</strong><ul>
-<li>写法比前三个复杂，但是没有副作用，推荐使用。</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-id">#father</span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*写法复杂，但是没有副作用，推荐使用*/</span></span><br><span class="line"><span class="selector-id">#father</span>:after&#123;</span><br><span class="line">    content:<span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">    <span class="attribute">clear</span>: both;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.div1</span>&#123;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.div2</span>&#123;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.div3</span>&#123;</span><br><span class="line">    <span class="attribute">float</span>: right;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.div4</span>&#123;</span><br><span class="line">    <span class="attribute">float</span>: right;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">&lt;<span class="selector-tag">div</span> id=&quot;father&quot; style=&quot;<span class="attribute">border</span>: <span class="number">1px</span> black solid<span class="string">&quot;&gt;</span></span><br><span class="line"><span class="string">    &lt;div class=&quot;</span>div1<span class="string">&quot; style=&quot;</span>width: <span class="number">100px</span>;<span class="attribute">height</span>: <span class="number">100px</span>;<span class="attribute">border</span>: <span class="number">1px</span> dashed red<span class="string">&quot;&gt;我是div1&lt;/div&gt;</span></span><br><span class="line"><span class="string">    &lt;div class=&quot;</span>div2<span class="string">&quot; style=&quot;</span>width: <span class="number">100px</span>;<span class="attribute">height</span>: <span class="number">100px</span>;<span class="attribute">border</span>: <span class="number">1px</span> dashed red<span class="string">&quot;&gt;我是div2&lt;/div&gt;</span></span><br><span class="line"><span class="string">    &lt;div class=&quot;</span>div3<span class="string">&quot; style=&quot;</span>width: <span class="number">100px</span>;<span class="attribute">height</span>: <span class="number">100px</span>;<span class="attribute">border</span>: <span class="number">1px</span> dashed red<span class="string">&quot;&gt;我是div3&lt;/div&gt;</span></span><br><span class="line"><span class="string">    &lt;div class=&quot;</span>div4<span class="string">&quot; style=&quot;</span>width: <span class="number">100px</span>;<span class="attribute">height</span>: <span class="number">100px</span>;<span class="attribute">border</span>: <span class="number">1px</span> dashed red<span class="string">&quot;&gt;我是div4&lt;/div&gt;</span></span><br><span class="line"><span class="string">&lt;/div&gt;</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="5-inline-block-和-float-区别"><a href="#5-inline-block-和-float-区别" class="headerlink" title="5.inline-block 和 float 区别"></a>5.inline-block 和 float 区别</h3><ul>
-<li>display: inline-block<ul>
-<li>可以让元素排在一行，并且支持宽度和高度，代码实现起来方便。</li>
-<li>但是位置方向不可控制，会解析空格。</li>
-</ul>
-</li>
-<li>float<ul>
-<li>可以让元素排在一行，并且支持宽度和高度，可以决定排列方向。</li>
-<li>float 浮动以后元素脱离文档流，会对周围元素产生影响，必须在它的父级上添加清除浮动的样式。</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="五、定位"><a href="#五、定位" class="headerlink" title="五、定位"></a>五、定位</h2><h3 id="1-定位在网页中的应用"><a href="#1-定位在网页中的应用" class="headerlink" title="1.定位在网页中的应用"></a>1.定位在网页中的应用</h3><ul>
-<li>下拉菜单，不随滚动条移动的固定导航，鼠标移入弹出的消息框。</li>
-</ul>
-<hr>
-<h3 id="2-相对定位-relative"><a href="#2-相对定位-relative" class="headerlink" title="2.相对定位 relative"></a>2.相对定位 relative</h3><ul>
-<li>position: relative：<strong>相对定位</strong>，相对于自身原来的位置进行偏移。</li>
-<li>偏移设置：top、left、right、bottom，上左右下。</li>
-<li></li>
-<li>设置相对定位的盒子仍在标准文档流中，它对父级盒子和相邻的盒子都没有任何影响。</li>
-<li>层级提高，可以把标准文档流中的元素及浮动元素盖在下边</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-id">#first</span>&#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#0af8ff</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> dashed <span class="number">#d83a17</span>;</span><br><span class="line">    <span class="attribute">position</span>: relative;<span class="comment">/*相对定位：上下左右*/</span></span><br><span class="line">    <span class="attribute">top</span>: -<span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#second</span>&#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#ebff11</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> dashed <span class="number">#e09344</span>;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">20px</span>;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="3-绝对定位-absulote"><a href="#3-绝对定位-absulote" class="headerlink" title="3.绝对定位 absulote"></a>3.绝对定位 absulote</h3><ul>
-<li>position: relative：<strong>绝对定位</strong>，相对于它的定位父级的位置来定位，如果没有设置定位父级，则相对浏览器窗口来定位。</li>
-<li>元素位置发生偏移后，原来的位置不会被保留下来。</li>
-<li>绝对定位的元素从标准文档流中脱离，这意味着它们对其他元素的定位不会造成影响。</li>
-<li>层级提高，可以把标准文档流中的元素及浮动元素盖在下边。</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-id">#father</span>&#123;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid black;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#second</span>&#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#ebff11</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> dashed <span class="number">#e09344</span>;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">left</span>: -<span class="number">20px</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="4-固定定位-fixed"><a href="#4-固定定位-fixed" class="headerlink" title="4.固定定位 fixed"></a>4.固定定位 fixed</h3><ul>
-<li>position: fixed：<strong>固定定位</strong>，相对浏览器窗口来定位，偏移量不会随滚动条的移动而移动。</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">div</span><span class="selector-pseudo">:nth-of-type</span>(<span class="number">2</span>)&#123;<span class="comment">/*fixed，固定定位*/</span></span><br><span class="line">    <span class="attribute">width</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: green;</span><br><span class="line">    <span class="attribute">position</span>: fixed;</span><br><span class="line">    <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="5-z-index属性"><a href="#5-z-index属性" class="headerlink" title="5.z-index属性"></a>5.z-index属性</h3><ul>
-<li><strong>z-index</strong>：调整元素定位时重叠层的上下位置，值大的层位于值小的层上方。默认层数是0。</li>
-<li> <strong>opacity: x</strong>：设置透明度，x值为0~1，值越小越透明。</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.tipText</span>&#123;</span><br><span class="line">    <span class="comment">/*z-index: 1;*/</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.tipBg</span>&#123;</span><br><span class="line">    <span class="attribute">background-color</span>: black;</span><br><span class="line">    <span class="attribute">opacity</span>: <span class="number">0.5</span>;<span class="comment">/*背景透明度*/</span></span><br><span class="line">    <span class="comment">/*filter: alpha(opacity=50);*/</span><span class="comment">/*老版本*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="六、制作网页动画"><a href="#六、制作网页动画" class="headerlink" title="六、制作网页动画"></a>六、制作网页动画</h2><h3 id="1-CSS变形"><a href="#1-CSS变形" class="headerlink" title="1.CSS变形"></a>1.CSS变形</h3><ul>
-<li>translate()：<strong>平移函数</strong>，基于X、Y坐标重新定位元素的位置。</li>
-<li>scale()：<strong>缩放函数</strong>，可以使任意元素对象尺寸发生变化。</li>
-<li>rotate()：<strong>旋转函数</strong>，取值是一个度数值。</li>
-<li>skew()：<strong>倾斜函数</strong>，取值是一个度数值。</li>
-</ul>
-<hr>
-<h3 id="2-CSS过渡"><a href="#2-CSS过渡" class="headerlink" title="2.CSS过渡"></a>2.CSS过渡</h3><p>transition [ transition-property    transition-duration    transition-timing-function    transition-delay ]</p>
-<ul>
-<li>过渡属性（ transition-property ）：定义转换动画的CSS属性名称（width、height、background-color属性等）。</li>
-<li>过渡所需的时间（ transition-duration ）：定义转换动画的时间长度，单位为秒。</li>
-<li>过渡动画函数（ transition-timing-function ）：通过给过渡添加一个函数来指定动画的快慢方式。<ul>
-<li>ease：速度由快到慢（默认值）</li>
-<li>linear：速度恒速（匀速运动）</li>
-<li>ease-in：速度越来越快（渐显效果）</li>
-<li>ease-out：速度越来越慢（渐隐效果）</li>
-<li>ease-in-out：速度先加速再减速（渐显渐隐效果）</li>
-</ul>
-</li>
-<li>过渡延迟时间（ transition-delay ）：指定一个动画开始执行的时间。</li>
-</ul>
-<p>触发机制：伪类触发、媒体查询、JavaScript触发。</p>
-<hr>
-<h3 id="3-CSS动画"><a href="#3-CSS动画" class="headerlink" title="3.CSS动画"></a>3.CSS动画</h3><ul>
-<li>设置关键帧</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="keyword">@keyframes</span> myfirst &#123;    <span class="selector-tag">from</span> &#123;<span class="attribute">background</span>: red;&#125;    <span class="selector-tag">to</span> &#123;<span class="attribute">background</span>: yellow;&#125; &#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>@keyframes的浏览器兼容性<ul>
-<li>写兼容的时候浏览器前缀是放在@keyframes中间 例如：@-webkit-keyframes、@-moz- keyframes</li>
-</ul>
-</li>
-<li>animation属性<ul>
-<li>animation-play-state：动画的播放状态，规定动画是否正在运行或暂停。默认是 running。</li>
-<li>animation-iteration-count：动画的播放次数，默认为1，特殊值 infinite，表示动画无限次播放。</li>
-<li>animation-direction：动画的播放方向，规定是否应该轮流反向播放动画。</li>
-<li>animation-fill-mode：动画发生的操作，规定当动画不播放时（当动画完成时，或当动画有一个延迟未开始播放时），要应用到元素的样式。</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>笔记</category>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>前端</tag>
-        <tag>CSS3</tag>
       </tags>
   </entry>
   <entry>
