@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>JavaWeb |  欢迎来到Feng的博客！</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/111.png" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css"
+      />
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    <link rel="alternate" href="/atom.xml" title="欢迎来到Feng的博客！" type="application/atom+xml">
+</head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      <canvas class="fireworks"></canvas>
+      <style>
+        .fireworks {
+          position: fixed;
+          left: 0;
+          top: 0;
+          z-index: 99999;
+          pointer-events: none;
+        }
+      </style>
+      
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-JavaWeb"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  JavaWeb
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/09/20/JavaWeb/" class="article-date">
+  <time datetime="2021-09-19T16:00:00.000Z" itemprop="datePublished">2021-09-20</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a> / <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/JavaWeb/">JavaWeb</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">3.2k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">13 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="一、HTTP协议"><a href="#一、HTTP协议" class="headerlink" title="一、HTTP协议"></a>一、HTTP协议</h2><ul>
+<li>HTTP协议是Hyper Text Transfer Protocol（超文本传输协议）的缩写。HTTP 协议和 TCP/IP 协议族内的其他众多的协议相同， 用于客户端和服务器之间的通信。请求访问文本或图像等资源的一端称为客户端， 而提供资源响应的一端称为服务器端。</li>
+</ul>
+<h2 id="二、Tomcat服务器"><a href="#二、Tomcat服务器" class="headerlink" title="二、Tomcat服务器"></a>二、Tomcat服务器</h2><ul>
+<li>Tomcat服务器的配置和下载</li>
+</ul>
+<h2 id="三、servlet"><a href="#三、servlet" class="headerlink" title="三、servlet"></a>三、servlet</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Servlet的三大域对象</span></span><br><span class="line"><span class="comment"> *      1.request作用域</span></span><br><span class="line"><span class="comment"> *          在一次请求中有效，在请求转发中有效</span></span><br><span class="line"><span class="comment"> *      2.session作用域</span></span><br><span class="line"><span class="comment"> *          在一次会话中有效，可以有多次请求，无论是请求跳转还是重定向都有效，Session销毁后失效</span></span><br><span class="line"><span class="comment"> *      3.servletContext作用域</span></span><br><span class="line"><span class="comment"> *          在整个应用程序中有效，服务器关闭则失效</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="一、servlet的实现"><a href="#一、servlet的实现" class="headerlink" title="一、servlet的实现"></a>一、servlet的实现</h3><ol>
+<li><p>创建普通的Java类，继承HttpServlet</p>
+</li>
+<li><p>重写service方法（doget方法、dopost方法）</p>
+<ul>
+<li>HttpServletRequest    客户向服务器发送的请求</li>
+<li>HttpServletResponse    服务器对客户的响应</li>
+</ul>
+</li>
+<li><p>配置web.xml（二选一，推荐注解方式），绑定url地址（必须以/开头）</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">resp.getWriter().write(<span class="string">&quot;&lt;h2&gt;德玛西亚&lt;/h2&gt;&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>注</strong>：设置响应类型：</p>
+<ol>
+<li>response.setContentType(“text/html;charset=utf-8”)</li>
+<li>response..setCharacterEncoding(“utf-8”);</li>
+</ol>
+<h3 id="二、servlet生命周期"><a href="#二、servlet生命周期" class="headerlink" title="二、servlet生命周期"></a>二、servlet生命周期</h3><ol>
+<li>创建servlet：第⼀次访问servlet对应的url时，tomcat会给我们创建servlet的类，new⼀个servlet对象。</li>
+<li>初始化servlet：初始化（init）servlet，servlet就创建好了。</li>
+<li>自动销毁：Tomcat自动重启或者关闭会自动销毁。</li>
+</ol>
+<p><strong>注</strong>：再次访问的url不会重新创建 、初始化,tomcat全局中有且只有⼀个servlet对象</p>
+<h3 id="三、HttpServletRequest对象"><a href="#三、HttpServletRequest对象" class="headerlink" title="三、HttpServletRequest对象"></a>三、HttpServletRequest对象</h3><h4 id="1-常用方法"><a href="#1-常用方法" class="headerlink" title="1.常用方法"></a>1.常用方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.获取请求的方式（get post）</span></span><br><span class="line">System.out.println(request.getMethod());</span><br><span class="line"><span class="comment">//2.获取请求的完整路径（从http开始，到？结束）</span></span><br><span class="line">System.out.println(request.getRequestURL());</span><br><span class="line"><span class="comment">//3.获取请求的部分路径（从项目路径开始，到？结束）</span></span><br><span class="line">System.out.println(request.getRequestURI());</span><br><span class="line"><span class="comment">//4.获取请求的参数字符串（从？开始，到最后）</span></span><br><span class="line">System.out.println(request.getQueryString());</span><br><span class="line"><span class="comment">//5.获取请求的协议版本</span></span><br><span class="line">System.out.println(request.getProtocol());</span><br><span class="line"><span class="comment">//6.获取项目的访问路径（站点名）</span></span><br><span class="line">System.out.println(request.getContextPath());</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-获取请求的参数"><a href="#2-获取请求的参数" class="headerlink" title="2.获取请求的参数"></a>2.获取请求的参数</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//二、获取请求的参数</span></span><br><span class="line"><span class="comment">//1.获取指定参数的参数值</span></span><br><span class="line"><span class="comment">//request.getParameter(&quot;参数名&quot;);</span></span><br><span class="line">    <span class="comment">//1.表单提交:参数名表示的是表单元素的name的属性</span></span><br><span class="line">    <span class="comment">//2.地址栏输入:参数名表示的是”？键=值&amp;键=值“中的键</span></span><br><span class="line">String uname = request.getParameter(<span class="string">&quot;userName&quot;</span>);</span><br><span class="line">System.out.println(<span class="string">&quot;姓名:&quot;</span>+uname);</span><br><span class="line">String upsw = request.getParameter(<span class="string">&quot;userPwd&quot;</span>);</span><br><span class="line">System.out.println(<span class="string">&quot;密码:&quot;</span>+upsw);</span><br><span class="line"></span><br><span class="line"><span class="comment">//2.获取指定参数的所有参数值</span></span><br><span class="line"><span class="comment">//request.getParameterValues(&quot;参数名&quot;);</span></span><br><span class="line">System.out.println(request.getParameterValues(<span class="string">&quot;hobby&quot;</span>).length);</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-请求乱码问题"><a href="#3-请求乱码问题" class="headerlink" title="3.请求乱码问题"></a>3.请求乱码问题</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//三、请求乱码问题（只针对post有效） 设置在开头</span></span><br><span class="line">request.setCharacterEncoding(<span class="string">&quot;utf-8&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-请求转发"><a href="#4-请求转发" class="headerlink" title="4.请求转发"></a>4.请求转发</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//四、请求转发</span></span><br><span class="line"><span class="comment">//五、请求作用域：只在请求转发中有效</span></span><br><span class="line"><span class="comment">//如果登录成功，跳转到index.jsp,如果失败，跳转到login.jsp，显示错误原因</span></span><br><span class="line"><span class="keyword">if</span> (uname.equals(<span class="string">&quot;admin&quot;</span>) &amp;&amp; upsw.equals(<span class="string">&quot;admin&quot;</span>)) &#123;</span><br><span class="line"></span><br><span class="line">    request.setAttribute (<span class="string">&quot;userName&quot;</span>,uname);<span class="comment">//请求域</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 请求转发</span></span><br><span class="line"><span class="comment">     *     1.服务器跳转</span></span><br><span class="line"><span class="comment">     *     2.地址栏不会发生改变</span></span><br><span class="line"><span class="comment">     *     3.只有一次请求</span></span><br><span class="line"><span class="comment">     *     4.数据可以共享</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"></span><br><span class="line">    request.getRequestDispatcher(<span class="string">&quot;index.jsp&quot;</span>).forward(request, response);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">//设置请求域:设置数据存放在作用域中，让客户端能够获取数据</span></span><br><span class="line"></span><br><span class="line">    request.setAttribute(<span class="string">&quot;msg&quot;</span>,<span class="string">&quot;姓名或密码不正确！&quot;</span>);<span class="comment">//请求域</span></span><br><span class="line"></span><br><span class="line">    request.getRequestDispatcher(<span class="string">&quot;login.jsp&quot;</span>).forward(request,response);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-请求作用域"><a href="#5-请求作用域" class="headerlink" title="5.请求作用域"></a>5.请求作用域</h4><p>请求作用域：只在请求转发中有效</p>
+<ul>
+<li>${username}        uname的值</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>$Title$<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>$&#123;userName&#125;,登陆成功！<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>${msg}        “姓名或密码不正确！”</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;ser04&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line">        姓名：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;userName&quot;</span>&gt;</span> <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">        密码：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;password&quot;</span> <span class="attr">name</span>=<span class="string">&quot;userPwd&quot;</span>&gt;</span> <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">        爱好:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;hobby&quot;</span> <span class="attr">value</span>=<span class="string">&quot;sing&quot;</span>&gt;</span>唱歌</span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;hobby&quot;</span> <span class="attr">value</span>=<span class="string">&quot;dance&quot;</span>&gt;</span>跳舞</span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;hobby&quot;</span> <span class="attr">value</span>=<span class="string">&quot;rap&quot;</span>&gt;</span>说唱</span><br><span class="line">        <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span>&gt;</span>登录<span class="tag">&lt;/<span class="name">button</span>&gt;</span> $&#123;msg&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="四、HttpServletResponse对象"><a href="#四、HttpServletResponse对象" class="headerlink" title="四、HttpServletResponse对象"></a>四、HttpServletResponse对象</h3><h4 id="1-响应数据"><a href="#1-响应数据" class="headerlink" title="1.响应数据"></a>1.响应数据</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 一、响应数据</span></span><br><span class="line"><span class="comment"> *     1.字符输出流 getWrite()</span></span><br><span class="line"><span class="comment"> *     2.字节输出流 getOutputStream()</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">//得到字符输入流</span></span><br><span class="line">PrintWriter writer = response.getWriter();</span><br><span class="line">writer.write(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//得到字节输出流</span></span><br><span class="line">ServletOutputStream outputStream = response.getOutputStream();</span><br><span class="line">outputStream.write(<span class="string">&quot;HI&quot;</span>.getBytes());</span><br><span class="line">outputStream.write(<span class="string">&quot;你好&quot;</span>.getBytes());</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-响应乱码问题"><a href="#2-响应乱码问题" class="headerlink" title="2.响应乱码问题"></a>2.响应乱码问题</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 二、响应乱码解决</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">response.setContentType(<span class="string">&quot;text/html;charset=utf-8&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-重定向"><a href="#3-重定向" class="headerlink" title="3.重定向"></a>3.重定向</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (uname.equals(<span class="string">&quot;admin&quot;</span>) &amp;&amp; upsw.equals(<span class="string">&quot;admin&quot;</span>)) &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 一、重定向</span></span><br><span class="line"><span class="comment">     *     1.客户端跳转</span></span><br><span class="line"><span class="comment">     *     2.地址栏会发生改变</span></span><br><span class="line"><span class="comment">     *     3.存在俩次请求</span></span><br><span class="line"><span class="comment">     *     3.数据不可以共享</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    response.sendRedirect(<span class="string">&quot;index01.jsp&quot;</span>);</span><br><span class="line"></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    response.sendRedirect(<span class="string">&quot;login01.jsp&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-重定向和请求转发的区别"><a href="#4-重定向和请求转发的区别" class="headerlink" title="4.重定向和请求转发的区别"></a>4.重定向和请求转发的区别</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 请求转发</span></span><br><span class="line"><span class="comment"> *     1.服务器跳转</span></span><br><span class="line"><span class="comment"> *     2.地址栏不会发生改变</span></span><br><span class="line"><span class="comment"> *     3.只有一次请求</span></span><br><span class="line"><span class="comment"> *     4.数据可以共享</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 一、重定向</span></span><br><span class="line"><span class="comment"> *     1.客户端跳转</span></span><br><span class="line"><span class="comment"> *     2.地址栏会发生改变</span></span><br><span class="line"><span class="comment"> *     3.存在俩次请求</span></span><br><span class="line"><span class="comment"> *     3.数据不可以共享</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//请求转发 只能跳转到当前站点下的资源，不可以跨域</span></span><br><span class="line">request.getRequestDispatcher(<span class="string">&quot;http://www.baidu.com&quot;</span>);<span class="comment">//跳不过去</span></span><br><span class="line"><span class="comment">// 重定向可以跳转到任意资源，</span></span><br><span class="line">response.sendRedirect(<span class="string">&quot;http://www.baidu.com&quot;</span>);<span class="comment">//跳过去了</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="四、Cookie"><a href="#四、Cookie" class="headerlink" title="四、Cookie"></a>四、Cookie</h2><h3 id="一、Cookie的创建和发送"><a href="#一、Cookie的创建和发送" class="headerlink" title="一、Cookie的创建和发送"></a>一、Cookie的创建和发送</h3><p>创建cookie对象：<code>new Cookie(name,value)</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//得到cookie对象</span></span><br><span class="line">Cookie cookie = <span class="keyword">new</span> Cookie(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;admin&quot;</span>);</span><br><span class="line"><span class="comment">//发送cookie （将cookie响应给客户端）</span></span><br><span class="line">response.addCookie(cookie);</span><br><span class="line"></span><br><span class="line"><span class="comment">//得到cookie对象</span></span><br><span class="line">Cookie cookie02 = <span class="keyword">new</span> Cookie(<span class="string">&quot;pwd&quot;</span>, <span class="string">&quot;123456&quot;</span>);</span><br><span class="line"><span class="comment">//发送cookie （将cookie响应给客户端）</span></span><br><span class="line">response.addCookie(cookie02);</span><br></pre></td></tr></table></figure>
+
+<h3 id="二、Cookie的获取"><a href="#二、Cookie的获取" class="headerlink" title="二、Cookie的获取"></a>二、Cookie的获取</h3><p>Cookie的获取：<code>request.getCookies()</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * cookie的获取</span></span><br><span class="line"><span class="comment"> * 获取所有的cookie request.getCookies();</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//获取所有的cookie对象</span></span><br><span class="line">Cookie[] cookies = request.getCookies();</span><br><span class="line"><span class="comment">//判断后遍历</span></span><br><span class="line"><span class="keyword">if</span> (cookies != <span class="keyword">null</span> &amp;&amp; cookies.length &gt; <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="keyword">for</span> (Cookie cookie : cookies) &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;name:&quot;</span> + cookie.getName());</span><br><span class="line">        System.out.println(<span class="string">&quot;value:&quot;</span> + cookie.getValue());</span><br><span class="line"></span><br><span class="line">        <span class="comment">//获取指定的name的cookie对象</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="string">&quot;name&quot;</span>.equals(cookie.getName())) &#123;</span><br><span class="line"></span><br><span class="line">            System.out.println(<span class="string">&quot;值为&quot;</span>+cookie.getValue());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">name:name</span><br><span class="line">value:admin</span><br><span class="line">值为admin</span><br><span class="line">name:pwd</span><br><span class="line">value:<span class="number">123456</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="三、Cookie到期时间设置"><a href="#三、Cookie到期时间设置" class="headerlink" title="三、Cookie到期时间设置"></a>三、Cookie到期时间设置</h3><ul>
+<li><p>Cookie的失效时间</p>
+<p> 通过setMaxAge设置cookie的失效时间</p>
+<ol>
+<li><p>正整数：表示cookie存活指定数秒</p>
+</li>
+<li><p>负整数：表示cookie只在浏览器中存活，浏览器关闭即失效</p>
+</li>
+<li><p>零：表示删除cookie</p>
+</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//得到cookie对象</span></span><br><span class="line">Cookie cookie1 = <span class="keyword">new</span> Cookie(<span class="string">&quot;uname1&quot;</span>, <span class="string">&quot;zhangsan&quot;</span>);</span><br><span class="line"><span class="comment">//正整数:表示cookie存活指定数秒</span></span><br><span class="line">cookie1.setMaxAge(<span class="number">20</span>);</span><br><span class="line"><span class="comment">//发送cookie （将cookie响应给客户端）</span></span><br><span class="line">response.addCookie(cookie1);</span><br><span class="line"></span><br><span class="line"><span class="comment">//得到cookie对象</span></span><br><span class="line">Cookie cookie2 = <span class="keyword">new</span> Cookie(<span class="string">&quot;uname2&quot;</span>, <span class="string">&quot;wangwu&quot;</span>);</span><br><span class="line"><span class="comment">//负整数:表示cookie旨在浏览器中存活，浏览器关闭即失效</span></span><br><span class="line">cookie2.setMaxAge(-<span class="number">1</span>);</span><br><span class="line"><span class="comment">//发送cookie （将cookie响应给客户端）</span></span><br><span class="line">response.addCookie(cookie2);</span><br><span class="line"></span><br><span class="line"><span class="comment">//得到cookie对象</span></span><br><span class="line">Cookie cookie3 = <span class="keyword">new</span> Cookie(<span class="string">&quot;uname3&quot;</span>, <span class="string">&quot;lisi&quot;</span>);</span><br><span class="line"><span class="comment">//零:表示删除cookie</span></span><br><span class="line">cookie3.setMaxAge(<span class="number">0</span>);</span><br><span class="line"><span class="comment">//发送cookie （将cookie响应给客户端）</span></span><br><span class="line">response.addCookie(cookie3);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//删除已有的名字为name的cookie对象</span></span><br><span class="line">Cookie cook = <span class="keyword">new</span> Cookie(<span class="string">&quot;name&quot;</span>, <span class="keyword">null</span>);</span><br><span class="line">cook.setMaxAge(<span class="number">0</span>);</span><br><span class="line">response.addCookie(cook);</span><br></pre></td></tr></table></figure>
+
+<h3 id="四、Cookie注意点"><a href="#四、Cookie注意点" class="headerlink" title="四、Cookie注意点"></a>四、Cookie注意点</h3><ul>
+<li><p>Cookie的注意点</p>
+<ol>
+<li><p>cookie只在当前浏览器中有效，不跨越浏览器（不跨电脑）</p>
+</li>
+<li><p>Cookie的同名问题</p>
+<p>在cookie的domain与path相同时，出现相同的name会覆盖</p>
+</li>
+<li><p>cookie的存储数量问题</p>
+<p>不同的浏览器存放的cookie的数量有限制，同域名下cookie的数量有限</p>
+</li>
+<li><p>cookie存中文问题</p>
+</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//4.通过URLEncoder.encode()来进行编码</span></span><br><span class="line"><span class="comment">//  通过URLDecoder.decode()来进行解码</span></span><br><span class="line">Cookie cookie = <span class="keyword">new</span> Cookie(URLEncoder.encode(<span class="string">&quot;名字&quot;</span>),<span class="string">&quot;测试&quot;</span>);</span><br><span class="line">response.addCookie(cookie);</span><br></pre></td></tr></table></figure>
+
+<h3 id="五、Cookie路径"><a href="#五、Cookie路径" class="headerlink" title="五、Cookie路径"></a>五、Cookie路径</h3><ul>
+<li>Cookie的路径<ol>
+<li>在当前项目下的资源可以获取</li>
+<li>在当前服务器下的资源可以获取 设置路径为”/“</li>
+<li>在指定项目下的资源可以访问</li>
+<li>在指定路径的资源可以访问</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li>总结：当访问的路径中包含访问的的path时就可以访问到当前cookie对象</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">当前项目 Path=/s02</span><br><span class="line"></span><br><span class="line"><span class="comment">//1.在当前项目下的资源可以获取</span></span><br><span class="line">Cookie cookie01 = <span class="keyword">new</span> Cookie(<span class="string">&quot;a1&quot;</span>,<span class="string">&quot;aa&quot;</span>);</span><br><span class="line">cookie01.setPath(<span class="string">&quot;/s02&quot;</span>);</span><br><span class="line">response.addCookie(cookie01);</span><br><span class="line"></span><br><span class="line"><span class="comment">//2.在当前服务器下的资源可以获取 设置路径为”/“</span></span><br><span class="line">Cookie cookie02 = <span class="keyword">new</span> Cookie(<span class="string">&quot;a2&quot;</span>,<span class="string">&quot;bb&quot;</span>);</span><br><span class="line">cookie02.setPath(<span class="string">&quot;/&quot;</span>);</span><br><span class="line">response.addCookie(cookie02);</span><br><span class="line"></span><br><span class="line"><span class="comment">//3.在指定项目下的资源可以访问</span></span><br><span class="line">Cookie cookie03 = <span class="keyword">new</span> Cookie(<span class="string">&quot;a3&quot;</span>,<span class="string">&quot;cc&quot;</span>);</span><br><span class="line">cookie03.setPath(<span class="string">&quot;/s01&quot;</span>);</span><br><span class="line">response.addCookie(cookie03);</span><br><span class="line"></span><br><span class="line"><span class="comment">//4.在指定路径的资源可以访问</span></span><br><span class="line">Cookie cookie04 = <span class="keyword">new</span> Cookie(<span class="string">&quot;a4&quot;</span>,<span class="string">&quot;dd&quot;</span>);</span><br><span class="line">cookie04.setPath(<span class="string">&quot;/s02/cook&quot;</span>);</span><br><span class="line">response.addCookie(cookie04);</span><br></pre></td></tr></table></figure>
+
+<h2 id="五、Session"><a href="#五、Session" class="headerlink" title="五、Session"></a>五、Session</h2><h3 id="1-Session对象的获取"><a href="#1-Session对象的获取" class="headerlink" title="1.Session对象的获取"></a>1.Session对象的获取</h3><ul>
+<li><pre><code> 1.Session对象的获取
+</code></pre>
+</li>
+<li><pre><code>     如果session对象存在，则直接获取，如果session对象不存在，则新建session
+</code></pre>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取session对象</span></span><br><span class="line">HttpSession session = req.getSession();</span><br><span class="line"></span><br><span class="line"><span class="comment">//常用方法</span></span><br><span class="line">System.out.println(<span class="string">&quot;sessionID：&quot;</span>+session.getId());</span><br><span class="line">System.out.println(<span class="string">&quot;绘画创建时间：&quot;</span>+session.getCreationTime());</span><br><span class="line">System.out.println(<span class="string">&quot;最后一次访问时间：&quot;</span>+session.getLastAccessedTime());</span><br><span class="line">System.out.println(<span class="string">&quot;是否是新对象：&quot;</span>+session.isNew());</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-sessionid标识符"><a href="#2-sessionid标识符" class="headerlink" title="2.sessionid标识符"></a>2.sessionid标识符</h3><ul>
+<li><pre><code>     当请求达到服务器时，如果使用了session，服务器会去获取一个jsessionid的cookie对象
+</code></pre>
+</li>
+<li><pre><code>     如果cookie对象不存在，则新建session对象，并设置sessionid，将sessionid回传给客户端中，设置对应的cookie
+</code></pre>
+</li>
+<li><pre><code>     如果cookie对象存在，服务器会比较客户端传递进去的sessionid是否和服务端的一致
+</code></pre>
+</li>
+<li><pre><code>         如果不一致，新建session对象，并设置sessionid，将sessionid回传给客户端中，重新设置对应的cookie
+</code></pre>
+</li>
+<li><pre><code>         如果一致，则获取当前的session对象
+</code></pre>
+</li>
+<li><pre><code>     session底层是依赖cookie的，默认关闭浏览器失效。
+</code></pre>
+</li>
+</ul>
+<h3 id="3-Session作用域"><a href="#3-Session作用域" class="headerlink" title="3.Session作用域"></a>3.Session作用域</h3><ul>
+<li><p>在一次会话中有效，可以有多次请求和响应，在会话中数据共享。</p>
+</li>
+<li><p>setAttribute</p>
+<p>getAttribute</p>
+<p>removeAttribute</p>
+</li>
+<li><p>request作用域</p>
+<p>一次请求中有效，在请求转发中有效，在重定向中失效</p>
+</li>
+<li><p>session作用域</p>
+<p>一次会话中有效，无论请求转发还是重定向都有效，会话销毁则失效</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//设置请求作用域</span></span><br><span class="line">req.setAttribute(<span class="string">&quot;name&quot;</span>,<span class="string">&quot;request&quot;</span>);</span><br><span class="line"><span class="comment">//设置session作用域</span></span><br><span class="line">session.setAttribute(<span class="string">&quot;name2&quot;</span>,<span class="string">&quot;session&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//请求跳转（一次请求）</span></span><br><span class="line"><span class="comment">//req.getRequestDispatcher(&quot;se02&quot;).forward(req,resp);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//重定向</span></span><br><span class="line">resp.sendRedirect(<span class="string">&quot;se02&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取session对象</span></span><br><span class="line">HttpSession session = req.getSession();</span><br><span class="line"></span><br><span class="line">System.out.println(<span class="string">&quot;session02 sessionID：&quot;</span>+session.getId());<span class="comment">//获取sessionID</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//获取作用域</span></span><br><span class="line"><span class="comment">//request作用域</span></span><br><span class="line">System.out.println(req.getAttribute(<span class="string">&quot;name&quot;</span>));<span class="comment">//重定向获取不到，请求跳转可以获取到</span></span><br><span class="line"><span class="comment">//session作用域</span></span><br><span class="line">System.out.println(session.getAttribute(<span class="string">&quot;name2&quot;</span>));<span class="comment">//都可以获取到</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-Session的销毁"><a href="#4-Session的销毁" class="headerlink" title="4.Session的销毁"></a>4.Session的销毁</h3><ol>
+<li><p><strong>关闭服务器</strong></p>
+</li>
+<li><p><strong>关闭浏览器</strong></p>
+<ul>
+<li>session底层依赖cookie，cookie默认值只在浏览器中存货，浏览器关闭则失效。</li>
+</ul>
+</li>
+<li><p><strong>默认最大不活动时间</strong></p>
+<ul>
+<li><p>当指定时间内没有任何操作，则session对象失效，在时间未到达之前有操作，则会重新计时。</p>
+</li>
+<li><p>服务器中设定了session的最大不活动时间，tomcat服务器设置的是30min</p>
+</li>
+<li><p>在Tomcat的解压目录的conf中的web.xml配置文件中。</p>
+<p><code>&lt;session-config&gt;</code></p>
+<p><code>&lt;session-timeout&gt;30&lt;/session-timeout&gt;</code></p>
+<p><code>&lt;/session-config&gt;</code></p>
+</li>
+</ul>
+</li>
+<li><p><strong>手动设置失效时间</strong></p>
+<ul>
+<li><p>通过session.setMaxInactiveInterval（int）来设定session的最大不活动时间，单位为s</p>
+</li>
+<li><p>通过session.getMaxInactiveInterval（）方法获取当前最大不活动时间</p>
+</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//session的销毁</span></span><br><span class="line"><span class="comment">//获取最大不活动时间</span></span><br><span class="line"><span class="keyword">int</span> sec = session.getMaxInactiveInterval();</span><br><span class="line">System.out.println(<span class="string">&quot;最大不活动时间：&quot;</span>+sec);</span><br><span class="line"><span class="comment">//设置最大不活动时间</span></span><br><span class="line">session.setMaxInactiveInterval(<span class="number">20</span>);<span class="comment">//20s失效</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><strong>手动销毁</strong><ul>
+<li>session.invalidate();</li>
+</ul>
+</li>
+</ol>
+<h2 id="六、Context"><a href="#六、Context" class="headerlink" title="六、Context"></a>六、Context</h2><h3 id="一、Context对象的获取"><a href="#一、Context对象的获取" class="headerlink" title="一、Context对象的获取"></a>一、Context对象的获取</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * ServletContext对象的获取</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">//通过request对象</span></span><br><span class="line">ServletContext servletContext = req.getServletContext();</span><br><span class="line"><span class="comment">//通过session对象获取</span></span><br><span class="line">ServletContext servletContext1 = req.getSession().getServletContext();</span><br><span class="line"><span class="comment">//通过servletConfig获取</span></span><br><span class="line">ServletContext servletContext2 = getServletConfig().getServletContext();</span><br><span class="line"><span class="comment">//直接获取</span></span><br><span class="line">ServletContext servletContext3 = getServletContext();</span><br></pre></td></tr></table></figure>
+
+<h3 id="二、常用方法"><a href="#二、常用方法" class="headerlink" title="二、常用方法"></a>二、常用方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 常用方法</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">//获取项目的真实路径</span></span><br><span class="line">String realPath = servletContext.getRealPath(<span class="string">&quot;/&quot;</span>);</span><br><span class="line">System.out.println(realPath);</span><br><span class="line"><span class="comment">//获取服务器的版本信息</span></span><br><span class="line">String serverInfo = req.getServletContext().getServerInfo();</span><br><span class="line">System.out.println(serverInfo);</span><br></pre></td></tr></table></figure>
+
+<h3 id="三、作用域"><a href="#三、作用域" class="headerlink" title="三、作用域"></a>三、作用域</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * servletContext作用域</span></span><br><span class="line"><span class="comment"> *      在整个应用程序中有效，服务器关闭失效</span></span><br><span class="line"><span class="comment"> *      setAttribute();</span></span><br><span class="line"><span class="comment"> *      getAttribute();</span></span><br><span class="line"><span class="comment"> *      removeAttribute();</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="七、filter-过滤器"><a href="#七、filter-过滤器" class="headerlink" title="七、filter 过滤器"></a>七、filter 过滤器</h2><h3 id="一、开发三要素"><a href="#一、开发三要素" class="headerlink" title="一、开发三要素"></a>一、开发三要素</h3><ol>
+<li>实现javax.servlet.Filter接口</li>
+<li>在doFilter（）方法中编写过滤器的功能代码</li>
+<li>注解配置，说明拦截URL的范围</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doFilter</span><span class="params">(ServletRequest req, ServletResponse resp, FilterChain chain)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line"></span><br><span class="line">    System.out.println(<span class="string">&quot;过滤器生效&quot;</span>);</span><br><span class="line">    <span class="comment">//设置请求的编码格式</span></span><br><span class="line">    req.setCharacterEncoding(<span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line">    resp.setContentType(<span class="string">&quot;text/html;charset=utf-8&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//让请求能够进入下一步，访问过滤器、servlet</span></span><br><span class="line">    chain.doFilter(req, resp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="八、cookie，session，context区别"><a href="#八、cookie，session，context区别" class="headerlink" title="八、cookie，session，context区别"></a>八、cookie，session，context区别</h2><h3 id="存活时间问题"><a href="#存活时间问题" class="headerlink" title="存活时间问题"></a>存活时间问题</h3><ul>
+<li><strong>cookie</strong>：默认存活在电脑中，关闭浏览器就会失效。设置了x时间后，关闭浏览器，x分钟后也会失效，通过setMaxAge设置cookie的失效时间。</li>
+<li><strong>session</strong>：默认存活30min，Tomcat配置中查看，通过设置时间来设置session存活时间，通过session.setMaxInactiveInterval（int）来设定session的最大不活动时间，单位为s，关闭浏览器后丢失、找不到session，存活时间一到就会消失。</li>
+<li><strong>context</strong>：全局对象，服务器开启和关闭 就会开启和关闭</li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://ffeng007.github.io/2021/09/20/JavaWeb/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaWeb/" rel="tag">JavaWeb</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Servlet/" rel="tag">Servlet</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2021/09/29/mysql/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            MYSQL
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2021/09/15/jsp/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">JSP学习</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "b6IdwacJ7PKK1g9ABa782BEQ-gzGzoHsz",
+    app_key: "U2iukFqWVQ6HCYG3UXcoRTck",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2021-2022
+        <i class="ri-heart-fill heart_icon"></i> 乔瑞锋
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/111.webp" alt="欢迎来到Feng的博客！"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script>
+
+<script src="/js/clickBoom1.js"></script>
+ 
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+ 
+<script src="/js/dz.js"></script>
+ 
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=1859245776&auto=0&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+    
+
+  </div>
+</body>
+
+</html>
