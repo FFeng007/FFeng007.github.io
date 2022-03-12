@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>MYSQL |  欢迎来到Feng的博客！</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/111.png" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css"
+      />
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    <link rel="alternate" href="/atom.xml" title="欢迎来到Feng的博客！" type="application/atom+xml">
+</head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      <canvas class="fireworks"></canvas>
+      <style>
+        .fireworks {
+          position: fixed;
+          left: 0;
+          top: 0;
+          z-index: 99999;
+          pointer-events: none;
+        }
+      </style>
+      
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-mysql"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  MYSQL
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/09/29/mysql/" class="article-date">
+  <time datetime="2021-09-28T16:00:00.000Z" itemprop="datePublished">2021-09-29</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a> / <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/MYSQL/">MYSQL</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">3.2k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">14 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h2><ul>
+<li>mysql -h127.0.0.1 -P3306 -uroot -p123456<br>-h IP地址  -P端口号  -u账号  -p密码</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">show databases -- 显示数据库</span><br><span class="line">use stu_info；  -- 打开数据库</span><br><span class="line">select * from stu_info； -- 全表查看数据</span><br><span class="line">net start/stop mysql  -- 启动 关闭服务</span><br><span class="line">select version(); -- 查看版本</span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li>非关系nosql  keyvalue 和 关系sql 表 主键 </li>
+<li>auto_increment自增</li>
+</ul>
+<h3 id="建表"><a href="#建表" class="headerlink" title="建表"></a><strong>建表</strong></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">create table user_info(</span><br><span class="line">    uid int primary key auto_increment,</span><br><span class="line">    uname varchar(10),</span><br><span class="line">    age int,</span><br><span class="line">    salary float(8,2)</span><br><span class="line">     );</span><br></pre></td></tr></table></figure>
+
+<h3 id="查询表"><a href="#查询表" class="headerlink" title="查询表"></a><strong>查询表</strong></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM user_info;</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看属性"><a href="#查看属性" class="headerlink" title="查看属性"></a><strong>查看属性</strong></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show columns from user_info; </span><br></pre></td></tr></table></figure>
+
+<h3 id="单个插入"><a href="#单个插入" class="headerlink" title="单个插入"></a><strong>单个插入</strong></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">insert into user_info</span><br><span class="line">   values(10001,&#x27;聪聪&#x27;,20,8000);</span><br></pre></td></tr></table></figure>
+
+<p><strong>多个插入</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">insert into user_info </span><br><span class="line">   values</span><br><span class="line">   (1004,&#x27;牛午璇&#x27;,18,8000),</span><br><span class="line">   (10005,&#x27;牛梦茹&#x27;,20,9000),</span><br><span class="line">   (10006,&#x27;王伦&#x27;,19,10000);</span><br></pre></td></tr></table></figure>
+
+<h3 id="目标列查询插入"><a href="#目标列查询插入" class="headerlink" title="目标列查询插入"></a><strong>目标列查询插入</strong></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO user_info(uname,age)</span><br><span class="line">VALUES</span><br><span class="line">(&#x27;三&#x27;,30),</span><br><span class="line">(&#x27;四&#x27;,20),</span><br><span class="line">(&#x27;五&#x27;,40);</span><br></pre></td></tr></table></figure>
+
+<h3 id="update-更新"><a href="#update-更新" class="headerlink" title="update 更新"></a><strong>update 更新</strong></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">UPDATE stu_info SET sex = &#x27;女&#x27; WHERE id = 10002;</span><br><span class="line">UPDATE stu_info SET age = age+5 WHERE sex = &#x27;女&#x27;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="delete-删除"><a href="#delete-删除" class="headerlink" title="delete 删除"></a><strong>delete 删除</strong></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM stu_info WHERE `name` LIKE &#x27;test%&#x27;; -- 物理删除</span><br><span class="line">UPDATE stu_info set status = 1 WHERE `name` = &#x27;wwq&#x27;;  -- 逻辑删除</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="select练习"><a href="#select练习" class="headerlink" title="select练习"></a>select练习</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">-- 全表的所有记录查询</span><br><span class="line">SELECT * FROM stu_info;</span><br><span class="line"></span><br><span class="line">-- AS对列进行重命名,AS可以省略</span><br><span class="line">SELECT `name` AS 姓名,age 年龄 FROM stu_info; </span><br><span class="line"></span><br><span class="line">-- DISTINCT对结果集进行去重</span><br><span class="line">SELECT DISTINCT `name` AS 姓名,age AS 年龄 FROM stu_info;</span><br><span class="line">SELECT DISTINCT `name` FROM stu_info;</span><br><span class="line"></span><br><span class="line">-- where 对查询结果集进行一个筛选 &gt; &lt; = </span><br><span class="line">SELECT `name`,age FROM stu_info WHERE age=20;</span><br><span class="line">SELECT `name`,age FROM stu_info WHERE age&gt;20;</span><br><span class="line">SELECT `name`,age FROM stu_info WHERE age&lt;20;</span><br><span class="line"></span><br><span class="line">-- where 对查询结果集进行一个筛选AND OR</span><br><span class="line">SELECT * FROM stu_info WHERE age&lt;20 AND sex= &#x27;男&#x27;;</span><br><span class="line">SELECT * FROM stu_info WHERE age&lt;20 AND sex= &#x27;女&#x27;;</span><br><span class="line">-- 查询成绩大于年龄大于90的女生姓名</span><br><span class="line">SELECT `name` AS &#x27;成绩&gt;90&#x27; FROM stu_info WHERE score&gt;90 AND sex= &#x27;女&#x27;;</span><br><span class="line"></span><br><span class="line">-- WHERE  对查询结果集进行一个筛选between AND 第一个小于第二个值</span><br><span class="line">-- 查询成绩在80到90之间的学生姓名</span><br><span class="line">SELECT `name`,score AS &#x27;80到90之间&#x27; FROM stu_info </span><br><span class="line">WHERE score&gt;=80 AND score&lt;=90;</span><br><span class="line">SELECT `name`,score FROM stu_info WHERE score BETWEEN 80 AND 90;</span><br><span class="line">-- 查询注册时间在2017年9月7号到2017年9月10号之间的</span><br><span class="line">SELECT `name`,addtime FROM stu_info </span><br><span class="line">WHERE addtime BETWEEN &#x27;2017-09-07 00:00:00&#x27; AND &#x27;2017-09-10 23:59:59&#x27;; </span><br><span class="line"></span><br><span class="line">-- in notin 查询在2，3，4组的学生姓名 年龄 性别</span><br><span class="line">SELECT `name`,age,sex,gid FROM stu_info WHERE gid=2 OR gid=3 OR gid=4;</span><br><span class="line">SELECT `name`,age,sex,gid FROM stu_info WHERE gid IN(2,3,4,5,6);-- 在23456组的</span><br><span class="line">SELECT `name`,age,sex,gid FROM stu_info WHERE gid NOT IN(2,3,4,5,6); -- 在1组的</span><br><span class="line"></span><br><span class="line">-- 模糊查询，通配符查询 LIKE后面跟%通配符，指代未知N个字符</span><br><span class="line">SELECT * FROM stu_info WHERE `name` = &#x27;张志龙&#x27;;</span><br><span class="line">SELECT * FROM stu_info WHERE `name` LIKE &#x27;张%&#x27;;</span><br><span class="line"></span><br><span class="line">-- 模糊查询，通配符查询 LIKE后面跟_通配符，指代未知一个字符</span><br><span class="line">SELECT * FROM stu_info WHERE `name` LIKE &#x27;张__&#x27;;</span><br><span class="line"></span><br><span class="line">-- name必须是三个字符的</span><br><span class="line">SELECT * FROM stu_info WHERE `name` LIKE &#x27;___&#x27;;</span><br><span class="line"></span><br><span class="line">-- name至少两个字的学生</span><br><span class="line">SELECT * FROM stu_info WHERE `name` LIKE &#x27;__%&#x27;;</span><br><span class="line"></span><br><span class="line">-- name包含文的</span><br><span class="line">SELECT * FROM stu_info WHERE `name` LIKE &#x27;%文%&#x27;;</span><br><span class="line">SELECT 5,`name` FROM stu_info;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">-- 对结果集进行排序 ASC默认升序 DESC降序 	</span><br><span class="line">SELECT name,score,age,sex FROM stu_info </span><br><span class="line">WHERE sex = &#x27;女&#x27; AND score is NOT NULL </span><br><span class="line">ORDER BY score DESC;</span><br><span class="line"></span><br><span class="line">SELECT name,age,score from stu_info WHERE sex = &#x27;男&#x27; AND score is NOT NULL</span><br><span class="line">ORDER BY age DESC,score ASC,`name` ;</span><br><span class="line"></span><br><span class="line">-- 聚合函数返回结果就是一个值，count()统计记录数</span><br><span class="line">SELECT COUNT(id) AS 学生人数 FROM stu_info;</span><br><span class="line">SELECT COUNT(*) AS 学生人数 FROM stu_info;</span><br><span class="line"></span><br><span class="line">-- 统计男生的个数</span><br><span class="line">SELECT COUNT(*) AS 男生个数 FROM stu_info</span><br><span class="line">WHERE sex = &#x27;男&#x27;;</span><br><span class="line"></span><br><span class="line">-- 统计score最大值、最小值、平均值</span><br><span class="line">SELECT MAX(score) AS scoer最大值 FROM stu_info</span><br><span class="line">WHERE score IS NOT NULL;</span><br><span class="line">SELECT MIN(score) AS scoer最小值 FROM stu_info</span><br><span class="line">WHERE score IS NOT NULL;</span><br><span class="line">SELECT AVG(score) AS score的平均值 FROM stu_info </span><br><span class="line">WHERE score is not NULL;</span><br><span class="line">SELECT ROUND(AVG(score),3) AS score的平均值 FROM stu_info </span><br><span class="line">WHERE score is not NULL;</span><br><span class="line"></span><br><span class="line">-- 统计一下男生年龄的最大值、最小值、平均值</span><br><span class="line">SELECT MAX(age) AS 男生年龄最大值 FROM stu_info</span><br><span class="line">WHERE age IS not NULL;</span><br><span class="line">SELECT MIN(age) AS 男生年龄最小值 FROM stu_info</span><br><span class="line">WHERE age IS not NULL;</span><br><span class="line">SELECT ROUND(AVG(age),2) AS 男生年龄平均值 FROM stu_info</span><br><span class="line">WHERE age IS not NULL;</span><br><span class="line">-- 对结果保存两位小数 ROUND(X,D)对x取D为小数</span><br><span class="line"></span><br><span class="line">-- 分组 按组号分组 求每组的成绩最大值和人员个数</span><br><span class="line">SELECT gid AS 组号,COUNT(id) AS 人数,MAX(score) AS 最大值 </span><br><span class="line">FROM stu_info </span><br><span class="line">WHERE gid IS NOT NULL</span><br><span class="line">GROUP BY gid;</span><br><span class="line"></span><br><span class="line">-- 分组 按性别分组，统计不同性别的人数，统计男生、女生、未知中年龄的最大值 分组的where用having表示</span><br><span class="line">SELECT sex AS 组号,COUNT(*) AS 人数,MAX(age) AS 最大值 </span><br><span class="line">FROM stu_info</span><br><span class="line">WHERE sex IS NOT NULL</span><br><span class="line">GROUP BY sex HAVING count(*)&gt;3;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="ER图-三大范式"><a href="#ER图-三大范式" class="headerlink" title="ER图,三大范式"></a>ER图,三大范式</h2><p>E-R图—&gt;关系表—&gt;三大范式理论</p>
+<p>数据冗余、操作异常（插入异常、删除异常、更新异常）</p>
+<p><img src="https://pic.imgdb.cn/item/622c63015baa1a80ab87cfc7.png" alt="image-20211012082519636"></p>
+<h3 id="E-R图转化表"><a href="#E-R图转化表" class="headerlink" title="E-R图转化表"></a><strong>E-R图转化表</strong></h3><p><strong>逻辑模型如何转化物理模型?</strong></p>
+<ol>
+<li>实体集转化成实体表，实体属性转化成表字段，主属性转化成表主键</li>
+<li>M-N——的关系：生成关系表，关系表的主键为联合主键，由俩个实体表的主键构成</li>
+<li>1-N——的关系：不生成关系表，在多端表中加入单端表的主属性</li>
+<li>1-1——的关系：不生成关系表，选择俩表的任意一表加入另一表的主键即可</li>
+</ol>
+<h3 id="三大范式"><a href="#三大范式" class="headerlink" title="三大范式"></a><strong>三大范式</strong></h3><ol>
+<li><p>表中没有多值字段（地址就是多值） </p>
+<p>确保每列的原子性,每列都是不可再分的最小数据单元</p>
+</li>
+<li><p>表存在联合主键，不存在部分函数依赖，不存在非主属性对某一主属性的部分函数依赖</p>
+<p>要求每个表只描述一件事情</p>
+</li>
+<li><p>不存在非主属性对主属性的传递依赖</p>
+<p>数据表中的每一列数据都和主键直接相关，而不能间接相关</p>
+</li>
+</ol>
+<hr>
+<h2 id="多表查询-子查询"><a href="#多表查询-子查询" class="headerlink" title="多表查询,子查询"></a>多表查询,子查询</h2><h3 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a><strong>多表查询</strong></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM-- 笛卡尔积 AxB 6x8 48条</span><br><span class="line"></span><br><span class="line">SELECT `name`,dname,loca, FROM employee,department; -- 笛卡尔积 AxB 6x8 48条</span><br><span class="line">WHERE employee.depid = department.id;</span><br><span class="line"></span><br><span class="line">-- 1.查询出每个员工对应的部门名称和部门位置</span><br><span class="line">SELECT employee.id,`name`,dname,loca FROM employee,department</span><br><span class="line">WHERE employee.depid = department.id;</span><br><span class="line">SELECT * FROM employee,department</span><br><span class="line">WHERE employee.depid = department.id;</span><br><span class="line"></span><br><span class="line">-- 2.查询出每个部门的员工数、平均年龄</span><br><span class="line">SELECT dname,COUNT(*),AVG(age),ROUND(AVG(age)) </span><br><span class="line">FROM employee,department</span><br><span class="line">WHERE employee.depid = department.id</span><br><span class="line">GROUP BY dname;</span><br><span class="line"></span><br><span class="line">-- 3.查询出每个部门底下的员工数&gt;1的部门名称</span><br><span class="line">SELECT dname,COUNT(*),AVG(age),ROUND(AVG(age)) </span><br><span class="line">FROM employee,department</span><br><span class="line">WHERE employee.depid = department.id</span><br><span class="line">GROUP BY dname </span><br><span class="line">HAVING COUNT(*)&gt;1;</span><br><span class="line"></span><br><span class="line">-- 4.查询出每个部门下的平均年龄&gt;16的部门名称</span><br><span class="line">SELECT dname,COUNT(*),AVG(age),ROUND(AVG(age)) </span><br><span class="line">FROM employee,department</span><br><span class="line">WHERE employee.depid = department.id</span><br><span class="line">GROUP BY dname HAVING AVG(age)&gt;16;</span><br><span class="line"></span><br><span class="line">-- 5.统计出每个部门下不同年龄段的员工数</span><br><span class="line">SELECT dname,age,COUNT(*)</span><br><span class="line">FROM employee,department</span><br><span class="line">WHERE employee.depid = department.id</span><br><span class="line">GROUP BY dname,age;</span><br><span class="line"></span><br><span class="line">-- 6.统计出每个部门年龄段超过1人的组内年龄段</span><br><span class="line">SELECT dname,age,COUNT(*)</span><br><span class="line">FROM employee,department</span><br><span class="line">WHERE employee.depid = department.id</span><br><span class="line">GROUP BY dname,age</span><br><span class="line">HAVING count(*)&gt;1;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT * </span><br><span class="line">FROM COMPANY </span><br><span class="line">WHERE ID IN (SELECT ID </span><br><span class="line">             FROM COMPANY </span><br><span class="line">             WHERE SALARY &gt; 45000) ;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><strong>语言分类</strong>: DDL数据定义语言 DQL数据查询语言 DML数据处理语言 DCL数据控制语言 </p>
+<h4 id="1-建表语句"><a href="#1-建表语句" class="headerlink" title="1.建表语句"></a>1.建表语句</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">create table studnet(</span><br><span class="line">	sid int primary key auto_increment,</span><br><span class="line">	sname varchar(20),</span><br><span class="line">	sage int,</span><br><span class="line">	sex varchar(2)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-增-insert-into"><a href="#2-增-insert-into" class="headerlink" title="2.增 insert into"></a>2.增 insert into</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">insert into student (sname，sage)</span><br><span class="line">values (&#x27;张三&#x27;,20),</span><br><span class="line">       (&#x27;李四&#x27;,20);</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-查询-select-from"><a href="#3-查询-select-from" class="headerlink" title="3.查询 select from"></a>3.查询 select from</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">select sid,sname,sage,sex </span><br><span class="line">from student</span><br><span class="line">where sex = &#x27;女&#x27; and age&gt;18 and sname like &#x27;__&#x27;;</span><br><span class="line">分组函数 count sum avg max min</span><br><span class="line">分组 group by having</span><br><span class="line">排序 order by asc desc</span><br><span class="line">显示几条 索引从0开始 limit（索引，显示几个）</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-改-更新-update-set"><a href="#4-改-更新-update-set" class="headerlink" title="4.改 更新 update set"></a>4.改 更新 update set</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">update student</span><br><span class="line">set age = age+1</span><br><span class="line">where sex = &#x27;女&#x27;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-删除-delete-from"><a href="#5-删除-delete-from" class="headerlink" title="5.删除 delete from"></a>5.删除 delete from</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete from student where age&gt;18;</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-设计表的理论："><a href="#6-设计表的理论：" class="headerlink" title="6.设计表的理论："></a>6.设计表的理论：</h4><h5 id="E-R图转化为二维关系表："><a href="#E-R图转化为二维关系表：" class="headerlink" title="E-R图转化为二维关系表："></a>E-R图转化为二维关系表：</h5><ol>
+<li>实体集转化成实体表，实体属性转化成表字段，主属性转化成表主键</li>
+<li>M-N——的关系：生成关系表，关系表的主键为联合主键，由俩个实体表的主键构成</li>
+<li>1-N——的关系：不生成关系表，在多端表中加入单端表的主属性</li>
+<li>1-1——的关系：不生成关系表，选择俩表的任意一表加入另一表的主键即可</li>
+</ol>
+<h5 id="范式理论"><a href="#范式理论" class="headerlink" title="范式理论"></a>范式理论</h5><ol>
+<li><p>表中没有多值字段（地址就是多值） </p>
+<p>确保每列的原子性,每列都是不可再分的最小数据单元</p>
+</li>
+<li><p>表存在联合主键，不存在部分函数依赖，不存在非主属性对某一主属性的部分函数依赖</p>
+<p>要求每个表只描述一件事情</p>
+</li>
+<li><p>不存在非主属性对主属性的传递依赖</p>
+<p>数据表中的每一列数据都和主键直接相关，而不能间接相关</p>
+</li>
+</ol>
+<hr>
+<h2 id="JDBC"><a href="#JDBC" class="headerlink" title="JDBC"></a>JDBC</h2><h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol>
+<li><p>导入java包 驱动 add as library</p>
+</li>
+<li><ul>
+<li>加载驱动 –<code>class.forname(&quot;com.mysql.jdbc.Driver&quot;);</code></li>
+<li>建立连接 – 地址 账号 密码 </li>
+<li>执行操作 – 增删改查</li>
+<li>释放资源 – close 关闭连接b</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ulr设置</span></span><br><span class="line">jdbc协议头 ip：端口号/数据库名</span><br><span class="line">    useSSL=<span class="keyword">false</span>  <span class="comment">//安全连接</span></span><br><span class="line">    useUnicode=<span class="keyword">true</span>   <span class="comment">//使用unicode字符集</span></span><br><span class="line">    characterEncoding=utf-<span class="number">8</span> <span class="comment">//指定字符编码</span></span><br><span class="line">    serverTimezonezone=GMT%2B8; <span class="comment">//设置时区 UTC 世界时区 GMT%2B8 中国时区</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="JDBC—增"><a href="#JDBC—增" class="headerlink" title="JDBC—增"></a>JDBC—增</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Date nowTime = <span class="keyword">new</span> Date(); <span class="comment">//获取时间对象</span></span><br><span class="line">Timestamp addtime = <span class="keyword">new</span> Timestamp(nowTime.getTime());<span class="comment">//获取时间戳</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">insertStu</span><span class="params">(String name, String sex, <span class="keyword">int</span> age, <span class="keyword">int</span> score)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    Connection connection = <span class="keyword">null</span>;</span><br><span class="line">    PreparedStatement preparedStatement = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        connection = DBTools.getConnection();</span><br><span class="line">        String sql = <span class="string">&quot;insert into stu_info(name,sex,age,score,status,addtime) values(?,?,?,?,0,?)&quot;</span>;</span><br><span class="line">        preparedStatement = connection.prepareStatement(sql);</span><br><span class="line">        preparedStatement.setString(<span class="number">1</span>,name);</span><br><span class="line">        preparedStatement.setString(<span class="number">2</span>,sex);</span><br><span class="line">        preparedStatement.setInt(<span class="number">3</span>,age);</span><br><span class="line">        preparedStatement.setInt(<span class="number">4</span>,score);</span><br><span class="line">        <span class="comment">//给数据库里面插入时间 将Java.util 时间转为Timestamp</span></span><br><span class="line">        <span class="comment">//new Date() 获取当前系统的时间</span></span><br><span class="line">        Date nowTime = <span class="keyword">new</span> Date();</span><br><span class="line">        Timestamp addtime = <span class="keyword">new</span> Timestamp(nowTime.getTime());</span><br><span class="line">        preparedStatement.setTimestamp(<span class="number">5</span>,addtime);</span><br><span class="line"></span><br><span class="line">        preparedStatement.executeUpdate();</span><br><span class="line">        System.out.println(<span class="string">&quot;程序执行完毕！！！&quot;</span>);</span><br><span class="line"></span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        DBTools.close(connection,preparedStatement,<span class="keyword">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="JDB—删"><a href="#JDB—删" class="headerlink" title="JDB—删"></a>JDB—删</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">deleteStu</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        Connection connection = <span class="keyword">null</span>;</span><br><span class="line">        PreparedStatement ps = <span class="keyword">null</span>;</span><br><span class="line">        <span class="comment">//加载驱动 创建连接</span></span><br><span class="line">        connection = DBTools.getConnection();</span><br><span class="line">        <span class="comment">//执行操作</span></span><br><span class="line">        String sql = <span class="string">&quot;delete from stu_info where id = ?&quot;</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            ps = connection.prepareStatement(sql);</span><br><span class="line">            ps.setInt(<span class="number">1</span>,id);</span><br><span class="line">            <span class="keyword">int</span> num = ps.executeUpdate();</span><br><span class="line">            <span class="keyword">if</span> (num != <span class="number">0</span>) &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;删除成功！！&quot;</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;未查找到该id！！&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            DBTools.close(connection,ps,<span class="keyword">null</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="JDBC—查"><a href="#JDBC—查" class="headerlink" title="JDBC—查"></a>JDBC—查</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">selectStuinfo</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 1.加载驱动</span></span><br><span class="line"><span class="comment">         * 2.建立连接</span></span><br><span class="line"><span class="comment">         * 3.执行操作</span></span><br><span class="line"><span class="comment">         * 4.释放资源</span></span><br><span class="line"><span class="comment">         *</span></span><br><span class="line"><span class="comment">         * 错误</span></span><br><span class="line"><span class="comment">         * 1.数据库地址 账号 密码</span></span><br><span class="line"><span class="comment">         * 2.数据库驱动版本不一致</span></span><br><span class="line"><span class="comment">         * 3.sql语句编译错误</span></span><br><span class="line"><span class="comment">         * 4.表字段名，表名于数据库保持一致</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//jdbc协议头 ip：端口号 数据库名</span></span><br><span class="line">    String url = <span class="string">&quot;jdbc:mysql://127.0.0.1:3306/mytest?useSSL=true&quot;</span>;</span><br><span class="line">    String username = <span class="string">&quot;root&quot;</span>;</span><br><span class="line">    String password = <span class="string">&quot;123456&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//方便资源释放</span></span><br><span class="line">    Connection connection = <span class="keyword">null</span>;</span><br><span class="line">    PreparedStatement preparedStatement = <span class="keyword">null</span>;</span><br><span class="line">    ResultSet resultSet = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">//1加载驱动 Class.forName 可能会抛出异常</span></span><br><span class="line">        Class.forName(<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>);</span><br><span class="line">        <span class="comment">//2.创建连接 创建连接可能抛出异常</span></span><br><span class="line">        connection = DriverManager.getConnection(url, username, password);</span><br><span class="line">        <span class="comment">//3.执行操作</span></span><br><span class="line">        String sql = <span class="string">&quot;select * from stu_info;&quot;</span>;</span><br><span class="line">        <span class="comment">//创建预编译指令集，将sql语句绑定在数据库中</span></span><br><span class="line">        preparedStatement = connection.prepareStatement(sql);</span><br><span class="line">        <span class="comment">//执行查询操作，将结果集放在resultSet</span></span><br><span class="line">        resultSet = preparedStatement.executeQuery();</span><br><span class="line">        <span class="comment">//resultSet.next()是否由下一行</span></span><br><span class="line">        <span class="keyword">while</span> (resultSet.next()) &#123;</span><br><span class="line">            <span class="comment">//resultSet.getString(&quot;&quot;)获取行里面的列值（列名）</span></span><br><span class="line">            System.out.print(<span class="string">&quot; &quot;</span> + resultSet.getObject(<span class="string">&quot;id&quot;</span>));</span><br><span class="line">            System.out.print(<span class="string">&quot; &quot;</span> + resultSet.getString(<span class="string">&quot;name&quot;</span>));</span><br><span class="line">            System.out.print(<span class="string">&quot; &quot;</span> + resultSet.getInt(<span class="string">&quot;age&quot;</span>));</span><br><span class="line">            System.out.print(<span class="string">&quot; &quot;</span> + resultSet.getString(<span class="string">&quot;sex&quot;</span>));</span><br><span class="line">            System.out.print(<span class="string">&quot; &quot;</span> + resultSet.getInt(<span class="string">&quot;score&quot;</span>));</span><br><span class="line">            System.out.println(<span class="string">&quot; &quot;</span> + resultSet.getInt(<span class="string">&quot;gid&quot;</span>));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//4.释放资源 结果集，预编译对象，连接对象</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            resultSet.close();</span><br><span class="line">            preparedStatement.close();</span><br><span class="line">            connection.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;程序执行完毕!!!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="JDBC—改"><a href="#JDBC—改" class="headerlink" title="JDBC—改"></a>JDBC—改</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//方便资源释放</span></span><br><span class="line">Connection connection = <span class="keyword">null</span>;</span><br><span class="line">PreparedStatement preparedStatement = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">//1加载驱动 Class.forName 可能会抛出异常</span></span><br><span class="line">    Class.forName(<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>);</span><br><span class="line">    <span class="comment">//2.创建连接 创建连接可能抛出异常</span></span><br><span class="line">    connection = DriverManager.getConnection(url, username, password);</span><br><span class="line">    <span class="comment">//3.执行操作</span></span><br><span class="line">    String sql = <span class="string">&quot;update stu_info set age = 15 where id = 10009&quot;</span>;</span><br><span class="line">    <span class="comment">//创建预编译指令集，将sql语句绑定在数据库中</span></span><br><span class="line">    preparedStatement = connection.prepareStatement(sql);</span><br><span class="line">    <span class="comment">//执行更新操作</span></span><br><span class="line">    preparedStatement.executeUpdate();</span><br><span class="line"></span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//4.释放资源 结果集，预编译对象，连接对象</span></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        preparedStatement.close();</span><br><span class="line">        connection.close();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(<span class="string">&quot;程序执行完毕!!!&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="封装"><a href="#封装" class="headerlink" title="封装"></a><strong>封装</strong></h3><p>给第一二步和第四步封装起来</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//jdbc协议头 ip：端口号 数据库名</span></span><br><span class="line"><span class="comment">//useSSL=false</span></span><br><span class="line"><span class="comment">//characterEncoding=utf-8</span></span><br><span class="line"><span class="comment">//serverTimezonezone=GMT%2B8&quot;;</span></span><br><span class="line"><span class="keyword">static</span> String url = <span class="string">&quot;jdbc:mysql://127.0.0.1:3306/mytest?useSSL=true&amp;characterEncoding=utf-8&amp;serverTimezonezone=GMT%2B8&quot;</span>;</span><br><span class="line"><span class="keyword">static</span> String username = <span class="string">&quot;root&quot;</span>;</span><br><span class="line"><span class="keyword">static</span> String password = <span class="string">&quot;123456&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取数据库连接类</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Connection <span class="title">getConnection</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Connection connection = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        Class.forName(<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>);</span><br><span class="line">        connection = DriverManager.getConnection(url, username, password);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> connection;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//释放资源方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">close</span><span class="params">(Connection connection, PreparedStatement preparedStatement, ResultSet resultSet)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (connection != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                connection.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (preparedStatement != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                connection.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">if</span> (resultSet != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                connection.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://ffeng007.github.io/2021/09/29/mysql/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MYSQL/" rel="tag">MYSQL</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2021/10/08/Springmvc/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            SpringMVC
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2021/09/21/JavaWeb/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">JavaWeb</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "b6IdwacJ7PKK1g9ABa782BEQ-gzGzoHsz",
+    app_key: "U2iukFqWVQ6HCYG3UXcoRTck",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2021-2022
+        <i class="ri-heart-fill heart_icon"></i> 乔瑞锋
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/111.webp" alt="欢迎来到Feng的博客！"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script>
+
+<script src="/js/clickBoom1.js"></script>
+ 
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+ 
+<script src="/js/dz.js"></script>
+ 
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=1859245776&auto=0&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+    
+
+  </div>
+</body>
+
+</html>

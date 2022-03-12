@@ -6,7 +6,7 @@
   <link href="http://ffeng007.github.io/atom.xml" rel="self"/>
   
   <link href="http://ffeng007.github.io/"/>
-  <updated>2022-03-12T10:10:20.139Z</updated>
+  <updated>2022-03-12T10:06:36.000Z</updated>
   <id>http://ffeng007.github.io/</id>
   
   <author>
@@ -15,6 +15,280 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SpringBoot 整合 Mybatis</title>
+    <link href="http://ffeng007.github.io/2021/10/08/boot%E6%95%B4%E5%90%88mybatis/"/>
+    <id>http://ffeng007.github.io/2021/10/08/boot%E6%95%B4%E5%90%88mybatis/</id>
+    <published>2021-10-08T07:24:51.000Z</published>
+    <updated>2022-03-12T10:06:36.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;SpringBoot整合-Mybatis&quot;&gt;&lt;a href=&quot;#SpringBoot整合-Mybatis&quot; class=&quot;headerlink&quot; title=&quot;SpringBoot整合 Mybatis&quot;&gt;&lt;/a&gt;SpringBoot整合</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="http://ffeng007.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="框架" scheme="http://ffeng007.github.io/categories/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/"/>
+    
+    
+    <category term="框架" scheme="http://ffeng007.github.io/tags/%E6%A1%86%E6%9E%B6/"/>
+    
+    <category term="SpringBoot" scheme="http://ffeng007.github.io/tags/SpringBoot/"/>
+    
+    <category term="Mybatis" scheme="http://ffeng007.github.io/tags/Mybatis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringMVC</title>
+    <link href="http://ffeng007.github.io/2021/10/08/Springmvc/"/>
+    <id>http://ffeng007.github.io/2021/10/08/Springmvc/</id>
+    <published>2021-10-08T07:24:51.000Z</published>
+    <updated>2022-03-12T10:08:36.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;一-Springmvc&quot;&gt;&lt;a href=&quot;#一-Springmvc&quot; class=&quot;headerlink&quot; title=&quot;一.Springmvc&quot;&gt;&lt;/a&gt;一.Springmvc&lt;/h2&gt;&lt;h3 id=&quot;1-概念&quot;&gt;&lt;a href=&quot;#1-概念&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="http://ffeng007.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="框架" scheme="http://ffeng007.github.io/categories/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/"/>
+    
+    
+    <category term="框架" scheme="http://ffeng007.github.io/tags/%E6%A1%86%E6%9E%B6/"/>
+    
+    <category term="SpringMVC" scheme="http://ffeng007.github.io/tags/SpringMVC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MYSQL</title>
+    <link href="http://ffeng007.github.io/2021/09/29/mysql/"/>
+    <id>http://ffeng007.github.io/2021/09/29/mysql/</id>
+    <published>2021-09-28T16:00:00.000Z</published>
+    <updated>2022-03-12T10:02:26.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Mysql&quot;&gt;&lt;a href=&quot;#Mysql&quot; class=&quot;headerlink&quot; title=&quot;Mysql&quot;&gt;&lt;/a&gt;Mysql&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;mysql -h127.0.0.1 -P3306 -uroot -p123456&lt;br&gt;-h IP地址</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="http://ffeng007.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="MYSQL" scheme="http://ffeng007.github.io/categories/%E7%AC%94%E8%AE%B0/MYSQL/"/>
+    
+    
+    <category term="MYSQL" scheme="http://ffeng007.github.io/tags/MYSQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JavaWeb</title>
+    <link href="http://ffeng007.github.io/2021/09/21/JavaWeb/"/>
+    <id>http://ffeng007.github.io/2021/09/21/JavaWeb/</id>
+    <published>2021-09-20T16:00:00.000Z</published>
+    <updated>2022-03-12T10:08:00.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;一、HTTP协议&quot;&gt;&lt;a href=&quot;#一、HTTP协议&quot; class=&quot;headerlink&quot; title=&quot;一、HTTP协议&quot;&gt;&lt;/a&gt;一、HTTP协议&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;HTTP协议是Hyper Text Transfer</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="http://ffeng007.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="JavaWeb" scheme="http://ffeng007.github.io/categories/%E7%AC%94%E8%AE%B0/JavaWeb/"/>
+    
+    
+    <category term="JavaWeb" scheme="http://ffeng007.github.io/tags/JavaWeb/"/>
+    
+    <category term="Servlet" scheme="http://ffeng007.github.io/tags/Servlet/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JSP学习</title>
+    <link href="http://ffeng007.github.io/2021/09/15/jsp/"/>
+    <id>http://ffeng007.github.io/2021/09/15/jsp/</id>
+    <published>2021-09-14T16:00:00.000Z</published>
+    <updated>2022-03-12T10:07:18.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;一、JSP&quot;&gt;&lt;a href=&quot;#一、JSP&quot; class=&quot;headerlink&quot; title=&quot;一、JSP&quot;&gt;&lt;/a&gt;一、JSP&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;JSP&lt;/strong&gt;：java    server    page   </summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="http://ffeng007.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="JSP" scheme="http://ffeng007.github.io/categories/%E7%AC%94%E8%AE%B0/JSP/"/>
+    
+    
+    <category term="Java" scheme="http://ffeng007.github.io/tags/Java/"/>
+    
+    <category term="JSP" scheme="http://ffeng007.github.io/tags/JSP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringBoot基础</title>
+    <link href="http://ffeng007.github.io/2021/09/08/SpringBoot-%E5%9F%BA%E7%A1%80/"/>
+    <id>http://ffeng007.github.io/2021/09/08/SpringBoot-%E5%9F%BA%E7%A1%80/</id>
+    <published>2021-09-08T07:54:21.000Z</published>
+    <updated>2022-03-12T10:05:52.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;一-SpringBoot&quot;&gt;&lt;a href=&quot;#一-SpringBoot&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="http://ffeng007.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="框架" scheme="http://ffeng007.github.io/categories/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/"/>
+    
+    
+    <category term="框架" scheme="http://ffeng007.github.io/tags/%E6%A1%86%E6%9E%B6/"/>
+    
+    <category term="SpringBoot" scheme="http://ffeng007.github.io/tags/SpringBoot/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringBoot Web开发</title>
+    <link href="http://ffeng007.github.io/2021/09/08/SpringBoot-web%E5%BC%80%E5%8F%91/"/>
+    <id>http://ffeng007.github.io/2021/09/08/SpringBoot-web%E5%BC%80%E5%8F%91/</id>
+    <published>2021-09-08T07:54:21.000Z</published>
+    <updated>2022-03-12T10:06:12.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Spring-Boot-Web开发&quot;&gt;&lt;a href=&quot;#Spring-Boot-Web开发&quot; class=&quot;headerlink&quot; title=&quot;Spring-Boot  Web开发&quot;&gt;&lt;/a&gt;Spring-Boot  Web开发&lt;/h1&gt;&lt;hr&gt;
+&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="http://ffeng007.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="框架" scheme="http://ffeng007.github.io/categories/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/"/>
+    
+    
+    <category term="框架" scheme="http://ffeng007.github.io/tags/%E6%A1%86%E6%9E%B6/"/>
+    
+    <category term="SpringBoot" scheme="http://ffeng007.github.io/tags/SpringBoot/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring 框架</title>
+    <link href="http://ffeng007.github.io/2021/09/08/spring/"/>
+    <id>http://ffeng007.github.io/2021/09/08/spring/</id>
+    <published>2021-09-08T07:54:21.000Z</published>
+    <updated>2022-03-12T10:08:14.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;一、Spring&quot;&gt;&lt;a href=&quot;#一、Spring&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="http://ffeng007.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="框架" scheme="http://ffeng007.github.io/categories/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/"/>
+    
+    
+    <category term="框架" scheme="http://ffeng007.github.io/tags/%E6%A1%86%E6%9E%B6/"/>
+    
+    <category term="Spring" scheme="http://ffeng007.github.io/tags/Spring/"/>
+    
+    <category term="IOC" scheme="http://ffeng007.github.io/tags/IOC/"/>
+    
+    <category term="AOP" scheme="http://ffeng007.github.io/tags/AOP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>前端学习和练习</title>
+    <link href="http://ffeng007.github.io/2021/09/08/%E5%89%8D%E7%AB%AF/"/>
+    <id>http://ffeng007.github.io/2021/09/08/%E5%89%8D%E7%AB%AF/</id>
+    <published>2021-09-07T16:00:00.000Z</published>
+    <updated>2022-03-12T10:07:04.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;前端基础和练习&quot;&gt;&lt;a href=&quot;#前端基础和练习&quot; class=&quot;headerlink&quot; title=&quot;前端基础和练习&quot;&gt;&lt;/a&gt;前端基础和练习&lt;/h1&gt;&lt;hr&gt;
+&lt;h2 id=&quot;HTML&quot;&gt;&lt;a href=&quot;#HTML&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="http://ffeng007.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="前端" scheme="http://ffeng007.github.io/categories/%E7%AC%94%E8%AE%B0/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+    <category term="前端" scheme="http://ffeng007.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+    <category term="HTML" scheme="http://ffeng007.github.io/tags/HTML/"/>
+    
+    <category term="JavaScript" scheme="http://ffeng007.github.io/tags/JavaScript/"/>
+    
+    <category term="CSS" scheme="http://ffeng007.github.io/tags/CSS/"/>
+    
+  </entry>
   
   <entry>
     <title>CSS3</title>
