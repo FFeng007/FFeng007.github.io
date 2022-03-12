@@ -291,11 +291,11 @@
   </entry>
   
   <entry>
-    <title>CSS3</title>
-    <link href="http://ffeng007.github.io/2021/08/20/CSS3/"/>
-    <id>http://ffeng007.github.io/2021/08/20/CSS3/</id>
+    <title>CSS</title>
+    <link href="http://ffeng007.github.io/2021/08/20/CSS/"/>
+    <id>http://ffeng007.github.io/2021/08/20/CSS/</id>
     <published>2021-08-19T16:00:00.000Z</published>
-    <updated>2022-03-12T10:10:20.139Z</updated>
+    <updated>2022-03-12T11:25:54.759Z</updated>
     
     
       
@@ -315,16 +315,16 @@
     
     <category term="前端" scheme="http://ffeng007.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
     
-    <category term="CSS3" scheme="http://ffeng007.github.io/tags/CSS3/"/>
+    <category term="CSS" scheme="http://ffeng007.github.io/tags/CSS/"/>
     
   </entry>
   
   <entry>
-    <title>HTML5</title>
-    <link href="http://ffeng007.github.io/2021/08/12/HTML5/"/>
-    <id>http://ffeng007.github.io/2021/08/12/HTML5/</id>
+    <title>HTML</title>
+    <link href="http://ffeng007.github.io/2021/08/12/HTML/"/>
+    <id>http://ffeng007.github.io/2021/08/12/HTML/</id>
     <published>2021-08-12T12:44:54.000Z</published>
-    <updated>2021-08-16T08:41:48.360Z</updated>
+    <updated>2022-03-12T11:25:42.796Z</updated>
     
     
       
@@ -344,7 +344,7 @@
     
     <category term="前端" scheme="http://ffeng007.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
     
-    <category term="HTML5" scheme="http://ffeng007.github.io/tags/HTML5/"/>
+    <category term="HTML" scheme="http://ffeng007.github.io/tags/HTML/"/>
     
   </entry>
   
