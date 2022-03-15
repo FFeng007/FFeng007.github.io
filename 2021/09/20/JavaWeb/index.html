@@ -235,34 +235,18 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">当前项目 Path=/s02</span><br><span class="line"></span><br><span class="line"><span class="comment">//1.在当前项目下的资源可以获取</span></span><br><span class="line">Cookie cookie01 = <span class="keyword">new</span> Cookie(<span class="string">&quot;a1&quot;</span>,<span class="string">&quot;aa&quot;</span>);</span><br><span class="line">cookie01.setPath(<span class="string">&quot;/s02&quot;</span>);</span><br><span class="line">response.addCookie(cookie01);</span><br><span class="line"></span><br><span class="line"><span class="comment">//2.在当前服务器下的资源可以获取 设置路径为”/“</span></span><br><span class="line">Cookie cookie02 = <span class="keyword">new</span> Cookie(<span class="string">&quot;a2&quot;</span>,<span class="string">&quot;bb&quot;</span>);</span><br><span class="line">cookie02.setPath(<span class="string">&quot;/&quot;</span>);</span><br><span class="line">response.addCookie(cookie02);</span><br><span class="line"></span><br><span class="line"><span class="comment">//3.在指定项目下的资源可以访问</span></span><br><span class="line">Cookie cookie03 = <span class="keyword">new</span> Cookie(<span class="string">&quot;a3&quot;</span>,<span class="string">&quot;cc&quot;</span>);</span><br><span class="line">cookie03.setPath(<span class="string">&quot;/s01&quot;</span>);</span><br><span class="line">response.addCookie(cookie03);</span><br><span class="line"></span><br><span class="line"><span class="comment">//4.在指定路径的资源可以访问</span></span><br><span class="line">Cookie cookie04 = <span class="keyword">new</span> Cookie(<span class="string">&quot;a4&quot;</span>,<span class="string">&quot;dd&quot;</span>);</span><br><span class="line">cookie04.setPath(<span class="string">&quot;/s02/cook&quot;</span>);</span><br><span class="line">response.addCookie(cookie04);</span><br></pre></td></tr></table></figure>
 
 <h2 id="五、Session"><a href="#五、Session" class="headerlink" title="五、Session"></a>五、Session</h2><h3 id="1-Session对象的获取"><a href="#1-Session对象的获取" class="headerlink" title="1.Session对象的获取"></a>1.Session对象的获取</h3><ul>
-<li><pre><code> 1.Session对象的获取
-</code></pre>
-</li>
-<li><pre><code>     如果session对象存在，则直接获取，如果session对象不存在，则新建session
-</code></pre>
-</li>
+<li>1.Session对象的获取</li>
+<li>如果session对象存在，则直接获取，如果session对象不存在，则新建session</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取session对象</span></span><br><span class="line">HttpSession session = req.getSession();</span><br><span class="line"></span><br><span class="line"><span class="comment">//常用方法</span></span><br><span class="line">System.out.println(<span class="string">&quot;sessionID：&quot;</span>+session.getId());</span><br><span class="line">System.out.println(<span class="string">&quot;绘画创建时间：&quot;</span>+session.getCreationTime());</span><br><span class="line">System.out.println(<span class="string">&quot;最后一次访问时间：&quot;</span>+session.getLastAccessedTime());</span><br><span class="line">System.out.println(<span class="string">&quot;是否是新对象：&quot;</span>+session.isNew());</span><br></pre></td></tr></table></figure>
 
 <h3 id="2-sessionid标识符"><a href="#2-sessionid标识符" class="headerlink" title="2.sessionid标识符"></a>2.sessionid标识符</h3><ul>
-<li><pre><code>     当请求达到服务器时，如果使用了session，服务器会去获取一个jsessionid的cookie对象
-</code></pre>
-</li>
-<li><pre><code>     如果cookie对象不存在，则新建session对象，并设置sessionid，将sessionid回传给客户端中，设置对应的cookie
-</code></pre>
-</li>
-<li><pre><code>     如果cookie对象存在，服务器会比较客户端传递进去的sessionid是否和服务端的一致
-</code></pre>
-</li>
-<li><pre><code>         如果不一致，新建session对象，并设置sessionid，将sessionid回传给客户端中，重新设置对应的cookie
-</code></pre>
-</li>
-<li><pre><code>         如果一致，则获取当前的session对象
-</code></pre>
-</li>
-<li><pre><code>     session底层是依赖cookie的，默认关闭浏览器失效。
-</code></pre>
-</li>
+<li>当请求达到服务器时，如果使用了session，服务器会去获取一个jsessionid的cookie对象</li>
+<li>如果cookie对象不存在，则新建session对象，并设置sessionid，将sessionid回传给客户端中，设置对应的cookie</li>
+<li>如果cookie对象存在，服务器会比较客户端传递进去的sessionid是否和服务端的一致</li>
+<li>如果不一致，新建session对象，并设置sessionid，将sessionid回传给客户端中，重新设置对应的cookie</li>
+<li>如果一致，则获取当前的session对象</li>
+<li>session底层是依赖cookie的，默认关闭浏览器失效。</li>
 </ul>
 <h3 id="3-Session作用域"><a href="#3-Session作用域" class="headerlink" title="3.Session作用域"></a>3.Session作用域</h3><ul>
 <li><p>在一次会话中有效，可以有多次请求和响应，在会话中数据共享。</p>
