@@ -6,7 +6,7 @@
   <link href="http://ffeng007.github.io/atom.xml" rel="self"/>
   
   <link href="http://ffeng007.github.io/"/>
-  <updated>2022-03-15T10:14:34.000Z</updated>
+  <updated>2022-03-18T07:46:16.000Z</updated>
   <id>http://ffeng007.github.io/</id>
   
   <author>
@@ -15,6 +15,90 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Git的学习和使用</title>
+    <link href="http://ffeng007.github.io/2021/11/10/git%E5%AD%A6%E4%B9%A0/"/>
+    <id>http://ffeng007.github.io/2021/11/10/git%E5%AD%A6%E4%B9%A0/</id>
+    <published>2021-11-09T16:00:00.000Z</published>
+    <updated>2022-03-18T07:46:16.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;一-版本控制&quot;&gt;&lt;a href=&quot;#一-版本控制&quot; class=&quot;headerlink&quot; title=&quot;一.版本控制&quot;&gt;&lt;/a&gt;一.版本控制&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;版本控制&lt;/strong&gt;:</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="http://ffeng007.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="git" scheme="http://ffeng007.github.io/categories/%E7%AC%94%E8%AE%B0/git/"/>
+    
+    
+    <category term="git" scheme="http://ffeng007.github.io/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring整合Dubbo和Zookeeper</title>
+    <link href="http://ffeng007.github.io/2021/11/08/Dubbo%E5%92%8CZookeeper/"/>
+    <id>http://ffeng007.github.io/2021/11/08/Dubbo%E5%92%8CZookeeper/</id>
+    <published>2021-11-07T16:00:00.000Z</published>
+    <updated>2022-03-17T08:20:14.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;一-分布式理论和RPC&quot;&gt;&lt;a href=&quot;#一-分布式理论和RPC&quot; class=&quot;headerlink&quot; title=&quot;一.分布式理论和RPC&quot;&gt;&lt;/a&gt;一.分布式理论和RPC&lt;/h2&gt;&lt;h3 id=&quot;1-分布式理论&quot;&gt;&lt;a href=&quot;#1-分布式理论&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="http://ffeng007.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="框架" scheme="http://ffeng007.github.io/categories/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/"/>
+    
+    
+    <category term="Dubbo" scheme="http://ffeng007.github.io/tags/Dubbo/"/>
+    
+    <category term="Zookeeper" scheme="http://ffeng007.github.io/tags/Zookeeper/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringBoot异步,定时,邮件</title>
+    <link href="http://ffeng007.github.io/2021/11/05/%E5%BC%82%E6%AD%A5,%E5%AE%9A%E6%97%B6,%E9%82%AE%E4%BB%B6/"/>
+    <id>http://ffeng007.github.io/2021/11/05/%E5%BC%82%E6%AD%A5,%E5%AE%9A%E6%97%B6,%E9%82%AE%E4%BB%B6/</id>
+    <published>2021-11-04T16:00:00.000Z</published>
+    <updated>2022-03-16T07:50:08.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;一-异步任务&quot;&gt;&lt;a href=&quot;#一-异步任务&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="http://ffeng007.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="框架" scheme="http://ffeng007.github.io/categories/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/"/>
+    
+    
+    <category term="SpringBoot" scheme="http://ffeng007.github.io/tags/SpringBoot/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring Security</title>
@@ -517,94 +601,6 @@
     <category term="Java" scheme="http://ffeng007.github.io/tags/Java/"/>
     
     <category term="多线程" scheme="http://ffeng007.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java异常</title>
-    <link href="http://ffeng007.github.io/2021/08/04/Java%E5%BC%82%E5%B8%B8/"/>
-    <id>http://ffeng007.github.io/2021/08/04/Java%E5%BC%82%E5%B8%B8/</id>
-    <published>2021-08-04T05:20:54.000Z</published>
-    <updated>2022-03-12T11:42:48.442Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;一、异常&quot;&gt;&lt;a href=&quot;#一、异常&quot; class=&quot;headerlink&quot; title=&quot;一、异常&quot;&gt;&lt;/a&gt;一、异常&lt;/h2&gt;&lt;p&gt;异常指程序在运行中出现的不期而至的各种状况，如：文件找不到，网络连接失败，非法参数等。&lt;/p&gt;
-&lt;h4</summary>
-        
-      
-    
-    
-    
-    <category term="笔记" scheme="http://ffeng007.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    <category term="Java" scheme="http://ffeng007.github.io/categories/%E7%AC%94%E8%AE%B0/Java/"/>
-    
-    
-    <category term="Java" scheme="http://ffeng007.github.io/tags/Java/"/>
-    
-    <category term="异常" scheme="http://ffeng007.github.io/tags/%E5%BC%82%E5%B8%B8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java面向对象</title>
-    <link href="http://ffeng007.github.io/2021/07/28/Java%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"/>
-    <id>http://ffeng007.github.io/2021/07/28/Java%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</id>
-    <published>2021-07-28T05:20:54.000Z</published>
-    <updated>2022-03-12T11:42:30.724Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;一、面向对象&quot;&gt;&lt;a href=&quot;#一、面向对象&quot; class=&quot;headerlink&quot; title=&quot;一、面向对象&quot;&gt;&lt;/a&gt;一、面向对象&lt;/h2&gt;&lt;h4 id=&quot;1什么是面向对象&quot;&gt;&lt;a href=&quot;#1什么是面向对象&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="笔记" scheme="http://ffeng007.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    <category term="Java" scheme="http://ffeng007.github.io/categories/%E7%AC%94%E8%AE%B0/Java/"/>
-    
-    
-    <category term="Java" scheme="http://ffeng007.github.io/tags/Java/"/>
-    
-    <category term="OOP" scheme="http://ffeng007.github.io/tags/OOP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java数组</title>
-    <link href="http://ffeng007.github.io/2021/07/23/Java%E6%95%B0%E7%BB%84/"/>
-    <id>http://ffeng007.github.io/2021/07/23/Java%E6%95%B0%E7%BB%84/</id>
-    <published>2021-07-22T16:00:00.000Z</published>
-    <updated>2022-03-12T11:42:22.827Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;一、数组概述&quot;&gt;&lt;a href=&quot;#一、数组概述&quot; class=&quot;headerlink&quot; title=&quot;一、数组概述&quot;&gt;&lt;/a&gt;一、数组概述&lt;/h2&gt;&lt;h4 id=&quot;1-数组的定义&quot;&gt;&lt;a href=&quot;#1-数组的定义&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="笔记" scheme="http://ffeng007.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    <category term="Java" scheme="http://ffeng007.github.io/categories/%E7%AC%94%E8%AE%B0/Java/"/>
-    
-    
-    <category term="Java" scheme="http://ffeng007.github.io/tags/Java/"/>
-    
-    <category term="数组" scheme="http://ffeng007.github.io/tags/%E6%95%B0%E7%BB%84/"/>
     
   </entry>
   

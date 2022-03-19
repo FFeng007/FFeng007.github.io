@@ -1,6 +1,243 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Spring整合Dubbo和Zookeeper</title>
+    <url>/2021/11/08/Dubbo%E5%92%8CZookeeper/</url>
+    <content><![CDATA[<h2 id="一-分布式理论和RPC"><a href="#一-分布式理论和RPC" class="headerlink" title="一.分布式理论和RPC"></a>一.分布式理论和RPC</h2><h3 id="1-分布式理论"><a href="#1-分布式理论" class="headerlink" title="1.分布式理论"></a>1.分布式理论</h3><ul>
+<li><p>分布式系统</p>
+<ul>
+<li><p>分布式系统是若干独立计算机的集合,这些计算机对于用户来说就像单个相关系统</p>
+</li>
+<li><p>分布式系统是由一组通过网络进行通信,为了完成共同的任务而协调工作的计算机节点组成的系统,利用更多的机器,处理更多的数据</p>
+</li>
+<li><p>只有当单个节点无法满足当前任务,且硬件升级高昂到得不偿失的情况下才会采用分布式系统,分布式系统本身和单机系统一样解决问题,但是由于前者多节点,通过网络通信,会引入更多后者没有的问题</p>
+</li>
+</ul>
+</li>
+<li><p>Dubbo文档</p>
+<ol>
+<li><p>单一应用框架</p>
+<ul>
+<li>网站流量小,只需要一个应用,将所用功能部署在一起,以减少部署节点和成本</li>
+<li>此时,用于简化增删改查工作量的数据访问框架(ORM)是关键</li>
+<li>适用于小型网站,小型管理系统</li>
+<li>缺点:性能扩展难,协同开发问题,不利于维护升级</li>
+</ul>
+</li>
+<li><p>垂直应用架构</p>
+<ul>
+<li>网站流量加大,单一应用为机器带来的加速度越来越少,将应用拆分成几个不相干的应用,来提升效率</li>
+<li>此时,用于加速前端页面开发的Web框架(MVC)是关键</li>
+<li>切分业务,各个模块独立部署,团队分工管理,更容易维护和部署</li>
+<li>缺点:公共模块无法重复利用</li>
+</ul>
+</li>
+<li><p>分布式服务架构</p>
+<ul>
+<li>当垂直应用越来越多,应用之间的交互越来越多,将核心的业务抽取出来,作为独立的服务,逐渐形成稳定的服务中心,使前端应用能够快速的响应多变的市场需求</li>
+<li>此时,用于提高业务复用及整合的分布式服务框架(RPC)是关键</li>
+</ul>
+</li>
+<li><p>流动计算架构</p>
+<ul>
+<li>当服务越来越多,小服务资源浪费,需要一个调度中心基于访问压力实时管理集群容量,提高利用率</li>
+<li>此时,用于提高机器利用率的资源调度和治理中心(SOA)是关键</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="2-RPC"><a href="#2-RPC" class="headerlink" title="2.RPC"></a>2.RPC</h3><ul>
+<li>远程过程调用,是一种进程间通信方式,通过网络从远程计算机程序上请求服务</li>
+<li>RPC的俩个核心模块:通讯    序列化</li>
+</ul>
+<h2 id="二-Dubbo"><a href="#二-Dubbo" class="headerlink" title="二.Dubbo"></a>二.Dubbo</h2><h3 id="1-Dubbo"><a href="#1-Dubbo" class="headerlink" title="1.Dubbo"></a>1.Dubbo</h3><ul>
+<li>Dubbo是RPC框架,提供了三大核心功能:面向接口的远程方法调用,智能容错和负载均衡,服务自动注册和发现</li>
+</ul>
+<p><strong>基本概念:</strong></p>
+<p><img src="https://pic.imgdb.cn/item/6232a2665baa1a80ab479e55.png"></p>
+<ul>
+<li><strong>provider 服务提供者</strong> : 暴露服务的服务提供方，服务提供者在启动时，向注册中心注册自己提 供的服务。</li>
+<li><strong>Consumer 服务消费者</strong> : 调用远程服务的服务消费方，服务消费者在启动时，向注册中心订阅自 己所需的服务，服务消费者，从提供者地址列表中，基于软负载均衡算法，选一台提供者进行调用，如 果调用失败，再选另一台调用。</li>
+<li><strong>Registry 注册中心</strong> : 注册中心返回服务提供者地址列表给消费者，如果有变更，注册中心将基 于长连接推送变更数据给消费者</li>
+<li><strong>Monitor 监控中心</strong> : 服务消费者和提供者，在内存中累计调用次数和调用时间，定时每分钟发 送一次统计数据到监控中心</li>
+<li><strong>调用关系说明:</strong><ol>
+<li>服务容器负责启动，加载，运行服务提供者。</li>
+<li>服务提供者在启动时，向注册中心注册自己提供的服务。</li>
+<li>服务消费者在启动时，向注册中心订阅自己所需的服务。</li>
+<li>注册中心返回服务提供者地址列表给消费者，如果有变更，注册中心将基于长连接推送变更数据给消费 者。</li>
+<li>服务消费者，从提供者地址列表中，基于软负载均衡算法，选一台提供者进行调用，如果调用失败，再 选另一台调用。</li>
+<li>服务消费者和提供者，在内存中累计调用次数和调用时间，定时每分钟发送一次统计数据到监控中心。</li>
+</ol>
+</li>
+</ul>
+<h3 id="2-Dubbo环境搭建"><a href="#2-Dubbo环境搭建" class="headerlink" title="2.Dubbo环境搭建"></a>2.Dubbo环境搭建</h3><ul>
+<li>查看<a href="https://dubbo.apache.org/zh/">官网</a></li>
+</ul>
+<h3 id="3-安装zookeeper"><a href="#3-安装zookeeper" class="headerlink" title="3.安装zookeeper"></a>3.安装zookeeper</h3><ul>
+<li><p>下载<a href="https://archive.apache.org/dist/zookeeper/">zookeeper</a></p>
+</li>
+<li><p>运行/bin/zkServer.cmd,启动服务,第一次运行会报错,缺少zoo.cfg配置文件</p>
+</li>
+<li><p>闪退:编辑zkServer.cmd文件末尾添加 pause ,不报错不闪退</p>
+</li>
+<li><p>将conf文件夹下面的zoo_sample.cfg复制一份改名为zoo.cfg即可</p>
+<blockquote>
+<p>dataDir=./ 临时数据存储的目录（可写相对路径） </p>
+<p>clientPort=2181 zookeeper的默认端口号</p>
+</blockquote>
+</li>
+<li><p>测试:启动客户端 zkCli.cmd  (需要先开启服务端 zkServer.cmd)</p>
+<ul>
+<li>ls /：列出zookeeper根下保存的所有节点</li>
+<li>create –e /mkbk 123：创建一个mkbk节点，值为123</li>
+<li>get /mkbk：获取/mkbk节点的值</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-安装dubbo-admin"><a href="#4-安装dubbo-admin" class="headerlink" title="4.安装dubbo-admin"></a>4.安装dubbo-admin</h3><ul>
+<li><p>dubbo-admin是官方提供的一个可视化的监控程序,便于更好的管理和监控dubbo服务</p>
+</li>
+<li><p>通过dubbo连接到zookeeper,利用zookeeper消费和提供服务</p>
+</li>
+<li><p><strong>安装:</strong></p>
+<ol>
+<li>下载<a href="https://github.com/apache/dubbo-admin/tree/master-0.2.0">dubbo-admin</a></li>
+<li>解压,进入目录dubbo-admin\src\main\resources \application.properties  指定zookeeper地址</li>
+</ol>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="meta">server.port</span>=<span class="string">7001</span></span><br><span class="line"><span class="meta">spring.velocity.cache</span>=<span class="string">false</span></span><br><span class="line"><span class="meta">spring.velocity.charset</span>=<span class="string">UTF-8</span></span><br><span class="line"><span class="meta">spring.velocity.layout-url</span>=<span class="string">/templates/default.vm</span></span><br><span class="line"><span class="meta">spring.messages.fallback-to-system-locale</span>=<span class="string">false</span></span><br><span class="line"><span class="meta">spring.messages.basename</span>=<span class="string">i18n/message</span></span><br><span class="line"><span class="meta">spring.root.password</span>=<span class="string">root</span></span><br><span class="line"><span class="meta">spring.guest.password</span>=<span class="string">guest</span></span><br><span class="line"><span class="comment">#注册中心的地址</span></span><br><span class="line"><span class="meta">dubbo.registry.address</span>=<span class="string">zookeeper://127.0.0.1:2181</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><p>在项目目录下打包</p>
+<blockquote>
+<p>mvn clean package -Dmaven.test.skip=true</p>
+</blockquote>
+</li>
+<li><p>执行target下边的 的dubbo-admin-0.0.1-SNAPSHOT.jar (zookeeper服务要打开)</p>
+<blockquote>
+<p>java -jar dubbo-admin-0.0.1-SNAPSHOT.jar</p>
+</blockquote>
+</li>
+<li><p>访问可视化web  <a href="http://localhost:7001/">http://localhost:7001/</a>  登录账号 root 密码 root</p>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="三-springBoot整合Dubbo和Zookeeper"><a href="#三-springBoot整合Dubbo和Zookeeper" class="headerlink" title="三.springBoot整合Dubbo和Zookeeper"></a>三.springBoot整合Dubbo和Zookeeper</h2><h3 id="1-框架搭建"><a href="#1-框架搭建" class="headerlink" title="1.框架搭建"></a>1.框架搭建</h3><ol>
+<li>启动zookeeper  运行/bin/zkServer.cmd,启动服务</li>
+<li>idea创建项目</li>
+<li>创建一个boot模块,实现服务提供者:provider-server,选择web依赖</li>
+<li>在该模块中编写测试服务 卖票服务 提供卖票 (服务提供者)</li>
+</ol>
+<ul>
+<li>卖票接口</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.feng.provider.service;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">TicketService</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getTicket</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>卖票接口实现类</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.feng.provider.service;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TicketServiceImpl</span> <span class="keyword">implements</span> <span class="title">TicketService</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getTicket</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;《花园宝宝》&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>创建一个boot模块,实现服务消费者:consumer-server,选择web依赖</li>
+<li>在该模块中编写测试服务 用户服务 用户卖票 (服务消费者)</li>
+</ol>
+<ul>
+<li>用户类</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.feng.consumer.service;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line">    <span class="comment">//我们需要去拿注册中心的服务</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试:通过 dubbo 和 zookeeper 让消费者去提供者那里 拿票</p>
+<h3 id="2-服务提供者"><a href="#2-服务提供者" class="headerlink" title="2.服务提供者"></a>2.服务提供者</h3><ol>
+<li>导入相关依赖,将服务提供者注册到注册中心,整合 Dubbo 和 zookeeper </li>
+</ol>
+<ul>
+<li>dubbo包 dubbo-Springboot</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Dubbo Spring Boot Starter --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.dubbo<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>dubbo-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.7.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>zookeeper包 zkclient</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/com.github.sgroschupf/zkclient --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.github.sgroschupf<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>zkclient<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>zookeeper的依赖包,剔除日志依赖,解决日志冲突 (新版本)</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 引入zookeeper --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.curator<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>curator-framework<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.12.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.curator<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>curator-recipes<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.12.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.zookeeper<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>zookeeper<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.4.14<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--排除这个slf4j-log4j12--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.slf4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>slf4j-log4j12<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>配置文件,配置dubbo相关属性</li>
+</ol>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="comment">#当前应用名字</span></span><br><span class="line"><span class="meta">dubbo.application.name</span>=<span class="string">provider-server</span></span><br><span class="line"><span class="comment">#注册中心地址 端口号2181</span></span><br><span class="line"><span class="meta">dubbo.registry.address</span>=<span class="string">zookeeper://127.0.0.1:2181</span></span><br><span class="line"><span class="comment">#扫描指定包下服务</span></span><br><span class="line"><span class="meta">dubbo.scan.base-packages</span>=<span class="string">com.feng.provider.service</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>在卖票接口实现类中配置注解,发布服务,注意导包问题</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.dubbo.config.annotation.Service;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"><span class="meta">@Service</span> <span class="comment">//将服务发布出去 导dubbo的包</span></span><br><span class="line"><span class="meta">@Component</span> <span class="comment">//放在容器中 springboot的包 此处建议不适用Service 因为dubbo也有Service注解  防止导错包</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TicketServiceImpl</span> <span class="keyword">implements</span> <span class="title">TicketService</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getTicket</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;《玛卡巴卡》&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>流程:当应用启动起来,dubbo就会扫描指定包下带有@component注解的服务,发布在指定的注册中心</li>
+</ol>
+<h3 id="3-服务消费者"><a href="#3-服务消费者" class="headerlink" title="3.服务消费者"></a>3.服务消费者</h3><ol>
+<li>导入依赖,类似服务提供者</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--dubbo--&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- Dubbo Spring Boot Starter --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.dubbo<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>dubbo-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.7.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--zookeeper--&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/com.github.sgroschupf/zkclient --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.github.sgroschupf<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>zkclient<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 引入zookeeper --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.curator<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>curator-framework<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.12.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.curator<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>curator-recipes<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.12.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.zookeeper<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>zookeeper<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.4.14<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--排除这个slf4j-log4j12--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.slf4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>slf4j-log4j12<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>配置参数</li>
+</ol>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="comment">#当前应用名字</span></span><br><span class="line"><span class="meta">dubbo.application.name</span>=<span class="string">consumer-server</span></span><br><span class="line"><span class="comment">#注册中心地址</span></span><br><span class="line"><span class="meta">dubbo.registry.address</span>=<span class="string">zookeeper://127.0.0.1:2181</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>将服务提供者的卖票接口打包,pom文件导入<ul>
+<li>我们这里采用简单的方式,直接将服务的接口拿过来,接口路径必须和服务提供者一致,都为 com.feng.consumer(provider).service.TicketService</li>
+</ul>
+</li>
+<li>补充服务消费者类 用户类</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.feng.consumer.service;</span><br><span class="line"><span class="keyword">import</span> com.feng.provider.service.TicketService;</span><br><span class="line"><span class="keyword">import</span> org.apache.dubbo.config.annotation.Reference;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"><span class="meta">@Service</span> <span class="comment">//注入到容器中</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Reference</span> <span class="comment">//远程引用指定的服务，他会按照全类名进行匹配，看谁给注册中心注册了这个全类名</span></span><br><span class="line">    TicketService ticketService;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">buyTicket</span><span class="params">()</span></span>&#123;</span><br><span class="line">        String ticket = ticketService.getTicket();</span><br><span class="line">        System.out.println(<span class="string">&quot;在注册中心买到&quot;</span>+ticket);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>编写测试类</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RunWith(SpringRunner.class)</span></span><br><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConsumerServerApplicationTests</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    UserService userService;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">contextLoads</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        userService.buyTicket();<span class="comment">//成功则在后台输出 在注册中心买到《玛卡巴卡》</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-测试"><a href="#4-测试" class="headerlink" title="4.测试"></a>4.测试</h3><ol>
+<li>启动zookeeper  运行/bin/zkServer.cmd,启动服务</li>
+<li>打开dubbo-admin实现监控 访问 <a href="http://localhost:7001/">http://localhost:7001/</a>  登录账号 root 密码 root</li>
+<li>开启服务者</li>
+<li>消费者消费测试,后台成功输出,并且可以在监控页面看到服务</li>
+</ol>
+<h3 id="5-步骤总结"><a href="#5-步骤总结" class="headerlink" title="5.步骤总结"></a>5.步骤总结</h3><ul>
+<li>前提: zookeeper服务开启</li>
+</ul>
+<ol>
+<li>服务提供者<ol>
+<li>导入以来 dubbo zookeeper 日志冲突</li>
+<li>配置注册中心地址  服务器发现名  要扫描的包</li>
+<li>在想要被注册的服务上面增加注解 @Service</li>
+</ol>
+</li>
+<li>服务消费者<ol>
+<li>导入依赖 dubbo zookeeper 日子冲突</li>
+<li>配置注册中心地址  自己的服务名</li>
+<li>从远程注入服务  @Reference</li>
+</ol>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>笔记</category>
+        <category>框架</category>
+      </categories>
+      <tags>
+        <tag>Dubbo</tag>
+        <tag>Zookeeper</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>HTML</title>
     <url>/2021/08/26/HTML/</url>
     <content><![CDATA[<h2 id="一、HTML基础"><a href="#一、HTML基础" class="headerlink" title="一、HTML基础"></a>一、HTML基础</h2><h3 id="1-HTML"><a href="#1-HTML" class="headerlink" title="1.HTML"></a>1.HTML</h3><ul>
@@ -428,80 +665,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Java异常</title>
-    <url>/2021/08/04/Java%E5%BC%82%E5%B8%B8/</url>
-    <content><![CDATA[<h2 id="一、异常"><a href="#一、异常" class="headerlink" title="一、异常"></a>一、异常</h2><p>异常指程序在运行中出现的不期而至的各种状况，如：文件找不到，网络连接失败，非法参数等。</p>
-<h4 id="1-三种类型的异常"><a href="#1-三种类型的异常" class="headerlink" title="1.三种类型的异常"></a>1.三种类型的异常</h4><ul>
-<li>检查性异常：用户的或错误或问题引起的异常，程序员无法预见的，这些异常编译时不能被简单的忽略。</li>
-<li>运行时异常：运行时可能被程序员避免的异常，运行时异常可以在编译时被忽略。</li>
-<li>错误：错误不是异常，而是脱离程序控制的问题，错误在代码中经常被忽略。</li>
-</ul>
-<h4 id="2-异常体系结构"><a href="#2-异常体系结构" class="headerlink" title="2.异常体系结构"></a>2.异常体系结构</h4><p>异常类（Throwable）分为俩类，</p>
-<ul>
-<li>异常（Exception）用户程序可能捕获的异常情况或者是程序可以处理的异常。<ul>
-<li>运行时异常（RuntimeException）：数组下标越界（ArrayIndexOutOfBoundsException），算数异常（ArithemticException）等异常，这些异常是不检查异常，程序中可以选择捕获处理，也可以不处理，一般由逻辑编辑错误引起。</li>
-<li>非运行时异常（运行时异常之外的异常）：（IOException），（SQLException），（用户自定义的Exception），这些异常是必须处理的异常，不处理程序就不能编译通过。</li>
-</ul>
-</li>
-<li>错误（Error）不希望被程序捕获或者程序无法处理的异常。出现这种异常，JVM一般会终止线程。<ul>
-<li>由Java虚拟机生成并抛出，大多数错误和代码编写者所执行的操作无关：Java虚拟机运行错误（Virtual MachineError），类定义错误（NoClassDefFoundError），链接错误（LinkageError），这些错误是不可查的它们在应用程序的控制和处理能力之外，绝大多数是程序运行时不允许出现的状况。</li>
-</ul>
-</li>
-</ul>
-<h4 id="3-检查异常和不受检查异常"><a href="#3-检查异常和不受检查异常" class="headerlink" title="3.检查异常和不受检查异常"></a>3.检查异常和不受检查异常</h4><ul>
-<li>检查异常：除了运行时异常及其子类以外，其他的异常类及其子类（非运行时异常）编译器要求必须处理的异常（try-catch语句捕获，或者throws抛出）</li>
-<li>不受检查异常：包括运行时异常及其子类和Error，编译器不要求强制处理的异常。</li>
-</ul>
-<h2 id="二、Java异常处理机制"><a href="#二、Java异常处理机制" class="headerlink" title="二、Java异常处理机制"></a>二、Java异常处理机制</h2><h4 id="1-抛出异常"><a href="#1-抛出异常" class="headerlink" title="1.抛出异常"></a>1.抛出异常</h4><p>遇到异常，当前方法或者作用域无法继续执行下去，进行抛出处理。</p>
-<h4 id="2-捕获异常"><a href="#2-捕获异常" class="headerlink" title="2.捕获异常"></a>2.捕获异常</h4><p>方法抛出异常后，运行系统转为寻找合适的异常处理器，进行捕获处理。</p>
-<h4 id="3-异常处理五个关键字"><a href="#3-异常处理五个关键字" class="headerlink" title="3.异常处理五个关键字"></a>3.异常处理五个关键字</h4><ul>
-<li><p>try——监听，将要监听的代码放在try语句块中，发生异常，异常就会被抛出。</p>
-</li>
-<li><p>catch——捕获异常，捕获try语句块中发生的异常.</p>
-</li>
-<li><p>finally——处理善后工作，总会被执行，主要用于收回try语句块中打开的资源。</p>
-</li>
-<li><p>throw——抛出异常</p>
-</li>
-<li><p>throws——用在方法签名中，声明该方法可能抛出的异常</p>
-</li>
-</ul>
-<h2 id="三、异常处理"><a href="#三、异常处理" class="headerlink" title="三、异常处理"></a>三、异常处理</h2><h4 id="1-try-catch"><a href="#1-try-catch" class="headerlink" title="1.try-catch"></a>1.try-catch</h4><p>快捷键 Ctrl+Alt+T</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//假设要捕获多个异常，异常类型从小到大</span></span><br><span class="line"><span class="keyword">try</span> &#123;<span class="comment">//try 监控区域</span></span><br><span class="line">    <span class="keyword">if</span>(b==<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> ArithmeticException();<span class="comment">//主动抛出异常 throw throws</span></span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(a/b);</span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;<span class="comment">//catch（想要捕获的异常类型）  捕获异常</span></span><br><span class="line">    System.out.println(<span class="string">&quot;Exception&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">catch</span> (Error f)&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;Error&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">catch</span> (Throwable g)&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;Throwable&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;<span class="comment">//finally 处理善后工作   可以不要finally   一般用来 资源关闭</span></span><br><span class="line">    System.out.println(<span class="string">&quot;finally&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-throw"><a href="#2-throw" class="headerlink" title="2.throw"></a>2.throw</h4><p>该程序两次处理相同的错误，首先， main() 方法设立了一个异常关系然后调用proc()。proc()方法设 立了另一个异常处理关系并且立即抛出一个 NullPointerException 实例， NullPointerException 在 main() 中被再次捕获。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestThrow</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">proc</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">&quot;demo&quot;</span>);</span><br><span class="line">        &#125;<span class="keyword">catch</span>(NullPointerException e)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Caught inside proc&quot;</span>);</span><br><span class="line">            <span class="keyword">throw</span> e;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String [] args)</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            proc();</span><br><span class="line">        &#125;<span class="keyword">catch</span>(NullPointerException e)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Recaught: &quot;</span>+e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-throws"><a href="#3-throws" class="headerlink" title="3.throws"></a>3.throws</h4><p>如果一个方法可以导致一个异常但不处理它，它必须指定这种行为以使方法的调用者可以保护它们自己 而不发生异常。要做到这点，我们可以在方法声明中包含一个 throws 子句。</p>
-<h4 id="4-finally"><a href="#4-finally" class="headerlink" title="4.finally"></a>4.finally</h4><p>处理善后工作，主要用于收回try语句块中打开的资源，无论有没有异常被抛出都会被执行。</p>
-<h4 id="5-执行顺序"><a href="#5-执行顺序" class="headerlink" title="5.执行顺序"></a>5.执行顺序</h4><ol>
-<li>执行try,catch,给返回值赋值</li>
-<li>执行finally</li>
-<li>return</li>
-</ol>
-<h2 id="四、自定义异常"><a href="#四、自定义异常" class="headerlink" title="四、自定义异常"></a>四、自定义异常</h2><ul>
-<li>用户自己定义的异常类，需要继承Exception类。</li>
-<li>步骤<ol>
-<li>创建自定义异常类。</li>
-<li>在方法中通过throw关键字抛出异常对象。</li>
-<li>如果在当前抛出异常的方法中处理异常，可以使用 try-catch 语句捕获并处理；否则在方法的 声明处通过 throws 关键字指明要抛出给方法调用者的异常，继续进行下一步操作。</li>
-<li>在出现异常方法的调用者中捕获并处理异常。</li>
-</ol>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//1.创建自定义异常类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyException</span> <span class="keyword">extends</span> <span class="title">Exception</span> </span>&#123;</span><br><span class="line">    <span class="comment">//传递数字&gt;10</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> detail;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyException</span><span class="params">(<span class="keyword">int</span> a)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.detail = a;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span>  <span class="comment">//打印异常信息</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;MyException&#123;&quot;</span> + detail + <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="comment">//可能存异常的方法。</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> a)</span> <span class="keyword">throws</span> MyException </span>&#123;<span class="comment">//3.throws指明要抛出给方法调用者的异常</span></span><br><span class="line">        System.out.println(<span class="string">&quot;传递的参数为&quot;</span> + a);</span><br><span class="line">        <span class="keyword">if</span> (a&gt;<span class="number">10</span>)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> MyException(a);<span class="comment">//2.throw抛出异常对象</span></span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;ok&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//4.通过try-catch捕获处理异常。</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            test(<span class="number">11</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (MyException e) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Myexception--&gt;&quot;</span> + e );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">传递的参数为<span class="number">11</span></span><br><span class="line">Myexception--&gt;MyException&#123;<span class="number">11</span>&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>笔记</category>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>异常</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Java基础语法</title>
     <url>/2021/07/10/Java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</url>
     <content><![CDATA[<h2 id="一、注释"><a href="#一、注释" class="headerlink" title="一、注释"></a>一、注释</h2><h3 id="1-单行注释"><a href="#1-单行注释" class="headerlink" title="1.单行注释"></a>1.单行注释</h3><p>//Hello World！    </p>
@@ -673,6 +836,80 @@
       </categories>
       <tags>
         <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java异常</title>
+    <url>/2021/08/04/Java%E5%BC%82%E5%B8%B8/</url>
+    <content><![CDATA[<h2 id="一、异常"><a href="#一、异常" class="headerlink" title="一、异常"></a>一、异常</h2><p>异常指程序在运行中出现的不期而至的各种状况，如：文件找不到，网络连接失败，非法参数等。</p>
+<h4 id="1-三种类型的异常"><a href="#1-三种类型的异常" class="headerlink" title="1.三种类型的异常"></a>1.三种类型的异常</h4><ul>
+<li>检查性异常：用户的或错误或问题引起的异常，程序员无法预见的，这些异常编译时不能被简单的忽略。</li>
+<li>运行时异常：运行时可能被程序员避免的异常，运行时异常可以在编译时被忽略。</li>
+<li>错误：错误不是异常，而是脱离程序控制的问题，错误在代码中经常被忽略。</li>
+</ul>
+<h4 id="2-异常体系结构"><a href="#2-异常体系结构" class="headerlink" title="2.异常体系结构"></a>2.异常体系结构</h4><p>异常类（Throwable）分为俩类，</p>
+<ul>
+<li>异常（Exception）用户程序可能捕获的异常情况或者是程序可以处理的异常。<ul>
+<li>运行时异常（RuntimeException）：数组下标越界（ArrayIndexOutOfBoundsException），算数异常（ArithemticException）等异常，这些异常是不检查异常，程序中可以选择捕获处理，也可以不处理，一般由逻辑编辑错误引起。</li>
+<li>非运行时异常（运行时异常之外的异常）：（IOException），（SQLException），（用户自定义的Exception），这些异常是必须处理的异常，不处理程序就不能编译通过。</li>
+</ul>
+</li>
+<li>错误（Error）不希望被程序捕获或者程序无法处理的异常。出现这种异常，JVM一般会终止线程。<ul>
+<li>由Java虚拟机生成并抛出，大多数错误和代码编写者所执行的操作无关：Java虚拟机运行错误（Virtual MachineError），类定义错误（NoClassDefFoundError），链接错误（LinkageError），这些错误是不可查的它们在应用程序的控制和处理能力之外，绝大多数是程序运行时不允许出现的状况。</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-检查异常和不受检查异常"><a href="#3-检查异常和不受检查异常" class="headerlink" title="3.检查异常和不受检查异常"></a>3.检查异常和不受检查异常</h4><ul>
+<li>检查异常：除了运行时异常及其子类以外，其他的异常类及其子类（非运行时异常）编译器要求必须处理的异常（try-catch语句捕获，或者throws抛出）</li>
+<li>不受检查异常：包括运行时异常及其子类和Error，编译器不要求强制处理的异常。</li>
+</ul>
+<h2 id="二、Java异常处理机制"><a href="#二、Java异常处理机制" class="headerlink" title="二、Java异常处理机制"></a>二、Java异常处理机制</h2><h4 id="1-抛出异常"><a href="#1-抛出异常" class="headerlink" title="1.抛出异常"></a>1.抛出异常</h4><p>遇到异常，当前方法或者作用域无法继续执行下去，进行抛出处理。</p>
+<h4 id="2-捕获异常"><a href="#2-捕获异常" class="headerlink" title="2.捕获异常"></a>2.捕获异常</h4><p>方法抛出异常后，运行系统转为寻找合适的异常处理器，进行捕获处理。</p>
+<h4 id="3-异常处理五个关键字"><a href="#3-异常处理五个关键字" class="headerlink" title="3.异常处理五个关键字"></a>3.异常处理五个关键字</h4><ul>
+<li><p>try——监听，将要监听的代码放在try语句块中，发生异常，异常就会被抛出。</p>
+</li>
+<li><p>catch——捕获异常，捕获try语句块中发生的异常.</p>
+</li>
+<li><p>finally——处理善后工作，总会被执行，主要用于收回try语句块中打开的资源。</p>
+</li>
+<li><p>throw——抛出异常</p>
+</li>
+<li><p>throws——用在方法签名中，声明该方法可能抛出的异常</p>
+</li>
+</ul>
+<h2 id="三、异常处理"><a href="#三、异常处理" class="headerlink" title="三、异常处理"></a>三、异常处理</h2><h4 id="1-try-catch"><a href="#1-try-catch" class="headerlink" title="1.try-catch"></a>1.try-catch</h4><p>快捷键 Ctrl+Alt+T</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//假设要捕获多个异常，异常类型从小到大</span></span><br><span class="line"><span class="keyword">try</span> &#123;<span class="comment">//try 监控区域</span></span><br><span class="line">    <span class="keyword">if</span>(b==<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> ArithmeticException();<span class="comment">//主动抛出异常 throw throws</span></span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(a/b);</span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;<span class="comment">//catch（想要捕获的异常类型）  捕获异常</span></span><br><span class="line">    System.out.println(<span class="string">&quot;Exception&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">catch</span> (Error f)&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;Error&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">catch</span> (Throwable g)&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;Throwable&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;<span class="comment">//finally 处理善后工作   可以不要finally   一般用来 资源关闭</span></span><br><span class="line">    System.out.println(<span class="string">&quot;finally&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-throw"><a href="#2-throw" class="headerlink" title="2.throw"></a>2.throw</h4><p>该程序两次处理相同的错误，首先， main() 方法设立了一个异常关系然后调用proc()。proc()方法设 立了另一个异常处理关系并且立即抛出一个 NullPointerException 实例， NullPointerException 在 main() 中被再次捕获。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestThrow</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">proc</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">&quot;demo&quot;</span>);</span><br><span class="line">        &#125;<span class="keyword">catch</span>(NullPointerException e)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Caught inside proc&quot;</span>);</span><br><span class="line">            <span class="keyword">throw</span> e;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String [] args)</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            proc();</span><br><span class="line">        &#125;<span class="keyword">catch</span>(NullPointerException e)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Recaught: &quot;</span>+e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-throws"><a href="#3-throws" class="headerlink" title="3.throws"></a>3.throws</h4><p>如果一个方法可以导致一个异常但不处理它，它必须指定这种行为以使方法的调用者可以保护它们自己 而不发生异常。要做到这点，我们可以在方法声明中包含一个 throws 子句。</p>
+<h4 id="4-finally"><a href="#4-finally" class="headerlink" title="4.finally"></a>4.finally</h4><p>处理善后工作，主要用于收回try语句块中打开的资源，无论有没有异常被抛出都会被执行。</p>
+<h4 id="5-执行顺序"><a href="#5-执行顺序" class="headerlink" title="5.执行顺序"></a>5.执行顺序</h4><ol>
+<li>执行try,catch,给返回值赋值</li>
+<li>执行finally</li>
+<li>return</li>
+</ol>
+<h2 id="四、自定义异常"><a href="#四、自定义异常" class="headerlink" title="四、自定义异常"></a>四、自定义异常</h2><ul>
+<li>用户自己定义的异常类，需要继承Exception类。</li>
+<li>步骤<ol>
+<li>创建自定义异常类。</li>
+<li>在方法中通过throw关键字抛出异常对象。</li>
+<li>如果在当前抛出异常的方法中处理异常，可以使用 try-catch 语句捕获并处理；否则在方法的 声明处通过 throws 关键字指明要抛出给方法调用者的异常，继续进行下一步操作。</li>
+<li>在出现异常方法的调用者中捕获并处理异常。</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//1.创建自定义异常类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyException</span> <span class="keyword">extends</span> <span class="title">Exception</span> </span>&#123;</span><br><span class="line">    <span class="comment">//传递数字&gt;10</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> detail;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyException</span><span class="params">(<span class="keyword">int</span> a)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.detail = a;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span>  <span class="comment">//打印异常信息</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;MyException&#123;&quot;</span> + detail + <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="comment">//可能存异常的方法。</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> a)</span> <span class="keyword">throws</span> MyException </span>&#123;<span class="comment">//3.throws指明要抛出给方法调用者的异常</span></span><br><span class="line">        System.out.println(<span class="string">&quot;传递的参数为&quot;</span> + a);</span><br><span class="line">        <span class="keyword">if</span> (a&gt;<span class="number">10</span>)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> MyException(a);<span class="comment">//2.throw抛出异常对象</span></span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;ok&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//4.通过try-catch捕获处理异常。</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            test(<span class="number">11</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (MyException e) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Myexception--&gt;&quot;</span> + e );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">传递的参数为<span class="number">11</span></span><br><span class="line">Myexception--&gt;MyException&#123;<span class="number">11</span>&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>笔记</category>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>异常</tag>
       </tags>
   </entry>
   <entry>
@@ -1374,36 +1611,6 @@
       </tags>
   </entry>
   <entry>
-    <title>SpringBoot 整合 Mybatis</title>
-    <url>/2021/10/26/boot%E6%95%B4%E5%90%88mybatis/</url>
-    <content><![CDATA[<h3 id="SpringBoot整合-Mybatis"><a href="#SpringBoot整合-Mybatis" class="headerlink" title="SpringBoot整合 Mybatis"></a>SpringBoot整合 Mybatis</h3><h4 id="1-创建-Student-实体类，搭建MVC"><a href="#1-创建-Student-实体类，搭建MVC" class="headerlink" title="1. 创建 Student 实体类，搭建MVC"></a>1. 创建 Student 实体类，搭建MVC</h4><h4 id="1-配置-application-yml-文件"><a href="#1-配置-application-yml-文件" class="headerlink" title="1. 配置 application.yml 文件"></a>1. 配置 application.yml 文件</h4><figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8080</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">datasource:</span></span><br><span class="line">    <span class="attr">driver-class-name:</span> <span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">jdbc:mysql://127.0.0.1:3306/mytest?useSSL=false&amp;serverTimezone=GMT%2B8</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">root</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">123456</span></span><br><span class="line"><span class="attr">mybatis:</span></span><br><span class="line">  <span class="attr">config-location:</span> <span class="string">classpath:mybatis-config.xml</span></span><br><span class="line">  <span class="attr">mapper-locations:</span> <span class="string">classpath:mapper/**/*.xml</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="2-配置-mybatis-config-xml-配置文件"><a href="#2-配置-mybatis-config-xml-配置文件" class="headerlink" title="2. 配置 mybatis-config.xml 配置文件"></a>2. 配置 mybatis-config.xml 配置文件</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">configuration</span></span></span><br><span class="line"><span class="meta">        <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="meta-string">&quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">settings</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--主键自动生成--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">&quot;useGeneratedKeys&quot;</span> <span class="attr">value</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--驼峰命名--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">&quot;mapUnderscoreToCamelCase&quot;</span> <span class="attr">value</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="3-配置-student-xml-映射文件"><a href="#3-配置-student-xml-映射文件" class="headerlink" title="3. 配置  student.xml 映射文件"></a>3. 配置  student.xml 映射文件</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">mapper</span> <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="meta-string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;com.stx.ssmfirstdemo.dao.StudentDao&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;queryStuList&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.stx.ssmfirstdemo.entity.Student&quot;</span>&gt;</span></span><br><span class="line">        select id, name, age, sex, score, gid, addtime, status</span><br><span class="line">        from mytest.stu_info;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="4-编写Dao层接口-StudentDao"><a href="#4-编写Dao层接口-StudentDao" class="headerlink" title="4. 编写Dao层接口 StudentDao"></a>4. 编写Dao层接口 StudentDao</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">StudentDao</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//访问学生列表</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ArrayList&lt;Student&gt; <span class="title">queryStuList</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="5-编写业务类接口-StudentService-和实现类-StudentServiceImpl"><a href="#5-编写业务类接口-StudentService-和实现类-StudentServiceImpl" class="headerlink" title="5. 编写业务类接口 StudentService 和实现类 StudentServiceImpl"></a>5. 编写业务类接口 StudentService 和实现类 StudentServiceImpl</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">StudentService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ArrayList&lt;Student&gt; <span class="title">queryStuList</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StudentServiceImpl</span> <span class="keyword">implements</span> <span class="title">StudentService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> StudentDao studentDao;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ArrayList&lt;Student&gt; <span class="title">queryStuList</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> studentDao.queryStuList();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="6-编写控制器-StudentController"><a href="#6-编写控制器-StudentController" class="headerlink" title="6. 编写控制器 StudentController"></a>6. 编写控制器 StudentController</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StudentController</span>  </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> StudentService studentService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/getStuList&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ArrayList&lt;Student&gt; <span class="title">queryStudentList</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> studentService.queryStuList();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="7-扫描-MapperScan"><a href="#7-扫描-MapperScan" class="headerlink" title="7. 扫描  @MapperScan"></a>7. 扫描  @MapperScan</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@MapperScan(&quot;com.stx.*.dao&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SsmfirstdemoApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(SsmfirstdemoApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>笔记</category>
-        <category>框架</category>
-      </categories>
-      <tags>
-        <tag>框架</tag>
-        <tag>SpringBoot</tag>
-        <tag>Mybatis</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Swagger</title>
     <url>/2021/11/01/Swagger/</url>
     <content><![CDATA[<h2 id="一-Swagger"><a href="#一-Swagger" class="headerlink" title="一.Swagger"></a>一.Swagger</h2><ul>
@@ -1543,6 +1750,187 @@
       </tags>
   </entry>
   <entry>
+    <title>SpringBoot 整合 Mybatis</title>
+    <url>/2021/10/26/boot%E6%95%B4%E5%90%88mybatis/</url>
+    <content><![CDATA[<h3 id="SpringBoot整合-Mybatis"><a href="#SpringBoot整合-Mybatis" class="headerlink" title="SpringBoot整合 Mybatis"></a>SpringBoot整合 Mybatis</h3><h4 id="1-创建-Student-实体类，搭建MVC"><a href="#1-创建-Student-实体类，搭建MVC" class="headerlink" title="1. 创建 Student 实体类，搭建MVC"></a>1. 创建 Student 实体类，搭建MVC</h4><h4 id="1-配置-application-yml-文件"><a href="#1-配置-application-yml-文件" class="headerlink" title="1. 配置 application.yml 文件"></a>1. 配置 application.yml 文件</h4><figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8080</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">datasource:</span></span><br><span class="line">    <span class="attr">driver-class-name:</span> <span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">jdbc:mysql://127.0.0.1:3306/mytest?useSSL=false&amp;serverTimezone=GMT%2B8</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">root</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">123456</span></span><br><span class="line"><span class="attr">mybatis:</span></span><br><span class="line">  <span class="attr">config-location:</span> <span class="string">classpath:mybatis-config.xml</span></span><br><span class="line">  <span class="attr">mapper-locations:</span> <span class="string">classpath:mapper/**/*.xml</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-配置-mybatis-config-xml-配置文件"><a href="#2-配置-mybatis-config-xml-配置文件" class="headerlink" title="2. 配置 mybatis-config.xml 配置文件"></a>2. 配置 mybatis-config.xml 配置文件</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">configuration</span></span></span><br><span class="line"><span class="meta">        <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="meta-string">&quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">settings</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--主键自动生成--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">&quot;useGeneratedKeys&quot;</span> <span class="attr">value</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--驼峰命名--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">&quot;mapUnderscoreToCamelCase&quot;</span> <span class="attr">value</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-配置-student-xml-映射文件"><a href="#3-配置-student-xml-映射文件" class="headerlink" title="3. 配置  student.xml 映射文件"></a>3. 配置  student.xml 映射文件</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">mapper</span> <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="meta-string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;com.stx.ssmfirstdemo.dao.StudentDao&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;queryStuList&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.stx.ssmfirstdemo.entity.Student&quot;</span>&gt;</span></span><br><span class="line">        select id, name, age, sex, score, gid, addtime, status</span><br><span class="line">        from mytest.stu_info;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-编写Dao层接口-StudentDao"><a href="#4-编写Dao层接口-StudentDao" class="headerlink" title="4. 编写Dao层接口 StudentDao"></a>4. 编写Dao层接口 StudentDao</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">StudentDao</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//访问学生列表</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ArrayList&lt;Student&gt; <span class="title">queryStuList</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-编写业务类接口-StudentService-和实现类-StudentServiceImpl"><a href="#5-编写业务类接口-StudentService-和实现类-StudentServiceImpl" class="headerlink" title="5. 编写业务类接口 StudentService 和实现类 StudentServiceImpl"></a>5. 编写业务类接口 StudentService 和实现类 StudentServiceImpl</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">StudentService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ArrayList&lt;Student&gt; <span class="title">queryStuList</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StudentServiceImpl</span> <span class="keyword">implements</span> <span class="title">StudentService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> StudentDao studentDao;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ArrayList&lt;Student&gt; <span class="title">queryStuList</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> studentDao.queryStuList();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-编写控制器-StudentController"><a href="#6-编写控制器-StudentController" class="headerlink" title="6. 编写控制器 StudentController"></a>6. 编写控制器 StudentController</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StudentController</span>  </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> StudentService studentService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/getStuList&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ArrayList&lt;Student&gt; <span class="title">queryStudentList</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> studentService.queryStuList();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="7-扫描-MapperScan"><a href="#7-扫描-MapperScan" class="headerlink" title="7. 扫描  @MapperScan"></a>7. 扫描  @MapperScan</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@MapperScan(&quot;com.stx.*.dao&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SsmfirstdemoApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(SsmfirstdemoApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>笔记</category>
+        <category>框架</category>
+      </categories>
+      <tags>
+        <tag>框架</tag>
+        <tag>SpringBoot</tag>
+        <tag>Mybatis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git的学习和使用</title>
+    <url>/2021/11/10/git%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<h2 id="一-版本控制"><a href="#一-版本控制" class="headerlink" title="一.版本控制"></a>一.版本控制</h2><blockquote>
+<p><strong>版本控制</strong>: 是一种在开发的过程中用于管理我们对文件、目录或工程等内容的修改历 史，方便查看更改历史记录，备份以便恢复以前的版本的软件工程技术。</p>
+<ul>
+<li>用于管理多人协同开发项目的技术</li>
+</ul>
+</blockquote>
+<ul>
+<li>常见的版本控制工具 Git (分布式版本控制)  SVN (集中版本控制)  CVS  VSS </li>
+<li>版本控制分类:<ol>
+<li>本地版本控制<ul>
+<li>记录文件的每次更新,补丁文件,适合个人使用</li>
+</ul>
+</li>
+<li>集中版本控制<ul>
+<li>所有的版本数据都存放在服务器中,协同开发者从服务器上同步更新或上传自己的修改</li>
+<li>用户本地只有自己以前所同步的版本,如果不联网,看不到历史版本,如果服务器损坏了,就会丢失所有数据,需要定期备份</li>
+</ul>
+</li>
+<li>分布式版本控制<ul>
+<li>所有的版本信息可以同步到每个本地用户,可以在本地查看所有历史版本,可以离线在本地提交,然后联网push到服务器或其他用户</li>
+<li>每个用户都有所有的版本数据,即使服务器损坏了,也可以从一个没问题的用户设备回复数据,增加了本地存储空间的占用</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="二-Git环境配置"><a href="#二-Git环境配置" class="headerlink" title="二.Git环境配置"></a>二.Git环境配置</h2><h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><ul>
+<li><a href="https://registry.npmmirror.com/binary.html?path=git-for-windows/">镜像下载地址</a></li>
+<li>自动配置环境,一直下一步安装</li>
+</ul>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><ul>
+<li>Git Bash: Linux风格的命令行,推荐使用</li>
+<li>Git CMD: windows风格的命令行</li>
+<li>Git GUi: 图形界面的Git,不建议初学者使用</li>
+</ul>
+<h3 id="基本的Linux命令"><a href="#基本的Linux命令" class="headerlink" title="基本的Linux命令"></a>基本的Linux命令</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> xxx	<span class="comment">#改变目录</span></span><br><span class="line"><span class="built_in">cd</span> ..	<span class="comment">#返回上一级目录</span></span><br><span class="line"><span class="built_in">cd</span>		<span class="comment">#进入默认目录</span></span><br><span class="line"><span class="built_in">pwd</span>		<span class="comment">#显示当前所在的目录路径</span></span><br><span class="line">ls(ll)	<span class="comment">#列出当前所在目录中的所有文件</span></span><br><span class="line">touch	<span class="comment">#新建一个文件 新建java.java</span></span><br><span class="line">rm		<span class="comment">#删除一个文件  删除java.java</span></span><br><span class="line">mkdir	<span class="comment">#新建一个文件夹  新建java</span></span><br><span class="line">rm -r	<span class="comment">#删除一个文件夹  rm -r src 删除src目录</span></span><br><span class="line">mv		<span class="comment">#移动文件  mv java.java  java 将java.java文件移到java文件夹</span></span><br><span class="line">reset	<span class="comment">#初始化终端</span></span><br><span class="line">clear	<span class="comment">#清屏</span></span><br><span class="line"><span class="built_in">history</span>	<span class="comment">#查看命令历史</span></span><br><span class="line"><span class="built_in">help</span>	<span class="comment">#帮助</span></span><br><span class="line"><span class="built_in">exit</span>	<span class="comment">#推出</span></span><br><span class="line"><span class="comment">#		#注释</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Git配置"><a href="#Git配置" class="headerlink" title="Git配置"></a>Git配置</h3><ul>
+<li>Git相关配置命令</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config -l		<span class="comment">#查看配置</span></span><br><span class="line">git config --system --list		<span class="comment">#查看系统配置</span></span><br><span class="line">git config --global --list		<span class="comment">#查看当前用户配置</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Git相关配置文件</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Git\etc\gitconfig					<span class="comment">#Git安装目录下的girconfig  --system 系统级</span></span><br><span class="line">C\Users\Administrator\.gitconfig	 <span class="comment">#适用于当前登录用户 --global  全局级</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>Git设置用户名和邮箱</p>
+<p>安装Git的首要操作,应为每次Git提交都会使用该信息</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;mkbk&quot;</span> 					<span class="comment">#名称</span></span><br><span class="line">git config --global user.email 2389419762@qq.com		 <span class="comment">#邮箱</span></span><br><span class="line">git config user.name <span class="string">&quot;mkbk&quot;</span>			<span class="comment">#如果在项目中不希望使用该信息,可以在改项目中运行该命令</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="三-Git基本理论"><a href="#三-Git基本理论" class="headerlink" title="三.Git基本理论"></a>三.Git基本理论</h2><h3 id="1-工作区域"><a href="#1-工作区域" class="headerlink" title="1.工作区域"></a>1.工作区域</h3><ul>
+<li>Git的四个区域</li>
+<li>Git有工作目录,暂存区,本地仓库,三个工作区域,还有一个远程的git仓库</li>
+</ul>
+<p><img src="https://pic.imgdb.cn/item/623403055baa1a80abe320db.png"></p>
+<ul>
+<li>Workspace：工作区,我们平时存放项目代码的地方</li>
+<li>Index / Stage：暂存区,用于临时存放我们的改动,事实上它只是一个文件,保存即将提交的文件列表信息</li>
+<li>Repository：仓库区 (本地仓库) 就是安全存放数据的位置,这里面有你提交到所有版本的数据.其中HEAD指向最新放入仓库的版本</li>
+<li>Remote：远程仓库,托管代码的服务器,可以简单的认为是我们项目组中的一台电脑用于远程数据交换</li>
+</ul>
+<p><strong>本地的三个区域确切的说应该是git仓库中HEAD指向的版本：</strong></p>
+<p><img src="https://pic.imgdb.cn/item/6234043d5baa1a80abe43968.png"></p>
+<ul>
+<li>Directory：使用Git管理的一个目录，也就是一个仓库，包含我们的工作空间和Git的管理空间</li>
+<li>WorkSpace：需要通过Git进行版本控制的目录和文件，这些目录和文件组成了工作空间</li>
+<li>.git：存放Git管理信息的目录，初始化仓库的时候自动创建 隐藏文件</li>
+<li>Index/Stage：暂存区，或者叫待提交更新区，在提交进入repo之前，我们可以把所有的更新放在暂存区。</li>
+<li>Local Repo：本地仓库，一个存放在本地的版本库；HEAD会只是当前的开发分支（branch）</li>
+<li>Stash：隐藏，是一个工作状态保存栈，用于保存/恢复WorkSpace中的临时状态。</li>
+</ul>
+<h3 id="2-工作流程"><a href="#2-工作流程" class="headerlink" title="2.工作流程"></a>2.工作流程</h3><ol>
+<li>在工作目录中添加、修改文件</li>
+<li>将需要进行版本管理的文件放入暂存区域</li>
+<li>暂存区域的文件提交到git仓库<ul>
+<li>git管理的三个状态:    已修改 modified ,    已暂存 staged ,    已提交 committed</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/623405915baa1a80abe57dbe.png"></p>
+<h2 id="四-Git项目搭建"><a href="#四-Git项目搭建" class="headerlink" title="四.Git项目搭建"></a>四.Git项目搭建</h2><ul>
+<li>工作目录一般是git帮助管理的文件夹,可以是我们的项目也可以是空,一般不要有中文</li>
+<li>常用的6个命令:</li>
+</ul>
+<p><img src="https://pic.imgdb.cn/item/6234222a5baa1a80abf92e14.png"></p>
+<h3 id="1-本地仓库搭建"><a href="#1-本地仓库搭建" class="headerlink" title="1.本地仓库搭建"></a>1.本地仓库搭建</h3><ul>
+<li>创建新的仓库,在要管理的项目的根目录创建</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#在当前目录新建一个Git代码库  初始化 会生成一个.git目录 版本信息都在里边</span></span><br><span class="line">git init  </span><br></pre></td></tr></table></figure>
+
+<h3 id="2-克隆远程仓库"><a href="#2-克隆远程仓库" class="headerlink" title="2.克隆远程仓库"></a>2.克隆远程仓库</h3><ul>
+<li>将远程服务器上的仓库完全克隆一份都本地</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#克隆一个项目和它的所有代码(所有版本)</span></span><br><span class="line">git <span class="built_in">clone</span> [url]</span><br></pre></td></tr></table></figure>
+
+<p>五.Git文件操作</p>
+<blockquote>
+<p>Git文件基本操作命令</p>
+</blockquote>
+<ul>
+<li>文件操作</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#查看指定文件状态  后边加指定名字</span></span><br><span class="line">git status [filename]</span><br><span class="line"><span class="comment">#查看所有文件状态</span></span><br><span class="line">git status</span><br><span class="line"><span class="comment">#将所有文件添加到暂存区</span></span><br><span class="line">git add .</span><br><span class="line"><span class="comment">#提交到本地仓库</span></span><br><span class="line">git commit </span><br><span class="line"><span class="comment">#提交到远程仓库</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>忽略文件  gitignore文件</li>
+</ul>
+<blockquote>
+<p>设置一些要被忽略的文件,不提交到仓库</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">*.txt <span class="comment">#忽略所有 .txt结尾的文件</span></span><br><span class="line">!lib.txt <span class="comment">#但lib.txt除外</span></span><br><span class="line">/temp <span class="comment">#仅忽略项目根目录下的temp文件,不包括其它目录temp</span></span><br><span class="line">build/ <span class="comment">#忽略build/目录下的所有文件</span></span><br><span class="line">doc/*.txt <span class="comment">#会忽略 doc/*.txt 但不包括 doc/server/*.txt</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="五-使用gitee-github"><a href="#五-使用gitee-github" class="headerlink" title="五.使用gitee(github)"></a>五.使用gitee(github)</h2><ol>
+<li>注册,登录</li>
+<li>设置本机绑定SSH公钥,实现免密登录</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 进入 C:\Users\Administrator\.ssh 目录</span></span><br><span class="line"><span class="comment"># 生成公钥</span></span><br><span class="line"><span class="comment">#-t rsa 是加密</span></span><br><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>将生成的公钥信息public key  添加到账户中</li>
+<li>创建自己的仓库,即远程仓库</li>
+</ol>
+<h2 id="六-IDEA集成Git"><a href="#六-IDEA集成Git" class="headerlink" title="六.IDEA集成Git"></a>六.IDEA集成Git</h2><ol>
+<li>新建项目,绑定git (可以将git创建的仓库下载到本地,然后将文件复制到项目中)</li>
+<li>修改文件,使用idea    add commit push   到远程仓库</li>
+<li>测试</li>
+</ol>
+<h2 id="七-GIT分支"><a href="#七-GIT分支" class="headerlink" title="七.GIT分支"></a>七.GIT分支</h2><blockquote>
+<p>通过分支,来实现版本控制</p>
+</blockquote>
+<h3 id="1-分支常用命令"><a href="#1-分支常用命令" class="headerlink" title="1.分支常用命令"></a>1.分支常用命令</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 列出所有本地分支</span></span><br><span class="line">git branch</span><br><span class="line"><span class="comment"># 列出所有远程分支</span></span><br><span class="line">git branch -r</span><br><span class="line"><span class="comment"># 新建一个分支，但依然停留在当前分支</span></span><br><span class="line">git branch [branch-name]</span><br><span class="line"><span class="comment"># 新建一个分支，并切换到该分支</span></span><br><span class="line">git checkout -b [branch]</span><br><span class="line"><span class="comment"># 合并指定分支到当前分支</span></span><br><span class="line">git merge [branch]</span><br><span class="line"><span class="comment"># 删除分支</span></span><br><span class="line">git branch -d [branch-name]</span><br><span class="line"><span class="comment"># 删除远程分支</span></span><br><span class="line">git push origin --delete [branch-name]</span><br><span class="line">git branch -dr [remote/branch]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>master主分支应该非常稳定，用来发布新版本，一般情况下不允许在上面工作，工作一般情况下在新建的dev分支上工作，工作完后，比如上要发布，或者说dev分支代码稳定后可以合并到主分支master上 来</li>
+</ul>
+]]></content>
+      <categories>
+        <category>笔记</category>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JSP学习</title>
     <url>/2021/09/15/jsp/</url>
     <content><![CDATA[<h2 id="一、JSP"><a href="#一、JSP" class="headerlink" title="一、JSP"></a>一、JSP</h2><ol>
@@ -1592,6 +1980,101 @@
       <tags>
         <tag>Java</tag>
         <tag>JSP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringBoot异步,定时,邮件</title>
+    <url>/2021/11/05/%E5%BC%82%E6%AD%A5,%E5%AE%9A%E6%97%B6,%E9%82%AE%E4%BB%B6/</url>
+    <content><![CDATA[<h2 id="一-异步任务"><a href="#一-异步任务" class="headerlink" title="一.异步任务"></a>一.异步任务</h2><blockquote>
+<p>比如发送邮箱的时候,后台会去发送邮箱,前台会造成响应等待不动,知道后台邮件发送完毕,前台才会响应,此时就需要采用多线程异步去处理这些任务</p>
+</blockquote>
+<ol>
+<li>创建 AsyncService 类 异步业务类<ul>
+<li>模拟邮箱发送数据的处理,设置掩饰</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AsyncService</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hello</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;数据处理中...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>编写 AsyncController 类 <ul>
+<li>调用接口进行测试,俩秒后出现success,这是同步任务的情况</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AsyncController</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    AsyncService asyncService;</span><br><span class="line">    <span class="meta">@GetMapping(&quot;/hello&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">hello</span><span class="params">()</span></span>&#123;</span><br><span class="line">        asyncService.hello();</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>实现异步任务:<ul>
+<li>hello方法添加注解 @Async ,主程序添加注解 @EnableAsync 开启异步注解功能</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//告诉Spring这是一个异步方法</span></span><br><span class="line"><span class="meta">@Async</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hello</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(<span class="string">&quot;数据处理中...&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@EnableAsync</span> <span class="comment">//开启异步注解功能</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringbootTaskApplication</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(SpringbootTaskApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>测试,发现网页瞬间出现success,而后台也依旧等待2秒后输出语句.实现异步效果.</li>
+</ol>
+<h2 id="二-定时任务"><a href="#二-定时任务" class="headerlink" title="二.定时任务"></a>二.定时任务</h2><blockquote>
+<p>定时任务的执行</p>
+</blockquote>
+<ul>
+<li>TaskExecutor 接口    TaskScheduler接口</li>
+<li>@EnableScheduling    @Scheduled</li>
+</ul>
+<ol>
+<li>创建 ScheduledService 类 ,通过 @Scheduled注解 cron表达式 实习定时执行<ul>
+<li>cron表达式    (秒 分 时 日 月 周)</li>
+<li><a href="https://qqe2.com/cron">CRON在线编辑器</a></li>
+</ul>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ScheduledService</span> </span>&#123;</span><br><span class="line">    <span class="comment">//秒 分 时 日 月 周</span></span><br><span class="line">    <span class="comment">//0 * * * * MON-FRI</span></span><br><span class="line">    <span class="comment">//注意cron表达式的用法；</span></span><br><span class="line">    <span class="meta">@Scheduled(cron = &quot;0 * * * * 0-7&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hello</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;hello.....&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>主程序添加注解 @EnableScheduling 开启基于注解的定时任务</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@EnableAsync</span> <span class="comment">//开启异步注解功能</span></span><br><span class="line"><span class="meta">@EnableScheduling</span> <span class="comment">//开启基于注解的定时任务</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringbootTaskApplication</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(SpringbootTaskApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>测试</li>
+</ol>
+<h2 id="三-邮件任务"><a href="#三-邮件任务" class="headerlink" title="三.邮件任务"></a>三.邮件任务</h2><blockquote>
+<p>Springboot 邮件发送任务</p>
+</blockquote>
+<ul>
+<li>Springboot自动配置MailSenderAutoConfiguration</li>
+<li>定义MailProperties内容,配置在application.yml中</li>
+<li>自动装配JavaMailSender</li>
+</ul>
+<ol>
+<li>导入依赖  spring-boot-starter-mail</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-mail<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>查看MailProperties  有哪些可以配置的属性</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@ConfigurationProperties(</span></span><br><span class="line"><span class="meta">    prefix = &quot;spring.mail&quot;</span></span><br><span class="line"><span class="meta">)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MailProperties</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Charset DEFAULT_CHARSET;</span><br><span class="line">    <span class="keyword">private</span> String host;</span><br><span class="line">    <span class="keyword">private</span> Integer port;</span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">    <span class="keyword">private</span> String protocol = <span class="string">&quot;smtp&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> Charset defaultEncoding;</span><br><span class="line">    <span class="keyword">private</span> Map&lt;String, String&gt; properties;</span><br><span class="line">    <span class="keyword">private</span> String jndiName;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>配置文件</li>
+</ol>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="meta">spring.mail.username</span>=<span class="string">2389419762@qq.com</span></span><br><span class="line"><span class="meta">spring.mail.password</span>=<span class="string">yhkrgtqwbnrcbhcj</span></span><br><span class="line"><span class="meta">spring.mail.host</span>=<span class="string">smtp.qq.com</span></span><br><span class="line"><span class="comment"># qq需要配置ssl</span></span><br><span class="line"><span class="meta">spring.mail.properties.mail.smtp.ssl.enable</span>=<span class="string">true</span></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>测试</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line">JavaMailSenderImpl mailSender;</span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">contextLoads</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//邮件设置1：一个简单的邮件</span></span><br><span class="line">    SimpleMailMessage message = <span class="keyword">new</span> SimpleMailMessage();</span><br><span class="line">    message.setSubject(<span class="string">&quot;你好!!&quot;</span>);</span><br><span class="line">    message.setText(<span class="string">&quot;晚安,玛卡巴卡&quot;</span>);</span><br><span class="line">    message.setTo(<span class="string">&quot;2389419762@qq.com&quot;</span>);</span><br><span class="line">    message.setFrom(<span class="string">&quot;2389419762@qq.com&quot;</span>);</span><br><span class="line">    mailSender.send(message);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">contextLoads2</span><span class="params">()</span> <span class="keyword">throws</span> MessagingException </span>&#123;</span><br><span class="line">    <span class="comment">//邮件设置2：一个复杂的邮件</span></span><br><span class="line">    MimeMessage mimeMessage = mailSender.createMimeMessage();</span><br><span class="line">    MimeMessageHelper helper = <span class="keyword">new</span> MimeMessageHelper(mimeMessage, <span class="keyword">true</span>);</span><br><span class="line">    helper.setSubject(<span class="string">&quot;你好!!&quot;</span>);</span><br><span class="line">    helper.setText(<span class="string">&quot;&lt;b style=&#x27;color:red&#x27;&gt;晚安,玛卡巴卡&lt;/b&gt;&quot;</span>,<span class="keyword">true</span>);</span><br><span class="line">    <span class="comment">//发送附件</span></span><br><span class="line">    helper.addAttachment(<span class="string">&quot;1.jpg&quot;</span>,<span class="keyword">new</span> File(<span class="string">&quot;&quot;</span>));</span><br><span class="line">    helper.addAttachment(<span class="string">&quot;2.jpg&quot;</span>,<span class="keyword">new</span> File(<span class="string">&quot;&quot;</span>));</span><br><span class="line">    helper.setTo(<span class="string">&quot;2389419762@qq.com&quot;</span>);</span><br><span class="line">    helper.setFrom(<span class="string">&quot;2389419762@qq.com&quot;</span>);</span><br><span class="line">    mailSender.send(mimeMessage);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>笔记</category>
+        <category>框架</category>
+      </categories>
+      <tags>
+        <tag>SpringBoot</tag>
       </tags>
   </entry>
   <entry>
